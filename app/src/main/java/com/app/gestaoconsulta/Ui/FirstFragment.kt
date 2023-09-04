@@ -1,4 +1,4 @@
-package com.app.gestaoconsultaapp.Fragments
+package com.app.gestaoconsulta.Ui
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,12 +14,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
-import com.app.gestaoconsulta.Ui.AdapterCadastro
-import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentFirstBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+@AndroidEntryPoint
 
 class FirstFragment : Fragment() {
 

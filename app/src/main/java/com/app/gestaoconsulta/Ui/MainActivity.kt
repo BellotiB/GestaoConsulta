@@ -5,8 +5,11 @@ import android.os.Bundle
 import androidx.navigation.findNavController
 import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+
+class MainActivity : AppCompatActivity(),LoadFragment {
 
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,5 +17,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
+
+    override fun openSecondFragment() {
+        findNavController(R.id.nav_host).navigate(R.id.secondFragment)
     }
 }
