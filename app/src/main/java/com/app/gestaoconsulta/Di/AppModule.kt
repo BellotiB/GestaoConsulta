@@ -1,4 +1,4 @@
-package com.app.gestaoconsultaapp.di
+package com.app.gestaoconsulta.Di
 
 
 
