@@ -20,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 @AndroidEntryPoint
-
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
@@ -51,6 +50,7 @@ class FirstFragment : Fragment() {
 
     private fun salvarLista() {
         binding.salvarLista.setOnClickListener {
+
         }
     }
 
@@ -88,8 +88,13 @@ class FirstFragment : Fragment() {
             consultaViewModel?.cadastro?.value?.especialidade = binding.especialidade.text.toString()
             consultaViewModel?.cadastro?.value?.id = binding.id.text.toString()
             updateList()
+            saveCadastro()
             cleanCadastro()
         }
+    }
+
+    private fun saveCadastro() {
+        consultaViewModel.insertCadastro()
     }
 
     private fun cleanCadastro() {
@@ -112,7 +117,7 @@ class FirstFragment : Fragment() {
     }
     private fun updateList(){
         lifecycleScope.launch {
-            consultaViewModel?.cadastro?.collectLatest { cad ->
+            consultaViewModel.cadastro.collectLatest { cad ->
                adapter?.updateCadastroList(cad)
             }
         }
