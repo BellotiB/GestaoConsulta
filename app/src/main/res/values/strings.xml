@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">GestaoConsulta</string>
+    <string name="nome">Nome:</string>
+    <string name="cadastrar_medicos">Cadastrar Médicos</string>
+    <string name="especialidade">Especialidade:</string>
+    <string name="salvar_lista">Salvar Lista</string>
+    <string name="dr_m_rio">Dr.Mário</string>
+    <string name="cardiologista">Cardiologista</string>
+    <string name="id">id</string>
 </resources>
