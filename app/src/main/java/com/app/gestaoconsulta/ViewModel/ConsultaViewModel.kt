@@ -28,8 +28,6 @@ class ConsultaViewModel  @Inject constructor(
    private var _cadastro = MutableStateFlow(CadastroMedico())
     var cadastro : StateFlow<CadastroMedico> = _cadastro
 
-
-
   init {
       viewModelScope.launch {
 
