@@ -8,12 +8,10 @@ import com.app.gestaoconsulta.Data.Cadastro
 import com.app.gestaoconsulta.Data.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -28,15 +26,26 @@ class ConsultaViewModel  @Inject constructor(
    private var _cadastro = MutableStateFlow(CadastroMedico())
     var cadastro : StateFlow<CadastroMedico> = _cadastro
 
-  init {
-      viewModelScope.launch {
+    var getCadastroDatabase : MutableList<Cadastro>? = null
+    init {
+        viewModelScope.launch {
+             getCadastroDatabase = repository.getAllCadastro()
+            setCadastroDatabaseOnCadastroList()
+        }
+    }
 
-       val cadastroList =  repository.getAllCadastro()
-      }
-  }
+    private fun setCadastroDatabaseOnCadastroList(){
+        getCadastroDatabase?.forEach {
+           val cadastroDataBase = CadastroMedico()
+            cadastroDataBase.nome = it.nome
+            cadastroDataBase.especialidade = it.especialidade
+            cadastroDataBase.id = it.id
 
+            cadastroList.value.add(cadastroDataBase)
+
+        }
+    }
     fun insertCadastro() {
-
         viewModelScope.launch {
             cadastro.collectLatest { cad ->
                val cadastro =  Cadastro(id = 0, nome = cad.nome, especialidade = cad.especialidade)
