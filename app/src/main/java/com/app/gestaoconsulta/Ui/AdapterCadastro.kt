@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.app.gestaoconsulta.Data.Cadastro
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.databinding.ItemCadastroBinding
 

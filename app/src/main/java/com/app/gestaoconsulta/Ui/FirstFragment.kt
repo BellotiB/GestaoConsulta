@@ -13,6 +13,7 @@ import androidx.core.view.GestureDetectorCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.gestaoconsulta.Data.Cadastro
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentFirstBinding
@@ -86,7 +87,6 @@ class FirstFragment : Fragment() {
         if(binding.nome.text.toString() != "" || binding.especialidade.text.toString() != ""){
             consultaViewModel?.cadastro?.value?.nome = binding.nome.text.toString()
             consultaViewModel?.cadastro?.value?.especialidade = binding.especialidade.text.toString()
-            consultaViewModel?.cadastro?.value?.id = binding.id.text.toString()
             updateList()
             saveCadastro()
             cleanCadastro()
