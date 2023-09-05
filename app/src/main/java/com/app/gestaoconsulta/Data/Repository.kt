@@ -1,6 +1,6 @@
 package com.app.gestaoconsulta.Data
 
-import com.app.gestaoconsulta.Model.CadastroMedico
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class Repository @Inject constructor(private val cadastroDao: CadastroDao )  {
@@ -9,7 +9,5 @@ class Repository @Inject constructor(private val cadastroDao: CadastroDao )  {
         cadastroDao.insertCadastro(cadastro)
     }
 
-    suspend fun getAllCadastro(): MutableList<Cadastro> {
-        return cadastroDao.getAllCadastros()
-    }
+    val getAllCadastro: Flow<MutableList<Cadastro>> = cadastroDao.getAllCadastros()
 }

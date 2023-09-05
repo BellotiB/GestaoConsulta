@@ -3,7 +3,7 @@ package com.app.gestaoconsulta.Data
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.app.gestaoconsulta.Model.CadastroMedico
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CadastroDao {
@@ -11,5 +11,5 @@ interface CadastroDao {
     suspend fun insertCadastro(cadastro: Cadastro)
 
     @Query("SELECT * FROM cadastro")
-    suspend fun getAllCadastros(): MutableList<Cadastro>
+    fun getAllCadastros(): Flow<MutableList<Cadastro>>
 }

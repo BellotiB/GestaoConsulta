@@ -34,9 +34,10 @@ class AdapterCadastro(private val cadastrosList:MutableList<CadastroMedico>,
         }
     }
 
-    fun updateCadastroList(cad: CadastroMedico) {
-        cadastrosList.add(cad)
-        notifyItemInserted(cadastrosList.size - 1)
+    fun updateCadastroList(cad: MutableList<CadastroMedico>) {
+        cadastrosList.clear()
+        cadastrosList.addAll(cad)
+        notifyDataSetChanged()
     }
 
     inner class CadastroViewHolder(private val binding: ItemCadastroBinding) :

@@ -8,9 +8,12 @@ import com.app.gestaoconsulta.Data.Cadastro
 import com.app.gestaoconsulta.Data.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,31 +23,11 @@ class ConsultaViewModel  @Inject constructor(
   private val repository: Repository
 ) :ViewModel() {
 
-  private var _cadastroList = MutableStateFlow<MutableList<CadastroMedico>>(mutableListOf())
-    var cadastroList : StateFlow<MutableList<CadastroMedico>> = _cadastroList
-
    private var _cadastro = MutableStateFlow(CadastroMedico())
     var cadastro : StateFlow<CadastroMedico> = _cadastro
 
-    var getCadastroDatabase : MutableList<Cadastro>? = null
-    init {
-        viewModelScope.launch {
-             getCadastroDatabase = repository.getAllCadastro()
-            setCadastroDatabaseOnCadastroList()
-        }
-    }
+    val allCadastros : Flow<MutableList<Cadastro>> = repository.getAllCadastro
 
-    private fun setCadastroDatabaseOnCadastroList(){
-        getCadastroDatabase?.forEach {
-           val cadastroDataBase = CadastroMedico()
-            cadastroDataBase.nome = it.nome
-            cadastroDataBase.especialidade = it.especialidade
-            cadastroDataBase.id = it.id
-
-            cadastroList.value.add(cadastroDataBase)
-
-        }
-    }
     fun insertCadastro() {
         viewModelScope.launch {
             cadastro.collectLatest { cad ->

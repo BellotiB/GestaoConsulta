@@ -84,48 +84,4 @@
                     android:textSize="15sp" />
             </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.motion.widget.MotionLayout>
-
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/motionmenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="150dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layoutDescription="@xml/fragment_first_scene_menu">
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_openmenu"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:visibility="gone">
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/salvar_lista"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/medicos_cadastrados"
-            android:textColor="@color/black"
-            app:backgroundTint="#F4F4F4"
-            app:icon="@drawable/icon_save"
-            app:iconTint="@color/black"
-            />
-
-    </com.google.android.material.card.MaterialCardView>
-
-        <LinearLayout
-            android:id="@+id/ll_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/iv_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/menu_open" />
-        </LinearLayout>
-
-    </androidx.constraintlayout.motion.widget.MotionLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

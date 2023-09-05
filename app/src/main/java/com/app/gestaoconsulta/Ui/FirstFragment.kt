@@ -18,6 +18,7 @@ import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentFirstBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 @AndroidEntryPoint
@@ -27,6 +28,7 @@ class FirstFragment : Fragment() {
 
     private val binding get() = _binding!!
     private val cadastrosList = mutableListOf<CadastroMedico>()
+    private val updateList = mutableListOf<CadastroMedico>()
     private var adapter : AdapterCadastro? = null
     private lateinit var gestureDetector: GestureDetectorCompat
     private lateinit var callBack : LoadFragment
@@ -38,21 +40,14 @@ class FirstFragment : Fragment() {
     ): View? {
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupSwipeListener()
-        loadList()
-        salvarLista()
-    }
-
-    private fun salvarLista() {
-        binding.salvarLista.setOnClickListener {
-
-        }
+        setupList()
+        updateList()
     }
 
     override fun onAttach(context: Context) {
@@ -87,7 +82,6 @@ class FirstFragment : Fragment() {
         if(binding.nome.text.toString() != "" || binding.especialidade.text.toString() != ""){
             consultaViewModel?.cadastro?.value?.nome = binding.nome.text.toString()
             consultaViewModel?.cadastro?.value?.especialidade = binding.especialidade.text.toString()
-            updateList()
             saveCadastro()
             cleanCadastro()
         }
@@ -102,14 +96,6 @@ class FirstFragment : Fragment() {
         binding.especialidade.text?.clear()
     }
 
-    private fun loadList(){
-        lifecycleScope.launch {
-            consultaViewModel?.cadastroList?.collectLatest { list ->
-                cadastrosList.addAll(list)
-                setupList()
-            }
-        }
-    }
     private fun setupList(){
         binding.rvCadastros.layoutManager = LinearLayoutManager(requireContext())
         adapter = AdapterCadastro(cadastrosList,callBack)
@@ -117,8 +103,17 @@ class FirstFragment : Fragment() {
     }
     private fun updateList(){
         lifecycleScope.launch {
-            consultaViewModel.cadastro.collectLatest { cad ->
-               adapter?.updateCadastroList(cad)
+            consultaViewModel.allCadastros.collect {
+                it.forEach {
+                    val cadastro = CadastroMedico()
+                    cadastro.nome = it.nome
+                    cadastro.especialidade = it.especialidade
+                    cadastro.id = it.id
+
+                    updateList.add(cadastro)
+                }
+                adapter?.updateCadastroList(updateList)
+                updateList.clear()
             }
         }
     }
