@@ -10,19 +10,18 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.GestureDetectorCompat
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
-import com.app.gestaoconsulta.databinding.FragmentFirstBinding
+import com.app.gestaoconsulta.databinding.FragmentCadastromedicoBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 @AndroidEntryPoint
-class FirstFragment : Fragment() {
+class CadastroMedicoFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentCadastromedicoBinding? = null
 
     private val binding get() = _binding!!
     private val cadastrosList = mutableListOf<CadastroMedico>()
@@ -37,7 +36,7 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentCadastromedicoBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.app.gestaoconsulta.Model.CadastroMedico
+import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
-import com.app.gestaoconsulta.databinding.FragmentSecondBinding
+import com.app.gestaoconsulta.databinding.FragmentCadastroDataporMedicoBinding
+import com.app.gestaoconsulta.databinding.FragmentCadastromedicoBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -19,12 +21,13 @@ import java.util.Calendar
 import java.util.Locale
 
 @AndroidEntryPoint
-class SecondFragment : Fragment() {
+class CadastroDataPorMedicoFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentCadastroDataporMedicoBinding? = null
     private val binding get() = _binding!!
-    private val selectedDates = mutableListOf<Long>()
+    private val selectedDates = mutableListOf<String>()
     private var cadastroSelected = CadastroMedico()
+    private var datasCadastradas = mutableListOf<DatasCadastradas>()
     private var consultaViewModel : ConsultaViewModel? = null
 
 
@@ -32,7 +35,7 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentCadastroDataporMedicoBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -61,27 +64,27 @@ class SecondFragment : Fragment() {
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
             val selectedDate = Calendar.getInstance()
             selectedDate.set(year, month, dayOfMonth)
-            val dateInMillis = selectedDate.timeInMillis
 
-            if (selectedDates.contains(dateInMillis)) {
-                selectedDates.remove(dateInMillis)
+            val dateformat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val dataSelecionada = dateformat.format(selectedDate.time)
+
+            if (selectedDates.contains(dataSelecionada)) {
+                Toast.makeText(requireContext(), "Data já foi selecionada", Toast.LENGTH_SHORT).show()
             } else {
-                selectedDates.add(dateInMillis)
+                selectedDates.add(dataSelecionada)
+                binding.textViewSelectedDates.text = selectedDates.toString()
+                setupDatasCadastradas(dataSelecionada)
             }
-
-            updateSelectedDatesText()
         }
     }
 
-    private fun updateSelectedDatesText() {
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-        val selectedDatesText = selectedDates.joinToString(", ") { dateInMillis ->
-            val date = Calendar.getInstance().apply {
-                timeInMillis = dateInMillis
-            }
-            dateFormat.format(date.time)
-        }
-        binding.textViewSelectedDates.text = selectedDatesText
+    private fun setupDatasCadastradas(dataSelecionada: String) {
+        val dateCadastrada = DatasCadastradas()
+        dateCadastrada.id = cadastroSelected.id
+        dateCadastrada.data = dataSelecionada
+
+        datasCadastradas.add(dateCadastrada)
+        datasCadastradas
     }
 
     override fun onDestroyView() {

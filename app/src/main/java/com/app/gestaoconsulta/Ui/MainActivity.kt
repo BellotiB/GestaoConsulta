@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(),LoadFragment {
     }
 
     override fun openSecondFragment() {
-        findNavController(R.id.nav_host).navigate(R.id.secondFragment)
+        findNavController(R.id.nav_host).navigate(R.id.action_cadastroMedicoFragment_to_cadastroDataPorMedicoFragment)
     }
 
     override fun cadastroSelected(id: Int) {

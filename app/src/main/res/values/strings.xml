@@ -6,4 +6,6 @@
     <string name="salvar_lista">Salvar Lista</string>
     <string name="id">id</string>
     <string name="medicos_cadastrados">Médicos Cadastrados</string>
+    <string name="datas_selecionadas">Datas Selecionadas</string>
+    <string name="selecionar_hor_rios_dos_dias_cadastrados">Selecionar horários dos dias cadastrados</string>
 </resources>
