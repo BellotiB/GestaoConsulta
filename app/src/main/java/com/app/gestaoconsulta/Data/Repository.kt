@@ -10,4 +10,5 @@ class Repository @Inject constructor(private val cadastroDao: CadastroDao )  {
     }
 
     val getAllCadastro: Flow<MutableList<Cadastro>> = cadastroDao.getAllCadastros()
+
 }

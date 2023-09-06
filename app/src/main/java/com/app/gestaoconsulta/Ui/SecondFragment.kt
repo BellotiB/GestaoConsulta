@@ -5,17 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.app.gestaoconsulta.Model.CadastroMedico
+import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentSecondBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-
+@AndroidEntryPoint
 class SecondFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
     private val selectedDates = mutableListOf<Long>()
+    private var cadastroSelected = CadastroMedico()
+    private var consultaViewModel : ConsultaViewModel? = null
 
 
     override fun onCreateView(
@@ -24,12 +34,24 @@ class SecondFragment : Fragment() {
     ): View? {
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         return binding.root
-
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
+        setupCalendar()
+        getCadastroSelected()
+    }
+
+    private fun getCadastroSelected() {
+        lifecycleScope.launch {
+            consultaViewModel?.cadastroSelected?.collectLatest { cad ->
+                cadastroSelected = cad
+            }
+        }
+    }
+
+    private fun setupCalendar() {
         val calendarView = binding.calendarView
 
         calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
@@ -46,6 +68,7 @@ class SecondFragment : Fragment() {
             updateSelectedDatesText()
         }
     }
+
     private fun updateSelectedDatesText() {
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val selectedDatesText = selectedDates.joinToString(", ") { dateInMillis ->

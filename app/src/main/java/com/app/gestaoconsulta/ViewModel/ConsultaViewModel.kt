@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,6 +27,12 @@ class ConsultaViewModel  @Inject constructor(
    private var _cadastro = MutableStateFlow(CadastroMedico())
     var cadastro : StateFlow<CadastroMedico> = _cadastro
 
+    private var _cadastroSelected = MutableStateFlow(CadastroMedico())
+    var cadastroSelected : StateFlow<CadastroMedico> = _cadastroSelected
+
+    private var _cadastroList = MutableStateFlow<MutableList<CadastroMedico>>(mutableListOf())
+    var cadastroList : StateFlow<MutableList<CadastroMedico>> = _cadastroList
+
     val allCadastros : Flow<MutableList<Cadastro>> = repository.getAllCadastro
 
     fun insertCadastro() {
@@ -35,5 +42,22 @@ class ConsultaViewModel  @Inject constructor(
                 repository.insertCadastro(cadastro)
             }
         }
+    }
+    fun selectCadastroById(id: Int) {
+        viewModelScope.launch {
+            cadastroList.collectLatest { cadList ->
+                cadList.forEach {
+                    if(it.id == id){
+                        cadastroSelected.value.id = it.id
+                        cadastroSelected.value.nome = it.nome
+                        cadastroSelected.value.especialidade = it.especialidade
+                    }
+                }
+            }
+        }
+    }
+    fun cleanCadastroList(){
+        cadastroList.value.clear()
+        cadastroList.value
     }
 }

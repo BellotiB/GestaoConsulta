@@ -11,15 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.GestureDetectorCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.gestaoconsulta.Data.Cadastro
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentFirstBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class FirstFragment : Fragment() {
@@ -32,7 +30,8 @@ class FirstFragment : Fragment() {
     private var adapter : AdapterCadastro? = null
     private lateinit var gestureDetector: GestureDetectorCompat
     private lateinit var callBack : LoadFragment
-     private val consultaViewModel : ConsultaViewModel by viewModels()
+
+     private var consultaViewModel : ConsultaViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +44,7 @@ class FirstFragment : Fragment() {
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         setupSwipeListener()
         setupList()
         updateList()
@@ -88,7 +88,7 @@ class FirstFragment : Fragment() {
     }
 
     private fun saveCadastro() {
-        consultaViewModel.insertCadastro()
+        consultaViewModel?.insertCadastro()
     }
 
     private fun cleanCadastro() {
@@ -103,7 +103,7 @@ class FirstFragment : Fragment() {
     }
     private fun updateList(){
         lifecycleScope.launch {
-            consultaViewModel.allCadastros.collect {
+            consultaViewModel?.allCadastros?.collect {
                 it.forEach {
                     val cadastro = CadastroMedico()
                     cadastro.nome = it.nome
@@ -113,6 +113,8 @@ class FirstFragment : Fragment() {
                     updateList.add(cadastro)
                 }
                 adapter?.updateCadastroList(updateList)
+                consultaViewModel?.cleanCadastroList()
+                consultaViewModel?.cadastroList?.value?.addAll(updateList)
                 updateList.clear()
             }
         }

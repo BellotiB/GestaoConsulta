@@ -12,4 +12,6 @@ interface CadastroDao {
 
     @Query("SELECT * FROM cadastro")
     fun getAllCadastros(): Flow<MutableList<Cadastro>>
+    @Query("SELECT * FROM cadastro WHERE id = :id")
+    fun getCadastrosById(id : Int): Flow<Cadastro>
 }
