@@ -41,6 +41,7 @@ class SecondFragment : Fragment() {
         consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         setupCalendar()
         getCadastroSelected()
+        setupViewCadastroSelected()
     }
 
     private fun getCadastroSelected() {
@@ -50,7 +51,10 @@ class SecondFragment : Fragment() {
             }
         }
     }
-
+    private fun setupViewCadastroSelected() {
+        binding.tvNome.text = cadastroSelected.nome
+        binding.tvEspecialidade.text = cadastroSelected.especialidade
+    }
     private fun setupCalendar() {
         val calendarView = binding.calendarView
 

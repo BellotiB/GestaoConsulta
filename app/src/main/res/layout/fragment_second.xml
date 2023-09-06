@@ -22,7 +22,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="@string/dr_m_rio" />
+            android:hint="@string/nome" />
 
         <TextView
             android:id="@+id/tv_especialidade"
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:hint="@string/cardiologista" />
+            android:hint="@string/especialidade" />
     </com.google.android.material.card.MaterialCardView>
 
 

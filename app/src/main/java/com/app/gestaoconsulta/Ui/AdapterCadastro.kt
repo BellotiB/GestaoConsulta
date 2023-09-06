@@ -2,6 +2,7 @@ package com.app.gestaoconsulta.Ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.CadastroMedico
@@ -32,6 +33,10 @@ class AdapterCadastro(private val cadastrosList:MutableList<CadastroMedico>,
             callBack.openSecondFragment()
             callBack.cadastroSelected(cadastro.id)
         }
+        holder.menuCard.setOnClickListener {
+            callBack.excluirItem(cadastro)
+            notifyDataSetChanged()
+        }
     }
 
     fun updateCadastroList(cad: MutableList<CadastroMedico>) {
@@ -47,5 +52,6 @@ class AdapterCadastro(private val cadastrosList:MutableList<CadastroMedico>,
             binding.tvEspecialidade.text = cadastro.especialidade
         }
         val cardView : CardView = binding.cvCard
+        val menuCard : ImageView = binding.menuCard
     }
 }

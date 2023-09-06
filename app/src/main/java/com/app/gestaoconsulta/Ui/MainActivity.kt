@@ -2,15 +2,13 @@ package com.app.gestaoconsulta.Ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.security.Provider
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(),LoadFragment {
@@ -31,5 +29,9 @@ class MainActivity : AppCompatActivity(),LoadFragment {
 
     override fun cadastroSelected(id: Int) {
       consultaViewModel.selectCadastroById(id)
+    }
+
+    override fun excluirItem(cad: CadastroMedico) {
+        consultaViewModel.deleteCadastro(cad)
     }
 }

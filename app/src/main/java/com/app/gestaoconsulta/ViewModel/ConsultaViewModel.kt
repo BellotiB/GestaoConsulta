@@ -8,13 +8,11 @@ import com.app.gestaoconsulta.Data.Cadastro
 import com.app.gestaoconsulta.Data.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -59,5 +57,15 @@ class ConsultaViewModel  @Inject constructor(
     fun cleanCadastroList(){
         cadastroList.value.clear()
         cadastroList.value
+    }
+    fun deleteCadastro(cad: CadastroMedico){
+        viewModelScope.launch(Dispatchers.IO) {
+            val cadastro = Cadastro(
+                nome = cad.nome,
+                especialidade = cad.especialidade,
+                id = cad.id
+            )
+            repository.deleteFromDataBase(cadastro)
+        }
     }
 }

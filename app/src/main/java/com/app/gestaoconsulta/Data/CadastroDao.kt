@@ -1,6 +1,7 @@
 package com.app.gestaoconsulta.Data
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
@@ -12,6 +13,8 @@ interface CadastroDao {
 
     @Query("SELECT * FROM cadastro")
     fun getAllCadastros(): Flow<MutableList<Cadastro>>
-    @Query("SELECT * FROM cadastro WHERE id = :id")
-    fun getCadastrosById(id : Int): Flow<Cadastro>
+
+    @Delete
+    fun delete(cad: Cadastro)
+
 }

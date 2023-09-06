@@ -4,8 +4,6 @@
     <string name="cadastrar_medicos">Cadastrar Médicos</string>
     <string name="especialidade">Especialidade:</string>
     <string name="salvar_lista">Salvar Lista</string>
-    <string name="dr_m_rio">Dr.Mário</string>
-    <string name="cardiologista">Cardiologista</string>
     <string name="id">id</string>
     <string name="medicos_cadastrados">Médicos Cadastrados</string>
 </resources>
