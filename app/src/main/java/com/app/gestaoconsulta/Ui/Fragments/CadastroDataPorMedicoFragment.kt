@@ -1,5 +1,6 @@
-package com.app.gestaoconsulta.Ui
+package com.app.gestaoconsulta.Ui.Fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,14 +9,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
+import com.app.gestaoconsulta.Ui.Adapter.AdapterDatasCadastradas
+import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCadastroDataporMedicoBinding
-import com.app.gestaoconsulta.databinding.FragmentCadastromedicoBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -27,7 +33,10 @@ class CadastroDataPorMedicoFragment : Fragment() {
     private val binding get() = _binding!!
     private val selectedDates = mutableListOf<String>()
     private var cadastroSelected = CadastroMedico()
+    private lateinit var callBack : LoadFragment
     private var datasCadastradas = mutableListOf<DatasCadastradas>()
+    private var adapter : AdapterDatasCadastradas? = null
+    private val datasCadastradasFlow = MutableStateFlow(datasCadastradas)
     private var consultaViewModel : ConsultaViewModel? = null
 
 
@@ -45,6 +54,17 @@ class CadastroDataPorMedicoFragment : Fragment() {
         setupCalendar()
         getCadastroSelected()
         setupViewCadastroSelected()
+        setupRecyclerView()
+        lifecycleScope.launch {
+            datasCadastradasFlow.collect { updatedDatasCadastradas ->
+                adapter?.updateDatasList(updatedDatasCadastradas)
+            }
+        }
+
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callBack  = context as LoadFragment
     }
 
     private fun getCadastroSelected() {
@@ -84,7 +104,13 @@ class CadastroDataPorMedicoFragment : Fragment() {
         dateCadastrada.data = dataSelecionada
 
         datasCadastradas.add(dateCadastrada)
-        datasCadastradas
+        datasCadastradasFlow.value = datasCadastradas
+    }
+
+    private fun setupRecyclerView() {
+          binding.rvDatasList.layoutManager = LinearLayoutManager(requireContext())
+         adapter = AdapterDatasCadastradas(datasCadastradas, callBack)
+        binding.rvDatasList.adapter = adapter
     }
 
     override fun onDestroyView() {

@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Ui
+package com.app.gestaoconsulta.Ui.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.CadastroMedico
+import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.databinding.ItemCadastroBinding
 
 
@@ -26,7 +27,7 @@ class AdapterCadastro(private val cadastrosList:MutableList<CadastroMedico>,
         return cadastrosList.size
     }
 
-    override fun onBindViewHolder(holder: CadastroViewHolder,position:Int) {
+    override fun onBindViewHolder(holder: CadastroViewHolder, position:Int) {
         val cadastro = cadastrosList[position]
         holder.bind(cadastro)
         holder.cardView.setOnClickListener{

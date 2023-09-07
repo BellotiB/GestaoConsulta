@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="25dp"
+    android:layout_width="250dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_card"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="25dp"
+        app:cardElevation="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:text="Data:"/>
+
+        <TextView
+            android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:hint="25/12/2012:"/>
+
+
+        <ImageView
+            android:id="@+id/menu_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:rotation="88"
+            app:srcCompat="@drawable/ic_delete" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+</LinearLayout>

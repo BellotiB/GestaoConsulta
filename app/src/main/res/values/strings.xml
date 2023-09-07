@@ -8,4 +8,6 @@
     <string name="medicos_cadastrados">Médicos Cadastrados</string>
     <string name="datas_selecionadas">Datas Selecionadas</string>
     <string name="selecionar_hor_rios_dos_dias_cadastrados">Selecionar horários dos dias cadastrados</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
