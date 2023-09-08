@@ -37,6 +37,7 @@ class AdapterDatasCadastradas(private val datasList:MutableList<DatasCadastradas
         fun bind(dataCad: DatasCadastradas) {
             binding.tvStartDate.text = dataCad.startDate
             binding.tvEndDate.text = dataCad.endDate
+            binding.tvHora.text = dataCad.startHora +" "+ dataCad.endHora
         }
     }
 }
