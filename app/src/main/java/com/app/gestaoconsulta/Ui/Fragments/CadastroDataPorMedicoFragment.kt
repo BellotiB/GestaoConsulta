@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
+import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.Ui.Adapter.AdapterDatasCadastradas
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCadastroDataporMedicoBinding
@@ -63,16 +65,18 @@ class CadastroDataPorMedicoFragment : Fragment() {
     }
 
     private fun getAllDatasCadastradas() {
-      lifecycleScope.launch {
-          consultaViewModel?.allDatasCadastradas?.collect{
-              Toast.makeText(requireContext(),"Período Salvo com sucesso",Toast.LENGTH_SHORT).show()
-          }
-      }
+        lifecycleScope.launch {
+            consultaViewModel?.allDatasCadastradas?.collect {
+
+            }
+        }
     }
 
     private fun saveDatasCadastradas() {
         binding.ivSave.setOnClickListener {
             consultaViewModel?.setDatasCadastradas()
+            Toast.makeText(requireContext(),"Período salvo com sucesso",Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_cadastroDataPorMedicoFragment_to_cadastradosFragmentt)
         }
     }
 
