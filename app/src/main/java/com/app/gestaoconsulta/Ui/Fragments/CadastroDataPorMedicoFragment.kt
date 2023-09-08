@@ -19,6 +19,7 @@ import com.app.gestaoconsulta.databinding.FragmentCadastroDataporMedicoBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -55,13 +56,9 @@ class CadastroDataPorMedicoFragment : Fragment() {
         getCadastroSelected()
         setupViewCadastroSelected()
         setupRecyclerView()
-        lifecycleScope.launch {
-            datasCadastradasFlow.collect { updatedDatasCadastradas ->
-                adapter?.updateDatasList(updatedDatasCadastradas)
-            }
-        }
-
+        setupFlowDatasList()
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         callBack  = context as LoadFragment
@@ -104,7 +101,14 @@ class CadastroDataPorMedicoFragment : Fragment() {
         dateCadastrada.data = dataSelecionada
 
         datasCadastradas.add(dateCadastrada)
-        datasCadastradasFlow.value = datasCadastradas
+
+    }
+    private fun setupFlowDatasList() {
+        lifecycleScope.launch {
+            datasCadastradasFlow.collect { updatedDatasCadastradas ->
+                adapter?.updateDatasList(updatedDatasCadastradas)
+            }
+        }
     }
 
     private fun setupRecyclerView() {

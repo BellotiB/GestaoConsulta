@@ -32,9 +32,6 @@ class AdapterDatasCadastradas(private val datasList:MutableList<DatasCadastradas
     override fun onBindViewHolder(holder: CadastroViewHolder, position:Int) {
         val data = datasList[position]
         holder.bind(data)
-        holder.cardView.setOnClickListener{
-            callBack.openSecondFragment()
-        }
     }
 
     fun updateDatasList(date: MutableList<DatasCadastradas>) {
@@ -48,6 +45,5 @@ class AdapterDatasCadastradas(private val datasList:MutableList<DatasCadastradas
         fun bind(dataCad: DatasCadastradas) {
             binding.tvDate.text = dataCad.data
         }
-        val cardView : CardView = binding.cvCard
     }
 }
