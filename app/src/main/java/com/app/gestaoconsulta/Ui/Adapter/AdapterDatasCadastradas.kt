@@ -13,7 +13,6 @@ import com.app.gestaoconsulta.databinding.ItemDataCadastradaBinding
 
 
 class AdapterDatasCadastradas(private val datasList:MutableList<DatasCadastradas>,
-                              private val callBack : LoadFragment
 ):RecyclerView.Adapter<AdapterDatasCadastradas.CadastroViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CadastroViewHolder {

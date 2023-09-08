@@ -17,12 +17,9 @@ import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCadastroDataporMedicoBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -34,7 +31,6 @@ class CadastroDataPorMedicoFragment : Fragment() {
     private val binding get() = _binding!!
     private val selectedDates = mutableListOf<String>()
     private var cadastroSelected = CadastroMedico()
-    private lateinit var callBack : LoadFragment
     private var datasCadastradas = mutableListOf<DatasCadastradas>()
     private var adapter : AdapterDatasCadastradas? = null
     private val datasCadastradasFlow = MutableStateFlow(datasCadastradas)
@@ -59,10 +55,6 @@ class CadastroDataPorMedicoFragment : Fragment() {
         setupFlowDatasList()
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        callBack  = context as LoadFragment
-    }
 
     private fun getCadastroSelected() {
         lifecycleScope.launch {
@@ -113,7 +105,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
 
     private fun setupRecyclerView() {
           binding.rvDatasList.layoutManager = LinearLayoutManager(requireContext())
-         adapter = AdapterDatasCadastradas(datasCadastradas, callBack)
+         adapter = AdapterDatasCadastradas(datasCadastradas)
         binding.rvDatasList.adapter = adapter
     }
 
