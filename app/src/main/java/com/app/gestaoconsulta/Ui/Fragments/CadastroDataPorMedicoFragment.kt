@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -52,9 +54,25 @@ class CadastroDataPorMedicoFragment : Fragment() {
         getCadastroSelected()
         setupViewCadastroSelected()
         setupRecyclerView()
+        saveDatasCadastradas()
+        getAllDatasCadastradas()
 
         binding.ivPeriodoAtendimento.setOnClickListener {
             setupDataPicker()
+        }
+    }
+
+    private fun getAllDatasCadastradas() {
+      lifecycleScope.launch {
+          consultaViewModel?.allDatasCadastradas?.collect{
+              Toast.makeText(requireContext(),"Período Salvo com sucesso",Toast.LENGTH_SHORT).show()
+          }
+      }
+    }
+
+    private fun saveDatasCadastradas() {
+        binding.ivSave.setOnClickListener {
+            consultaViewModel?.setDatasCadastradas()
         }
     }
 
@@ -97,7 +115,6 @@ class CadastroDataPorMedicoFragment : Fragment() {
             val hora = pickerInicioAtend.hour
             val minuto = pickerInicioAtend.minute
              horarioInicioAtendimento = String.format("%02d:%02d", hora, minuto)
-
         }
         val pickerFinalAtend =
             MaterialTimePicker.Builder()
@@ -130,6 +147,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
     }
 
     private fun setupDatasCadastradas() {
+        lifecycleScope.launch {
         val dateCadastrada = DatasCadastradas()
         dateCadastrada.id = cadastroSelected.id
         dateCadastrada.startDate = startDate
@@ -140,6 +158,8 @@ class CadastroDataPorMedicoFragment : Fragment() {
 
         datasCadastradas.add(dateCadastrada)
         adapter?.updateDatasList()
+        consultaViewModel?.datasCadastradas?.value?.add(dateCadastrada)
+        }
     }
 
     private fun setupRecyclerView() {

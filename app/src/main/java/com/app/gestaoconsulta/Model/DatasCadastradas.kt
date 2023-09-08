@@ -6,5 +6,5 @@ class DatasCadastradas {
     var startHora  = ""
     var endDate  = ""
     var endHora  = ""
-    var periodoAtendimento  = ""
+    var periodoAtendimento = ""
 }

@@ -9,12 +9,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CadastroDao {
     @Insert
-    suspend fun insertCadastro(cadastro: Cadastro)
+    suspend fun insertCadastro(cadastroEntity: CadastroEntity)
 
     @Query("SELECT * FROM cadastro")
-    fun getAllCadastros(): Flow<MutableList<Cadastro>>
+    fun getAllCadastros(): Flow<MutableList<CadastroEntity>>
 
     @Delete
-    fun delete(cad: Cadastro)
-
+    fun delete(cad: CadastroEntity)
 }

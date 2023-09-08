@@ -3,15 +3,23 @@ package com.app.gestaoconsulta.Data
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class Repository @Inject constructor(private val cadastroDao: CadastroDao )  {
+class Repository @Inject constructor(
+    private val cadastroDao: CadastroDao,
+    private val datacadDao: DataCadastradaDao
+    ){
 
-    suspend fun insertCadastro(cadastro: Cadastro){
-        cadastroDao.insertCadastro(cadastro)
+    suspend fun insertCadastro(cadastroEntity: CadastroEntity){
+        cadastroDao.insertCadastro(cadastroEntity)
     }
-     fun deleteFromDataBase(cad: Cadastro){
+     fun deleteCadastroFromDataBase(cad: CadastroEntity){
         cadastroDao.delete(cad)
     }
+   suspend fun insertDataCadastrada(data: MutableList<DataCadastradaEntity>){
+        datacadDao.insertData(data)
 
-    val getAllCadastro: Flow<MutableList<Cadastro>> = cadastroDao.getAllCadastros()
+    }
 
+    val getAllCadastroEntity: Flow<MutableList<CadastroEntity>> = cadastroDao.getAllCadastros()
+
+    val getAllDatasEntity: Flow<MutableList<DataCadastradaEntity>> = datacadDao.getAllDatasCadastradas()
 }

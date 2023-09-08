@@ -54,4 +54,12 @@
         app:layout_constraintTop_toBottomOf="@+id/cv_medico"
         app:srcCompat="@drawable/ic_clock" />
 
+    <ImageView
+        android:id="@+id/iv_save"
+        android:layout_width="46dp"
+        android:layout_height="59dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_save" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

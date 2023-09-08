@@ -22,5 +22,5 @@
     <string name="hor_rio">Horário:</string>
     <string name="_8_30">8:30</string>
     <string name="_00_30">00:30</string>
-    <string name="per_odo_cada_atendimento">Período cada Atendimento:</string>
+    <string name="per_odo_cada_atendimento">Período cada atendimento:</string>
 </resources>

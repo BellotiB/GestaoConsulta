@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.app.gestaoconsulta.Data.CadastroDao
 import com.app.gestaoconsulta.Data.DataBaseCadastros
+import com.app.gestaoconsulta.Data.DataCadastradaDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +19,10 @@ class AppModule {
   @Provides
   fun provideCadastroDao (dataBaseCadastros : DataBaseCadastros ): CadastroDao{
       return dataBaseCadastros.cadastroDao()
+  }
+    @Provides
+  fun provideDataCadastradaDao (dataBaseCadastros : DataBaseCadastros ): DataCadastradaDao{
+      return dataBaseCadastros.dataCadastradaDao()
   }
 
     @Provides

@@ -4,9 +4,11 @@ package com.app.gestaoconsulta.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.app.gestaoconsulta.Data.Cadastro
+import com.app.gestaoconsulta.Data.CadastroEntity
+import com.app.gestaoconsulta.Data.DataCadastradaEntity
 import com.app.gestaoconsulta.Data.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
+import com.app.gestaoconsulta.Model.DatasCadastradas
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -31,13 +33,19 @@ class ConsultaViewModel  @Inject constructor(
     private var _cadastroList = MutableStateFlow<MutableList<CadastroMedico>>(mutableListOf())
     var cadastroList : StateFlow<MutableList<CadastroMedico>> = _cadastroList
 
-    val allCadastros : Flow<MutableList<Cadastro>> = repository.getAllCadastro
+    private var _datasCadastradas = MutableStateFlow<MutableList<DatasCadastradas>>(mutableListOf())
+    var datasCadastradas : StateFlow<MutableList<DatasCadastradas>> = _datasCadastradas
+
+
+    val allCadastros : Flow<MutableList<CadastroEntity>> = repository.getAllCadastroEntity
+
+    val allDatasCadastradas : Flow<MutableList<DataCadastradaEntity>> = repository.getAllDatasEntity
 
     fun insertCadastro() {
         viewModelScope.launch {
             cadastro.collectLatest { cad ->
-               val cadastro =  Cadastro(id = 0, nome = cad.nome, especialidade = cad.especialidade)
-                repository.insertCadastro(cadastro)
+               val cadastroEntity =  CadastroEntity(id = 0, nome = cad.nome, especialidade = cad.especialidade)
+                repository.insertCadastro(cadastroEntity)
             }
         }
     }
@@ -60,12 +68,31 @@ class ConsultaViewModel  @Inject constructor(
     }
     fun deleteCadastro(cad: CadastroMedico){
         viewModelScope.launch(Dispatchers.IO) {
-            val cadastro = Cadastro(
+            val cadastroEntity = CadastroEntity(
                 nome = cad.nome,
                 especialidade = cad.especialidade,
                 id = cad.id
             )
-            repository.deleteFromDataBase(cadastro)
+            repository.deleteCadastroFromDataBase(cadastroEntity)
+        }
+    }
+    fun setDatasCadastradas() {
+        viewModelScope.launch {
+            val listDatas = mutableListOf<DataCadastradaEntity>()
+            datasCadastradas.collectLatest { datas ->
+                for (list in datas){
+                    val dataEntity = DataCadastradaEntity(
+                        id = list.id,
+                        startDate = list.startDate,
+                        startHora = list.startHora,
+                        endDate = list.endDate,
+                        endHora = list.endHora,
+                        periodoAtendimento = list.periodoAtendimento
+                    )
+                    listDatas.add(dataEntity)
+                }
+                repository.insertDataCadastrada(listDatas)
+            }
         }
     }
 }
