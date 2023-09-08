@@ -31,6 +31,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
     private var endDate = ""
     private var horarioInicioAtendimento = ""
     private var horarioUltimoAtendimento = ""
+    private var períodoCadaAtendimento = ""
     private var cadastroSelected = CadastroMedico()
     private var datasCadastradas = mutableListOf<DatasCadastradas>()
     private var adapter : AdapterDatasCadastradas? = null
@@ -51,7 +52,10 @@ class CadastroDataPorMedicoFragment : Fragment() {
         getCadastroSelected()
         setupViewCadastroSelected()
         setupRecyclerView()
-        setupDataPicker()
+
+        binding.ivPeriodoAtendimento.setOnClickListener {
+            setupDataPicker()
+        }
     }
 
     private fun getCadastroSelected() {
@@ -68,7 +72,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
     private fun setupDataPicker() {
         val dateRangePicker =
             MaterialDatePicker.Builder.dateRangePicker()
-                .setTitleText("Dias de Atendimento")
+                .setTitleText("Dias de atendimento")
                 .setSelection(
                     androidx.core.util.Pair(
                         MaterialDatePicker.thisMonthInUtcMilliseconds(),
@@ -85,10 +89,8 @@ class CadastroDataPorMedicoFragment : Fragment() {
         }
         val pickerInicioAtend =
             MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(12)
-                .setMinute(10)
-                .setTitleText("Horário Inicio Atendimento")
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setTitleText("Horário inicio atendimento")
                 .build()
 
         pickerInicioAtend.addOnPositiveButtonClickListener { horarioSelecionado ->
@@ -99,10 +101,8 @@ class CadastroDataPorMedicoFragment : Fragment() {
         }
         val pickerFinalAtend =
             MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(12)
-                .setMinute(10)
-                .setTitleText("Horário Último Atendimento")
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setTitleText("Horário último atendimento")
                 .build()
 
         pickerFinalAtend.addOnPositiveButtonClickListener { horarioSelecionado ->
@@ -111,10 +111,22 @@ class CadastroDataPorMedicoFragment : Fragment() {
              horarioUltimoAtendimento = String.format("%02d:%02d", hora, minuto)
 
         }
+        val pickerPeriodoAtend =
+            MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setTitleText("Período de cada atendimento")
+                .build()
+
+        pickerPeriodoAtend.addOnPositiveButtonClickListener { horarioSelecionado ->
+            val hora = pickerPeriodoAtend.hour
+            val minuto = pickerPeriodoAtend.minute
+            períodoCadaAtendimento = String.format("%02d:%02d", hora, minuto)
+        }
 
         dateRangePicker.show(childFragmentManager,"DATA_PICKER")
         pickerFinalAtend.show(childFragmentManager,"HOUR_PICKER_FINAL")
         pickerInicioAtend.show(childFragmentManager,"HOUR_PICKER_START")
+        pickerPeriodoAtend.show(childFragmentManager,"PERIOD_ATONEMENT")
     }
 
     private fun setupDatasCadastradas() {
@@ -124,6 +136,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
         dateCadastrada.endDate = endDate
         dateCadastrada.startHora = horarioInicioAtendimento
         dateCadastrada.endHora = horarioUltimoAtendimento
+        dateCadastrada.periodoAtendimento = períodoCadaAtendimento
 
         datasCadastradas.add(dateCadastrada)
         adapter?.updateDatasList()

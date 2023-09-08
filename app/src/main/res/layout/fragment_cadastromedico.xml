@@ -73,7 +73,6 @@
                     android:layout_marginTop="150dp"
                     android:hint="@string/especialidade"
                     android:textSize="15sp" />
-
             </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
