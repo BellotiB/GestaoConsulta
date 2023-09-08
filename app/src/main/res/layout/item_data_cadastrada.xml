@@ -19,15 +19,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
-        android:text="Data:"/>
+        android:text="@string/per_odo_de"/>
 
         <TextView
-            android:id="@+id/tv_date"
+            android:id="@+id/tv_start_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="50dp"
-        android:hint="25/12/2012:"/>
+        android:layout_marginStart="90dp"
+        android:hint="@string/_25_12_2012"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/at"/>
+
+        <TextView
+            android:id="@+id/tv_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="90dp"
+            android:hint="@string/_30_12_2012"/>
 
     </com.google.android.material.card.MaterialCardView>
 

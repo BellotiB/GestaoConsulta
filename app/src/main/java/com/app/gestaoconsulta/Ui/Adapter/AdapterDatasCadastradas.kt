@@ -2,13 +2,8 @@ package com.app.gestaoconsulta.Ui.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
-import com.app.gestaoconsulta.Ui.LoadFragment
-import com.app.gestaoconsulta.databinding.ItemCadastroBinding
 import com.app.gestaoconsulta.databinding.ItemDataCadastradaBinding
 
 
@@ -33,16 +28,15 @@ class AdapterDatasCadastradas(private val datasList:MutableList<DatasCadastradas
         holder.bind(data)
     }
 
-    fun updateDatasList(date: MutableList<DatasCadastradas>) {
-        datasList.clear()
-        datasList.addAll(date)
+    fun updateDatasList() {
         notifyDataSetChanged()
     }
 
     inner class CadastroViewHolder(private val binding: ItemDataCadastradaBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(dataCad: DatasCadastradas) {
-            binding.tvDate.text = dataCad.data
+            binding.tvStartDate.text = dataCad.startDate
+            binding.tvEndDate.text = dataCad.endDate
         }
     }
 }

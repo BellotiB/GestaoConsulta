@@ -10,4 +10,13 @@
     <string name="selecionar_hor_rios_dos_dias_cadastrados">Selecionar horários dos dias cadastrados</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hor_rios_de_atendimendo">Horários de Atendimendo</string>
+    <string name="in_cio_do_atendimento">Início do Atendimento:</string>
+    <string name="ex_16_30">Ex: 16:30</string>
+    <string name="final_do_atendimento">Final do Atendimento</string>
+    <string name="ex_8_30">Ex: 8:30</string>
+    <string name="at">até:</string>
+    <string name="_25_12_2012">25/12/2012:</string>
+    <string name="per_odo_de">Período de:</string>
+    <string name="_30_12_2012">30/12/2012</string>
 </resources>
