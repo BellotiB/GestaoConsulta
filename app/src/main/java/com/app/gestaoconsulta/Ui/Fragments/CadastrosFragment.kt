@@ -51,10 +51,10 @@ class CadastrosFragment : Fragment() {
 
                     cadastrosList.add(cadastro)
                 }
+                binding.rvCadastrados.layoutManager = LinearLayoutManager(requireContext())
+                adapter = AdapterMedicosCadastrados(cadastrosList, callBack)
+                binding.rvCadastrados.adapter = adapter
             }
-            binding.rvCadastrados.layoutManager = LinearLayoutManager(requireContext())
-            adapter = AdapterMedicosCadastrados(cadastrosList, callBack)
-            binding.rvCadastrados.adapter = adapter
         }
     }
 
