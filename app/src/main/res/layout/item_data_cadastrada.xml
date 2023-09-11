@@ -71,5 +71,13 @@
             android:layout_marginTop="115dp"
             android:layout_marginStart="190dp"
             android:hint="@string/_8_30"/>
+
+        <ImageView
+            android:id="@+id/menu_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:rotation="88"
+            app:srcCompat="@drawable/ic_delete" />
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

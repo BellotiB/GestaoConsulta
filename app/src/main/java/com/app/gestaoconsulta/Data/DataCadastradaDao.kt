@@ -14,6 +14,6 @@ interface DataCadastradaDao {
     @Query("SELECT * FROM datascadastradas")
     fun getAllDatasCadastradas(): Flow<MutableList<DataCadastradaEntity>>
 
-    @Delete
-    fun delete(dat: DataCadastradaEntity)
+   @Delete
+    fun delete(id: DataCadastradaEntity)
 }

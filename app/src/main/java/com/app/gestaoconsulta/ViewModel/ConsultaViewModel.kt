@@ -64,7 +64,9 @@ class ConsultaViewModel  @Inject constructor(
     }
     fun cleanCadastroList(){
         cadastroList.value.clear()
-        cadastroList.value
+    }
+    fun cleanDatasList(){
+        datasCadastradas.value.clear()
     }
     fun deleteCadastro(cad: CadastroMedico){
         viewModelScope.launch(Dispatchers.IO) {
@@ -74,6 +76,20 @@ class ConsultaViewModel  @Inject constructor(
                 id = cad.id
             )
             repository.deleteCadastroFromDataBase(cadastroEntity)
+        }
+    }
+    fun deleteDataCadastrada(dat: DatasCadastradas){
+        viewModelScope.launch(Dispatchers.IO) {
+            val dataEntity = DataCadastradaEntity(
+             id = dat.id,
+                idCadastro = dat.idCadastro,
+                startDate = dat.startDate,
+                startHora = dat.startHora,
+                endDate = dat.endDate,
+                endHora = dat.endHora,
+                periodoAtendimento = dat.periodoAtendimento
+            )
+            repository.deleteDataFromDataBase(dataEntity)
         }
     }
     fun setDatasCadastradas() {
@@ -93,6 +109,7 @@ class ConsultaViewModel  @Inject constructor(
                     listDatas.add(dataEntity)
                 }
                 repository.insertDataCadastrada(listDatas)
+                cleanDatasList()
             }
         }
     }

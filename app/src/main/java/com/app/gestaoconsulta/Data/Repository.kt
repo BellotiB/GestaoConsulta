@@ -14,9 +14,11 @@ class Repository @Inject constructor(
      fun deleteCadastroFromDataBase(cad: CadastroEntity){
         cadastroDao.delete(cad)
     }
+    fun deleteDataFromDataBase(id: DataCadastradaEntity){
+        datacadDao.delete(id)
+    }
    suspend fun insertDataCadastrada(data: MutableList<DataCadastradaEntity>){
         datacadDao.insertData(data)
-
     }
 
     val getAllCadastroEntity: Flow<MutableList<CadastroEntity>> = cadastroDao.getAllCadastros()

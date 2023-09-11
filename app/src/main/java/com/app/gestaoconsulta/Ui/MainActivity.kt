@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.app.gestaoconsulta.Model.CadastroMedico
+import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.ActivityMainBinding
@@ -33,5 +34,9 @@ class MainActivity : AppCompatActivity(),LoadFragment {
 
     override fun excluirItem(cad: CadastroMedico) {
         consultaViewModel.deleteCadastro(cad)
+    }
+
+    override fun excluirDataSelected(dat: DatasCadastradas) {
+        consultaViewModel.deleteDataCadastrada(dat)
     }
 }
