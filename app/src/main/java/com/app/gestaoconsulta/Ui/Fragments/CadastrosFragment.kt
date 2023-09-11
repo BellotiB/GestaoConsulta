@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.R
-import com.app.gestaoconsulta.Ui.Adapter.AdapterCadastro
 import com.app.gestaoconsulta.Ui.Adapter.AdapterMedicosCadastrados
 import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
@@ -51,6 +50,7 @@ class CadastrosFragment : Fragment() {
 
     private fun setupList() {
         lifecycleScope.launch {
+            adapter?.updateCadastroList()
             consultaViewModel?.allCadastros?.collect {
                 it.forEach {
                     val cadastro = CadastroMedico()

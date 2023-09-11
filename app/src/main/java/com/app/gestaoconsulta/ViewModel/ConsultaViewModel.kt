@@ -82,7 +82,8 @@ class ConsultaViewModel  @Inject constructor(
             datasCadastradas.collectLatest { datas ->
                 for (list in datas){
                     val dataEntity = DataCadastradaEntity(
-                        id = list.id,
+                        id = 0,
+                        idCadastro = list.idCadastro,
                         startDate = list.startDate,
                         startHora = list.startHora,
                         endDate = list.endDate,

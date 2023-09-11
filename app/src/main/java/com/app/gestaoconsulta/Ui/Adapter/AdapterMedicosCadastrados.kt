@@ -1,6 +1,7 @@
 package com.app.gestaoconsulta.Ui.Adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
@@ -30,18 +31,11 @@ class AdapterMedicosCadastrados(private val cadastrosList:MutableList<CadastroMe
     override fun onBindViewHolder(holder: CadastroViewHolder, position:Int) {
         val cadastro = cadastrosList[position]
         holder.bind(cadastro)
-        holder.cardView.setOnClickListener{
-        }
-        holder.menuCard.setOnClickListener {
-            callBack.excluirItem(cadastro)
-            notifyDataSetChanged()
-        }
+        holder.menuCard.visibility = View.GONE
     }
 
-    fun updateCadastroList(cad: MutableList<CadastroMedico>) {
+    fun updateCadastroList() {
         cadastrosList.clear()
-        cadastrosList.addAll(cad)
-        notifyDataSetChanged()
     }
 
     inner class CadastroViewHolder(private val binding: ItemCadastroBinding) :
@@ -50,7 +44,6 @@ class AdapterMedicosCadastrados(private val cadastrosList:MutableList<CadastroMe
             binding.tvNome.text = cadastro.nome
             binding.tvEspecialidade.text = cadastro.especialidade
         }
-        val cardView : CardView = binding.cvCard
         val menuCard : ImageView = binding.menuCard
     }
 }

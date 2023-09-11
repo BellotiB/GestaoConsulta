@@ -35,7 +35,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
     private var endDate = ""
     private var horarioInicioAtendimento = ""
     private var horarioUltimoAtendimento = ""
-    private var períodoCadaAtendimento = ""
+    private var periodoCadaAtendimento = ""
     private var cadastroSelected = CadastroMedico()
     private var datasCadastradas = mutableListOf<DatasCadastradas>()
     private var adapter : AdapterDatasCadastradas? = null
@@ -54,10 +54,9 @@ class CadastroDataPorMedicoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         getCadastroSelected()
-        setupViewCadastroSelected()
-        setupRecyclerView()
-        saveDatasCadastradas()
         getAllDatasCadastradas()
+        setupViewCadastroSelected()
+        saveDatasCadastradas()
 
         binding.ivPeriodoAtendimento.setOnClickListener {
             setupDataPicker()
@@ -66,15 +65,27 @@ class CadastroDataPorMedicoFragment : Fragment() {
 
     private fun getAllDatasCadastradas() {
         lifecycleScope.launch {
-            consultaViewModel?.allDatasCadastradas?.collect {
+            consultaViewModel?.allDatasCadastradas?.collect { datesList ->
+                datesList.forEach {
+                    if(it.idCadastro == cadastroSelected.id){
+                        val datas = DatasCadastradas()
+                        datas.idCadastro = it.idCadastro
+                        datas.startDate = it.startDate
+                        datas.startHora = it.startHora
+                        datas.endDate = it.endDate
+                        datas.endHora = it.endHora
+                        datas.periodoAtendimento = it.periodoAtendimento
 
+                        datasCadastradas.add(datas)
+                    }
+                }
+                setupRecyclerView()
             }
         }
     }
 
     private fun saveDatasCadastradas() {
         binding.ivSave.setOnClickListener {
-            consultaViewModel?.setDatasCadastradas()
             Toast.makeText(requireContext(),"Período salvo com sucesso",Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_cadastroDataPorMedicoFragment_to_cadastradosFragmentt)
         }
@@ -141,7 +152,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
         pickerPeriodoAtend.addOnPositiveButtonClickListener { horarioSelecionado ->
             val hora = pickerPeriodoAtend.hour
             val minuto = pickerPeriodoAtend.minute
-            períodoCadaAtendimento = String.format("%02d:%02d", hora, minuto)
+            periodoCadaAtendimento = String.format("%02d:%02d", hora, minuto)
         }
 
         dateRangePicker.show(childFragmentManager,"DATA_PICKER")
@@ -152,17 +163,17 @@ class CadastroDataPorMedicoFragment : Fragment() {
 
     private fun setupDatasCadastradas() {
         lifecycleScope.launch {
-        val dateCadastrada = DatasCadastradas()
-        dateCadastrada.id = cadastroSelected.id
-        dateCadastrada.startDate = startDate
-        dateCadastrada.endDate = endDate
-        dateCadastrada.startHora = horarioInicioAtendimento
-        dateCadastrada.endHora = horarioUltimoAtendimento
-        dateCadastrada.periodoAtendimento = períodoCadaAtendimento
+            val dateCadastrada = DatasCadastradas()
+            dateCadastrada.idCadastro = cadastroSelected.id
+            dateCadastrada.startDate = startDate
+            dateCadastrada.endDate = endDate
+            dateCadastrada.startHora = horarioInicioAtendimento
+            dateCadastrada.endHora = horarioUltimoAtendimento
+            dateCadastrada.periodoAtendimento = periodoCadaAtendimento
 
-        datasCadastradas.add(dateCadastrada)
-        adapter?.updateDatasList()
-        consultaViewModel?.datasCadastradas?.value?.add(dateCadastrada)
+            datasCadastradas.add(dateCadastrada)
+            consultaViewModel?.datasCadastradas?.value?.add(dateCadastrada)
+            consultaViewModel?.setDatasCadastradas()
         }
     }
 
