@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
+import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.Ui.Adapter.AdapterCadastro
 import com.app.gestaoconsulta.Ui.Adapter.AdapterMedicosCadastrados
 import com.app.gestaoconsulta.Ui.LoadFragment
@@ -38,6 +40,13 @@ class CadastrosFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         setupList()
+        openCadastroFragment()
+    }
+
+    private fun openCadastroFragment() {
+        binding.btAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_cadastradosFragment_to_cadastroMedicoFragment)
+        }
     }
 
     private fun setupList() {

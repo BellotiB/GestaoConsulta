@@ -35,5 +35,14 @@
         android:id="@+id/cadastradosFragment"
         android:name="com.app.gestaoconsulta.Ui.Fragments.CadastrosFragment"
         tools:layout="@layout/fragment_cadastros">
+
+        <action
+            android:id="@+id/action_cadastradosFragment_to_cadastroMedicoFragment"
+            app:destination="@id/cadastroMedicoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
+
     </fragment>
 </navigation>
