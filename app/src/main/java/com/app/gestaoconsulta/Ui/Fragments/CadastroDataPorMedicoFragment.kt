@@ -86,7 +86,6 @@ class CadastroDataPorMedicoFragment : Fragment() {
 
     private fun saveDatasCadastradas() {
         binding.ivSave.setOnClickListener {
-            Toast.makeText(requireContext(),"Período salvo com sucesso",Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_cadastroDataPorMedicoFragment_to_cadastradosFragmentt)
         }
     }
@@ -174,6 +173,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
             datasCadastradas.add(dateCadastrada)
             consultaViewModel?.datasCadastradas?.value?.add(dateCadastrada)
             consultaViewModel?.setDatasCadastradas()
+            datasCadastradas.clear()
         }
     }
 
