@@ -16,7 +16,9 @@ import com.app.gestaoconsulta.Ui.Adapter.AdapterMedicosCadastrados
 import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCadastrosBinding
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CadastrosFragment : Fragment() {
 
@@ -40,6 +42,7 @@ class CadastrosFragment : Fragment() {
         consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         setupList()
         openCadastroFragment()
+        consultaViewModel?.updateCadastroServer()
     }
 
     private fun openCadastroFragment() {

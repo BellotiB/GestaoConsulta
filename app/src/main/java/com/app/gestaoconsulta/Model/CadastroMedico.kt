@@ -1,6 +1,8 @@
 package com.app.gestaoconsulta.Model
 
-class CadastroMedico {
+import java.io.Serializable
+
+class CadastroMedico:Serializable {
     var id = 0
     var nome = ""
     var especialidade = ""

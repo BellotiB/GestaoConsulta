@@ -9,6 +9,7 @@ import com.app.gestaoconsulta.Data.DataCadastradaEntity
 import com.app.gestaoconsulta.Data.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
+import com.app.gestaoconsulta.SyncApi.SetCadastroMedicoToServer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -110,6 +111,13 @@ class ConsultaViewModel  @Inject constructor(
                 }
                 repository.insertDataCadastrada(listDatas)
                 cleanDatasList()
+            }
+        }
+    }
+    fun updateCadastroServer(){
+        viewModelScope.launch {
+            allCadastros.collect{ list ->
+                SetCadastroMedicoToServer().fecthCadastroMedico(list)
             }
         }
     }
