@@ -16,9 +16,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -68,7 +68,7 @@ class ConsultaViewModel  @Inject constructor(
     fun cleanCadastroList(){
         cadastroList.value.clear()
     }
-    fun cleanDatasList(){
+    private fun cleanDatasList(){
         datasCadastradas.value.clear()
     }
     fun deleteCadastro(cad: CadastroMedico){
@@ -79,6 +79,7 @@ class ConsultaViewModel  @Inject constructor(
                 id = cad.id
             )
             repository.deleteCadastroFromDataBase(cadastroEntity)
+            deleteDatasPorCadastro(cad.id)
         }
     }
     fun deleteDataCadastrada(dat: DatasCadastradas){
@@ -127,6 +128,21 @@ class ConsultaViewModel  @Inject constructor(
         viewModelScope.launch {
             allDatasCadastradas.collect{ datasList->
                 SetDatasCadastradasToServer().fecthDataCadastrada(datasList)
+            }
+        }
+    }
+    private fun deleteDatasPorCadastro(idCadastro: Int) {
+        val listDatasToDelete = mutableListOf<DataCadastradaEntity>()
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                allDatasCadastradas.collect{ list ->
+                    list.forEach {
+                        if(it.idCadastro == idCadastro){
+                            listDatasToDelete.add(it)
+                        }
+                    }
+                    repository.deleteAllDatasPorCadastro(listDatasToDelete)
+                }
             }
         }
     }

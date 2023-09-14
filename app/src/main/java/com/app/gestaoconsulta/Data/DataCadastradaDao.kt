@@ -16,4 +16,6 @@ interface DataCadastradaDao {
 
    @Delete
     fun delete(id: DataCadastradaEntity)
+    @Delete
+    fun deleteAllDatas(datasCadastradas: MutableList<DataCadastradaEntity>)
 }

@@ -17,6 +17,9 @@ class Repository @Inject constructor(
     fun deleteDataFromDataBase(id: DataCadastradaEntity){
         datacadDao.delete(id)
     }
+    fun deleteAllDatasPorCadastro(datas: MutableList<DataCadastradaEntity>){
+        datacadDao.deleteAllDatas(datas)
+    }
    suspend fun insertDataCadastrada(data: MutableList<DataCadastradaEntity>){
         datacadDao.insertData(data)
     }
