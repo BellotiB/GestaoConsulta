@@ -1,19 +1,19 @@
 package com.app.gestaoconsulta.SyncApi
 
-
 import com.app.gestaoconsulta.Data.CadastroEntity
+import com.app.gestaoconsulta.Data.DataCadastradaEntity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class SetCadastroMedicoToServer {
+class SetDatasCadastradasToServer {
     private lateinit var database: FirebaseDatabase
 
-    fun fecthCadastroMedico(list: MutableList<CadastroEntity>) {
+    fun fecthDataCadastrada(list: MutableList<DataCadastradaEntity>){
         database = FirebaseDatabase.getInstance()
-        val referencia = database.getReference("cadastro-medicos")
+        val referencia = database.getReference("datas-cadastradas")
 
         referencia.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -33,9 +33,9 @@ class SetCadastroMedicoToServer {
                 println("Erro ao verificar o cadastro de médicos: ${databaseError.message}")
             }
         })
-    }
 
-    private fun adicionarNovaLista(referencia: DatabaseReference, list: MutableList<CadastroEntity>) {
+    }
+    private fun adicionarNovaLista(referencia: DatabaseReference, list: MutableList<DataCadastradaEntity>) {
         referencia.setValue(list) { databaseError, _ ->
             if (databaseError == null) {
                 println("Dados adicionados com sucesso.")

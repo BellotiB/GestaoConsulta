@@ -43,6 +43,7 @@ class CadastrosFragment : Fragment() {
         setupList()
         openCadastroFragment()
         consultaViewModel?.updateCadastroServer()
+        consultaViewModel?.updateDatasCadastradasServer()
     }
 
     private fun openCadastroFragment() {

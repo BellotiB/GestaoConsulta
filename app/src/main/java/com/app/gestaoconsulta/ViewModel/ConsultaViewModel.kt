@@ -10,11 +10,13 @@ import com.app.gestaoconsulta.Data.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.SyncApi.SetCadastroMedicoToServer
+import com.app.gestaoconsulta.SyncApi.SetDatasCadastradasToServer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -117,7 +119,14 @@ class ConsultaViewModel  @Inject constructor(
     fun updateCadastroServer(){
         viewModelScope.launch {
             allCadastros.collect{ list ->
-                SetCadastroMedicoToServer().fecthCadastroMedico(list)
+                 SetCadastroMedicoToServer().fecthCadastroMedico(list)
+            }
+        }
+    }
+    fun updateDatasCadastradasServer(){
+        viewModelScope.launch {
+            allDatasCadastradas.collect{ datasList->
+                SetDatasCadastradasToServer().fecthDataCadastrada(datasList)
             }
         }
     }
