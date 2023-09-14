@@ -6,13 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.CadastroMedico
-import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.databinding.ItemCadastroBinding
 
 
-class AdapterMedicosCadastrados(private val cadastrosList:MutableList<CadastroMedico>,
-                                private val callBack : LoadFragment
-):RecyclerView.Adapter<AdapterMedicosCadastrados.CadastroViewHolder>() {
+class AdapterMedicosCadastrados(private val cadastrosList:MutableList<CadastroMedico>)
+    :RecyclerView.Adapter<AdapterMedicosCadastrados.CadastroViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CadastroViewHolder {
         val binding = ItemCadastroBinding.inflate(
