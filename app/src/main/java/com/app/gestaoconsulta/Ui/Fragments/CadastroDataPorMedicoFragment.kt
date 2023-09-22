@@ -113,26 +113,17 @@ class CadastroDataPorMedicoFragment : Fragment() {
     }
     private fun setupDataPicker() {
         val dateRangePicker =
-            MaterialDatePicker.Builder.dateRangePicker()
-                .setTitleText("Dias de atendimento")
-                .setSelection(
-                    androidx.core.util.Pair(
-                        MaterialDatePicker.thisMonthInUtcMilliseconds(),
-                        MaterialDatePicker.todayInUtcMilliseconds()
-                    )
-                ).build()
+            MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Dia de atendimento")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds()).build()
 
         dateRangePicker.addOnPositiveButtonClickListener { selection ->
             val dateFormat = SimpleDateFormat("dd/MM/yyyy",Locale.getDefault())
             val startDateCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-            startDateCalendar.timeInMillis = selection.first
+            startDateCalendar.timeInMillis = selection
             startDateCalendar.add(Calendar.DAY_OF_MONTH, 1)
             startDate = dateFormat.format(startDateCalendar.time)
 
-            val endDateCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-            endDateCalendar.timeInMillis = selection.second
-            endDateCalendar.add(Calendar.DAY_OF_MONTH, 1)
-            endDate = dateFormat.format(endDateCalendar.time)
             setupDatasCadastradas()
         }
         val pickerInicioAtend =
