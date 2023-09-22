@@ -24,7 +24,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
+import java.util.TimeZone
 
 @AndroidEntryPoint
 class CadastroDataPorMedicoFragment : Fragment() {
@@ -122,9 +124,15 @@ class CadastroDataPorMedicoFragment : Fragment() {
 
         dateRangePicker.addOnPositiveButtonClickListener { selection ->
             val dateFormat = SimpleDateFormat("dd/MM/yyyy",Locale.getDefault())
+            val startDateCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+            startDateCalendar.timeInMillis = selection.first
+            startDateCalendar.add(Calendar.DAY_OF_MONTH, 1)
+            startDate = dateFormat.format(startDateCalendar.time)
 
-             startDate = dateFormat.format(selection.first)
-             endDate = dateFormat.format(selection.second)
+            val endDateCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+            endDateCalendar.timeInMillis = selection.second
+            endDateCalendar.add(Calendar.DAY_OF_MONTH, 1)
+            endDate = dateFormat.format(endDateCalendar.time)
             setupDatasCadastradas()
         }
         val pickerInicioAtend =
