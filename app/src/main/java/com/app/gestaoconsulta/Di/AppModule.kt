@@ -32,8 +32,8 @@ class AppModule {
         return Room.databaseBuilder(
             appContext,
             DataBaseCadastros::class.java,
-            "dataBaseCadastro.db"
-        ).build()
+            "dataBaseCadastro.db")
+            .addMigrations(DataBaseCadastros.MIGRATION_1_2)
+            .build()
     }
-
 }

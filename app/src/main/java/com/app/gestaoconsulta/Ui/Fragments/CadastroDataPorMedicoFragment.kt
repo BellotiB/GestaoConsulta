@@ -27,6 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.TimeZone
+import java.util.UUID
 
 @AndroidEntryPoint
 class CadastroDataPorMedicoFragment : Fragment() {
@@ -83,6 +84,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
                         datas.startHora = it.startHora
                         datas.endDate = it.endDate
                         datas.endHora = it.endHora
+                        datas.periodoPausa = it.periodoPausa
                         datas.periodoAtendimento = it.periodoAtendimento
 
                         datasCadastradas.add(datas)
@@ -125,6 +127,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
             startDate = dateFormat.format(startDateCalendar.time)
 
             setupDatasCadastradas()
+
         }
         val pickerInicioAtend =
             MaterialTimePicker.Builder()
@@ -137,39 +140,14 @@ class CadastroDataPorMedicoFragment : Fragment() {
             val minuto = pickerInicioAtend.minute
              horarioInicioAtendimento = String.format("%02d:%02d", hora, minuto)
         }
-        val pickerFinalAtend =
-            MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Horário último atendimento")
-                .build()
-
-        pickerFinalAtend.addOnPositiveButtonClickListener { horarioSelecionado ->
-            val hora = pickerFinalAtend.hour
-            val minuto = pickerFinalAtend.minute
-             horarioUltimoAtendimento = String.format("%02d:%02d", hora, minuto)
-
-        }
-        val pickerPeriodoAtend =
-            MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Período de cada atendimento")
-                .build()
-
-        pickerPeriodoAtend.addOnPositiveButtonClickListener { horarioSelecionado ->
-            val hora = pickerPeriodoAtend.hour
-            val minuto = pickerPeriodoAtend.minute
-            periodoCadaAtendimento = String.format("%02d:%02d", hora, minuto)
-        }
 
         dateRangePicker.show(childFragmentManager,"DATA_PICKER")
-        pickerFinalAtend.show(childFragmentManager,"HOUR_PICKER_FINAL")
-        pickerInicioAtend.show(childFragmentManager,"HOUR_PICKER_START")
-        pickerPeriodoAtend.show(childFragmentManager,"PERIOD_ATONEMENT")
     }
 
     private fun setupDatasCadastradas() {
         lifecycleScope.launch {
             val dateCadastrada = DatasCadastradas()
+            dateCadastrada.idDataCadastrada = UUID.randomUUID().toString()
             dateCadastrada.idCadastro = cadastroSelected.id
             dateCadastrada.startDate = startDate
             dateCadastrada.endDate = endDate

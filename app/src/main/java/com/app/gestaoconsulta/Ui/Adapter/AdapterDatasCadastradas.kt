@@ -3,14 +3,16 @@ package com.app.gestaoconsulta.Ui.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.databinding.ItemDataCadastradaBinding
 
 
-class AdapterDatasCadastradas(private val datasList:MutableList<DatasCadastradas>,
-                              private val callBack : LoadFragment
+class AdapterDatasCadastradas(
+    private val datasList:MutableList<DatasCadastradas>,
+    private val callBack : LoadFragment
 ):RecyclerView.Adapter<AdapterDatasCadastradas.CadastroViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CadastroViewHolder {
@@ -32,6 +34,9 @@ class AdapterDatasCadastradas(private val datasList:MutableList<DatasCadastradas
             callBack.excluirDataSelected(data)
             notifyDataSetChanged()
         }
+        holder.card.setOnClickListener{
+          callBack.openSelecionarDiasFragment(data.idDataCadastrada)
+        }
         holder.bind(data)
     }
 
@@ -49,5 +54,6 @@ class AdapterDatasCadastradas(private val datasList:MutableList<DatasCadastradas
             binding.tvPeriodoAtend.text = dataCad.periodoAtendimento
         }
         val menuCard : ImageView = binding.menuCard
+        val card : CardView = binding.cvCard
     }
 }

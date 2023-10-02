@@ -8,4 +8,5 @@ interface LoadFragment {
     fun cadastroSelected(id: Int)
     fun excluirItem(cad: CadastroMedico)
     fun excluirDataSelected(dat: DatasCadastradas)
+    fun openSelecionarDiasFragment(idDataCadastrada: String)
 }

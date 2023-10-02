@@ -30,6 +30,9 @@ class ConsultaViewModel  @Inject constructor(
    private var _cadastro = MutableStateFlow(CadastroMedico())
     var cadastro : StateFlow<CadastroMedico> = _cadastro
 
+    private var _idDataCadastrada = MutableStateFlow("")
+    var idDataCadastrada : StateFlow<String> = _idDataCadastrada
+
     private var _cadastroSelected = MutableStateFlow(CadastroMedico())
     var cadastroSelected : StateFlow<CadastroMedico> = _cadastroSelected
 
@@ -88,10 +91,12 @@ class ConsultaViewModel  @Inject constructor(
              id = dat.id,
                 idCadastro = dat.idCadastro,
                 startDate = dat.startDate,
+                idDataCadastrada = dat.idDataCadastrada,
                 startHora = dat.startHora,
                 endDate = dat.endDate,
                 endHora = dat.endHora,
-                periodoAtendimento = dat.periodoAtendimento
+                periodoAtendimento = dat.periodoAtendimento,
+                periodoPausa = dat.periodoPausa
             )
             repository.deleteDataFromDataBase(dataEntity)
         }
@@ -104,11 +109,13 @@ class ConsultaViewModel  @Inject constructor(
                     val dataEntity = DataCadastradaEntity(
                         id = 0,
                         idCadastro = list.idCadastro,
+                        idDataCadastrada = list.idDataCadastrada,
                         startDate = list.startDate,
                         startHora = list.startHora,
                         endDate = list.endDate,
                         endHora = list.endHora,
-                        periodoAtendimento = list.periodoAtendimento
+                        periodoAtendimento = list.periodoAtendimento,
+                        periodoPausa = list.periodoPausa
                     )
                     listDatas.add(dataEntity)
                 }
@@ -145,5 +152,10 @@ class ConsultaViewModel  @Inject constructor(
                 }
             }
         }
+    }
+    fun  setIdData(idData: String) {
+       viewModelScope.launch {
+           _idDataCadastrada.value = idData
+       }
     }
 }

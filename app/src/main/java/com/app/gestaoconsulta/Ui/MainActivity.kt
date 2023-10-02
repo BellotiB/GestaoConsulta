@@ -39,4 +39,9 @@ class MainActivity : AppCompatActivity(),LoadFragment {
     override fun excluirDataSelected(dat: DatasCadastradas) {
         consultaViewModel.deleteDataCadastrada(dat)
     }
+
+    override fun openSelecionarDiasFragment(idDataCadastrada: String) {
+     findNavController(R.id.nav_host).navigate(R.id.action_cadastroDataPorMedicoFragment_to_selecionarDiasFragment)
+        consultaViewModel.setIdData(idDataCadastrada)
+    }
 }
