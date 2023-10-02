@@ -1,9 +1,10 @@
-package com.app.gestaoconsulta.Data
+package com.app.gestaoconsulta.Data.Daos
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

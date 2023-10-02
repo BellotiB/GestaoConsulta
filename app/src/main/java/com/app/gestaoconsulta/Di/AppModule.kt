@@ -2,9 +2,10 @@ package com.app.gestaoconsulta.Di
 
 import android.content.Context
 import androidx.room.Room
-import com.app.gestaoconsulta.Data.CadastroDao
+import com.app.gestaoconsulta.Data.Daos.CadastroDao
 import com.app.gestaoconsulta.Data.DataBaseCadastros
-import com.app.gestaoconsulta.Data.DataCadastradaDao
+import com.app.gestaoconsulta.Data.Daos.DataCadastradaDao
+import com.app.gestaoconsulta.Data.Daos.HoraCadastradaDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,12 +18,16 @@ import javax.inject.Singleton
 @Module
 class AppModule {
   @Provides
-  fun provideCadastroDao (dataBaseCadastros : DataBaseCadastros ): CadastroDao{
+  fun provideCadastroDao (dataBaseCadastros : DataBaseCadastros ): CadastroDao {
       return dataBaseCadastros.cadastroDao()
   }
     @Provides
-  fun provideDataCadastradaDao (dataBaseCadastros : DataBaseCadastros ): DataCadastradaDao{
+  fun provideDataCadastradaDao (dataBaseCadastros : DataBaseCadastros ): DataCadastradaDao {
       return dataBaseCadastros.dataCadastradaDao()
+  }
+    @Provides
+  fun provideHoraCadastradaDao (dataBaseCadastros : DataBaseCadastros ): HoraCadastradaDao {
+      return dataBaseCadastros.horaCadastradaDao()
   }
 
     @Provides

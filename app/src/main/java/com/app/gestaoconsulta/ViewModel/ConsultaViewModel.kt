@@ -4,11 +4,13 @@ package com.app.gestaoconsulta.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.app.gestaoconsulta.Data.CadastroEntity
-import com.app.gestaoconsulta.Data.DataCadastradaEntity
+import com.app.gestaoconsulta.Data.Entities.CadastroEntity
+import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
+import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
 import com.app.gestaoconsulta.Data.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
+import com.app.gestaoconsulta.Model.HorariosCadastrados
 import com.app.gestaoconsulta.SyncApi.SetCadastroMedicoToServer
 import com.app.gestaoconsulta.SyncApi.SetDatasCadastradasToServer
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -46,6 +48,8 @@ class ConsultaViewModel  @Inject constructor(
     val allCadastros : Flow<MutableList<CadastroEntity>> = repository.getAllCadastroEntity
 
     val allDatasCadastradas : Flow<MutableList<DataCadastradaEntity>> = repository.getAllDatasEntity
+
+    val allHorasCadastradas : Flow<MutableList<HoraCadastradaEntity>> = repository.getAllHorasEntity
 
     fun insertCadastro() {
         viewModelScope.launch {
@@ -156,6 +160,50 @@ class ConsultaViewModel  @Inject constructor(
     fun  setIdData(idData: String) {
        viewModelScope.launch {
            _idDataCadastrada.value = idData
+       }
+    }
+
+    fun  insertHoraCadastrada(hr: HorariosCadastrados) {
+       viewModelScope.launch {
+           var horaEntity = HoraCadastradaEntity (
+               id = 0,
+               idDataCadastrada = hr.idDataCadastrada,
+               cinco = hr.cinco,
+               cincoQuinze = hr.cincoQuinze,
+               cincoTrinta = hr.cincoTrinta,
+               cincoQuarentaCinco = hr.cincoQuarentaCinco,
+
+               seis = hr.seis,
+               seisQuinze = hr.seisQuinze,
+               seisTrinta = hr.seisTrinta,
+               seisQuarentaCinco = hr.seisQuarentaCinco,
+
+               sete = hr.sete,
+               seteQuinze = hr.seteQuinze,
+               seteTrinta = hr.seteTrinta,
+               seteQuarentaCinco = hr.seteQuarentaCinco,
+
+               oito = hr.oito,
+               oitoQuinze = hr.oitoQuinze,
+               oitoTrinta = hr.oitoTrinta,
+               oitoQuarentaCinco = hr.oitoQuarentaCinco,
+
+               nove = hr.nove,
+               noveQuinze = hr.noveQuinze,
+               noveTrinta = hr.noveTrinta,
+               noveQuarentaCinco = hr.noveQuarentaCinco,
+
+               dez = hr.dez,
+               dezQuinze = hr.dezQuinze,
+               dezTrinta = hr.dezTrinta,
+               dezQuarentaCinco = hr.dezQuarentaCinco,
+
+               onze = hr.onze,
+               onzeQuinze = hr.onzeQuinze,
+               onzeTrinta = hr.onzeTrinta,
+               onzeQuarentaCinco = hr.onzeQuarentaCinco
+           )
+           repository.insertHrCadastrada(hr)
        }
     }
 }

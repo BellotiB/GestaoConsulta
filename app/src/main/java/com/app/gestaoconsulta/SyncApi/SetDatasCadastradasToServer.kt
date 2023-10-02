@@ -1,7 +1,6 @@
 package com.app.gestaoconsulta.SyncApi
 
-import com.app.gestaoconsulta.Data.CadastroEntity
-import com.app.gestaoconsulta.Data.DataCadastradaEntity
+import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference

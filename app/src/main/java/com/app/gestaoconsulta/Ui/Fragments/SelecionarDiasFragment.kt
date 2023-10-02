@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.app.gestaoconsulta.Model.HorariosCadastrados
@@ -83,6 +82,7 @@ class SelecionarDiasFragment : Fragment() {
             horariosCadastrados.onzeTrinta = binding.tvOnzeTrinta.isChecked
             horariosCadastrados.onzeQuarentaCinco = binding.tvOnzeQuarentaCinco.isChecked
 
+            consultaViewModel?.insertHoraCadastrada(horariosCadastrados)
         }
     }
 }

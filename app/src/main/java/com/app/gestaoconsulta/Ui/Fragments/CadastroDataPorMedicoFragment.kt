@@ -80,6 +80,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
                         val datas = DatasCadastradas()
                         datas.id = it.id
                         datas.idCadastro = it.idCadastro
+                        datas.idDataCadastrada = it.idDataCadastrada
                         datas.startDate = it.startDate
                         datas.startHora = it.startHora
                         datas.endDate = it.endDate

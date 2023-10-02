@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(),LoadFragment {
     }
 
     override fun openSelecionarDiasFragment(idDataCadastrada: String) {
-     findNavController(R.id.nav_host).navigate(R.id.action_cadastroDataPorMedicoFragment_to_selecionarDiasFragment)
+        findNavController(R.id.nav_host).navigate(R.id.action_cadastroDataPorMedicoFragment_to_selecionarDiasFragment)
         consultaViewModel.setIdData(idDataCadastrada)
     }
 }
