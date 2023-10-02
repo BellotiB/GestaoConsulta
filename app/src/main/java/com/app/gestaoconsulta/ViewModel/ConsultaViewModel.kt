@@ -94,13 +94,8 @@ class ConsultaViewModel  @Inject constructor(
             val dataEntity = DataCadastradaEntity(
              id = dat.id,
                 idCadastro = dat.idCadastro,
-                startDate = dat.startDate,
+                dataAtendimento = dat.dataAtendimento,
                 idDataCadastrada = dat.idDataCadastrada,
-                startHora = dat.startHora,
-                endDate = dat.endDate,
-                endHora = dat.endHora,
-                periodoAtendimento = dat.periodoAtendimento,
-                periodoPausa = dat.periodoPausa
             )
             repository.deleteDataFromDataBase(dataEntity)
         }
@@ -114,12 +109,7 @@ class ConsultaViewModel  @Inject constructor(
                         id = 0,
                         idCadastro = list.idCadastro,
                         idDataCadastrada = list.idDataCadastrada,
-                        startDate = list.startDate,
-                        startHora = list.startHora,
-                        endDate = list.endDate,
-                        endHora = list.endHora,
-                        periodoAtendimento = list.periodoAtendimento,
-                        periodoPausa = list.periodoPausa
+                        dataAtendimento = list.dataAtendimento,
                     )
                     listDatas.add(dataEntity)
                 }

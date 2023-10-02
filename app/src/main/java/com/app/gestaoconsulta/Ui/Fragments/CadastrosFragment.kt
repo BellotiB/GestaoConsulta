@@ -39,18 +39,10 @@ class CadastrosFragment : Fragment() {
         consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         setupList()
         openCadastroFragment()
-        loadHorasCadastrados()
         consultaViewModel?.updateCadastroServer()
         consultaViewModel?.updateDatasCadastradasServer()
     }
 
-    private fun loadHorasCadastrados() {
-        lifecycleScope.launch {
-            consultaViewModel?.allHorasCadastradas?.collectLatest {
-                it
-            }
-        }
-    }
 
     private fun openCadastroFragment() {
         binding.btAdd.setOnClickListener {

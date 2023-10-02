@@ -34,11 +34,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
 
     private var _binding: FragmentCadastroDataporMedicoBinding? = null
     private val binding get() = _binding!!
-    private var startDate = ""
-    private var endDate = ""
-    private var horarioInicioAtendimento = ""
-    private var horarioUltimoAtendimento = ""
-    private var periodoCadaAtendimento = ""
+    private var dataAtendimento = ""
     private var cadastroSelected = CadastroMedico()
     private var datasCadastradas = mutableListOf<DatasCadastradas>()
     private var adapter : AdapterDatasCadastradas? = null
@@ -81,12 +77,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
                         datas.id = it.id
                         datas.idCadastro = it.idCadastro
                         datas.idDataCadastrada = it.idDataCadastrada
-                        datas.startDate = it.startDate
-                        datas.startHora = it.startHora
-                        datas.endDate = it.endDate
-                        datas.endHora = it.endHora
-                        datas.periodoPausa = it.periodoPausa
-                        datas.periodoAtendimento = it.periodoAtendimento
+                        datas.dataAtendimento = it.dataAtendimento
 
                         datasCadastradas.add(datas)
                     }
@@ -125,21 +116,10 @@ class CadastroDataPorMedicoFragment : Fragment() {
             val startDateCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
             startDateCalendar.timeInMillis = selection
             startDateCalendar.add(Calendar.DAY_OF_MONTH, 1)
-            startDate = dateFormat.format(startDateCalendar.time)
+            dataAtendimento = dateFormat.format(startDateCalendar.time)
 
             setupDatasCadastradas()
 
-        }
-        val pickerInicioAtend =
-            MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Horário inicio atendimento")
-                .build()
-
-        pickerInicioAtend.addOnPositiveButtonClickListener { horarioSelecionado ->
-            val hora = pickerInicioAtend.hour
-            val minuto = pickerInicioAtend.minute
-             horarioInicioAtendimento = String.format("%02d:%02d", hora, minuto)
         }
 
         dateRangePicker.show(childFragmentManager,"DATA_PICKER")
@@ -150,11 +130,8 @@ class CadastroDataPorMedicoFragment : Fragment() {
             val dateCadastrada = DatasCadastradas()
             dateCadastrada.idDataCadastrada = UUID.randomUUID().toString()
             dateCadastrada.idCadastro = cadastroSelected.id
-            dateCadastrada.startDate = startDate
-            dateCadastrada.endDate = endDate
-            dateCadastrada.startHora = horarioInicioAtendimento
-            dateCadastrada.endHora = horarioUltimoAtendimento
-            dateCadastrada.periodoAtendimento = periodoCadaAtendimento
+            dateCadastrada.dataAtendimento = dataAtendimento
+
 
             datasCadastradas.add(dateCadastrada)
             consultaViewModel?.datasCadastradas?.value?.add(dateCadastrada)

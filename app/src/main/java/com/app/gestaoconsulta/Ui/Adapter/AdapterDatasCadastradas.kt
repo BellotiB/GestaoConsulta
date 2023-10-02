@@ -49,9 +49,7 @@ class AdapterDatasCadastradas(
     inner class CadastroViewHolder(private val binding: ItemDataCadastradaBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(dataCad: DatasCadastradas) {
-            binding.tvStartDate.text = dataCad.startDate
-            binding.tvHora.text = dataCad.startHora +" "+ dataCad.endHora
-            binding.tvPeriodoAtend.text = dataCad.periodoAtendimento
+            binding.tvStartDate.text = dataCad.dataAtendimento
         }
         val menuCard : ImageView = binding.menuCard
         val card : CardView = binding.cvCard
