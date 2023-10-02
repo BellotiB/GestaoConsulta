@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.app.gestaoconsulta.Model.HorariosCadastrados
+import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 
 import com.app.gestaoconsulta.databinding.FragmentSelecionarDiasBinding
@@ -83,6 +86,9 @@ class SelecionarDiasFragment : Fragment() {
             horariosCadastrados.onzeQuarentaCinco = binding.tvOnzeQuarentaCinco.isChecked
 
             consultaViewModel?.insertHoraCadastrada(horariosCadastrados)
+
+            findNavController().navigate(R.id.action_selecionarDiasFragment_to_cadastroMedicoFragment)
+            Toast.makeText(requireContext(),"Horários salvos",Toast.LENGTH_LONG).show()
         }
     }
 }

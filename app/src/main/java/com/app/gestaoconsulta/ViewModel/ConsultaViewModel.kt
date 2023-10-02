@@ -203,7 +203,7 @@ class ConsultaViewModel  @Inject constructor(
                onzeTrinta = hr.onzeTrinta,
                onzeQuarentaCinco = hr.onzeQuarentaCinco
            )
-           repository.insertHrCadastrada(hr)
+           repository.insertHrCadastrada(horaEntity)
        }
     }
 }

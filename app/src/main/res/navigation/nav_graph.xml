@@ -57,5 +57,17 @@
     <fragment
         android:id="@+id/selecionarDiasFragment"
         android:name="com.app.gestaoconsulta.Ui.Fragments.SelecionarDiasFragment"
-        tools:layout="@layout/fragment_selecionar_dias"/>
+        tools:layout="@layout/fragment_selecionar_dias">
+
+    <action
+        android:id="@+id/action_selecionarDiasFragment_to_cadastroMedicoFragment"
+        app:destination="@id/cadastroMedicoFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
+
+    </fragment>
+
+
 </navigation>

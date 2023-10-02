@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface HoraCadastradaDao {
     @Insert
-    suspend fun insertHora(datasCadastradas: HorariosCadastrados)
+    suspend fun insertHora(datasCadastradas: HoraCadastradaEntity)
 
     @Query("SELECT * FROM HorasCadastradas")
     fun getAllHorasCadastradas(): Flow<MutableList<HoraCadastradaEntity>>

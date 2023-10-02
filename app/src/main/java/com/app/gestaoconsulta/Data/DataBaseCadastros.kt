@@ -7,8 +7,12 @@ import com.app.gestaoconsulta.Data.Daos.DataCadastradaDao
 import com.app.gestaoconsulta.Data.Daos.HoraCadastradaDao
 import com.app.gestaoconsulta.Data.Entities.CadastroEntity
 import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
+import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
 
-@Database(entities = [CadastroEntity::class, DataCadastradaEntity::class], version = 3)
+@Database(entities = [CadastroEntity::class,
+    DataCadastradaEntity::class,
+    HoraCadastradaEntity::class], version = 2)
+
 abstract class DataBaseCadastros : RoomDatabase() {
     abstract fun cadastroDao(): CadastroDao
     abstract fun dataCadastradaDao(): DataCadastradaDao

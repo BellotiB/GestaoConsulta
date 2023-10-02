@@ -31,7 +31,7 @@ class Repository @Inject constructor(
    suspend fun insertDataCadastrada(data: MutableList<DataCadastradaEntity>){
         datacadDao.insertData(data)
     }
-    suspend fun insertHrCadastrada(hr: HorariosCadastrados){
+    suspend fun insertHrCadastrada(hr: HoraCadastradaEntity){
         horacadDao.insertHora(hr)
     }
 
