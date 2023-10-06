@@ -13,6 +13,7 @@ import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.Model.HorariosCadastrados
 import com.app.gestaoconsulta.SyncApi.SetCadastroMedicoToServer
 import com.app.gestaoconsulta.SyncApi.SetDatasCadastradasToServer
+import com.app.gestaoconsulta.SyncApi.SetHorasToServer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -129,6 +130,13 @@ class ConsultaViewModel  @Inject constructor(
         viewModelScope.launch {
             allDatasCadastradas.collect{ datasList->
                 SetDatasCadastradasToServer().fecthDataCadastrada(datasList)
+            }
+        }
+    }
+    fun updateHorasCadastradosServer(){
+        viewModelScope.launch {
+            allHorasCadastradas.collect{ horasList->
+                SetHorasToServer().fecthHoraCadastrada(horasList)
             }
         }
     }

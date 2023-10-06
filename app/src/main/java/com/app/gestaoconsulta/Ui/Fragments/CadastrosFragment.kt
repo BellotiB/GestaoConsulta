@@ -1,6 +1,5 @@
 package com.app.gestaoconsulta.Ui.Fragments
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,7 +14,6 @@ import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.Ui.Adapter.AdapterMedicosCadastrados
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCadastrosBinding
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 class CadastrosFragment : Fragment() {
@@ -41,6 +39,7 @@ class CadastrosFragment : Fragment() {
         openCadastroFragment()
         consultaViewModel?.updateCadastroServer()
         consultaViewModel?.updateDatasCadastradasServer()
+        consultaViewModel?.updateHorasCadastradosServer()
     }
 
 
