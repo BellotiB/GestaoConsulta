@@ -90,6 +90,7 @@ class ConsultaViewModel  @Inject constructor(
             deleteDatasPorCadastro(cad.id)
         }
     }
+
     fun deleteDataCadastrada(dat: DatasCadastradas){
         viewModelScope.launch(Dispatchers.IO) {
             val dataEntity = DataCadastradaEntity(
@@ -98,8 +99,20 @@ class ConsultaViewModel  @Inject constructor(
                 dataAtendimento = dat.dataAtendimento,
                 idDataCadastrada = dat.idDataCadastrada,
             )
+            deleteHorasFromDatasCadastradas(dat.idDataCadastrada)
             repository.deleteDataFromDataBase(dataEntity)
         }
+    }
+    private fun deleteHorasFromDatasCadastradas(dat: String) {
+         viewModelScope.launch(Dispatchers.IO) {
+             allHorasCadastradas.collect{ list ->
+                 list.forEach {
+                     if(it.idDataCadastrada == dat){
+                        repository.deleteHoraPorData(it)
+                     }
+                 }
+             }
+         }
     }
     fun setDatasCadastradas() {
         viewModelScope.launch {

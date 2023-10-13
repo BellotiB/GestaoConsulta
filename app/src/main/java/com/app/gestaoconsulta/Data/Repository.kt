@@ -34,6 +34,10 @@ class Repository @Inject constructor(
     suspend fun insertHrCadastrada(hr: HoraCadastradaEntity){
         horacadDao.insertHora(hr)
     }
+     fun deleteHoraPorData(dataCad : HoraCadastradaEntity){
+      horacadDao.delete(dataCad)
+
+    }
 
     val getAllHorasEntity: Flow<MutableList<HoraCadastradaEntity>> = horacadDao.getAllHorasCadastradas()
 
