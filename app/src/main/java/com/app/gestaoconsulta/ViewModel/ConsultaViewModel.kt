@@ -164,10 +164,17 @@ class ConsultaViewModel  @Inject constructor(
                         }
                     }
                     repository.deleteAllDatasPorCadastro(listDatasToDelete)
+                    deleteAllHorasPorData(listDatasToDelete)
                 }
             }
         }
     }
+    private fun deleteAllHorasPorData(listDatasToDelete: MutableList<DataCadastradaEntity>) {
+        listDatasToDelete.forEach {
+            deleteHorasFromDatasCadastradas(it.idDataCadastrada)
+        }
+    }
+
     fun  setIdData(idData: String) {
        viewModelScope.launch {
            _idDataCadastrada.value = idData
