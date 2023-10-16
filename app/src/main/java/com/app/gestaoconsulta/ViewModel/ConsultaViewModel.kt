@@ -182,9 +182,9 @@ class ConsultaViewModel  @Inject constructor(
     }
 
     fun  insertHoraCadastrada(hr: HorariosCadastrados) {
-       viewModelScope.launch {
-           var horaEntity = HoraCadastradaEntity (
-               id = 0,
+        viewModelScope.launch(Dispatchers.IO) {
+           val horaEntity = HoraCadastradaEntity (
+               id = hr.id,
                idDataCadastrada = hr.idDataCadastrada,
                cinco = hr.cinco,
                cincoQuinze = hr.cincoQuinze,
@@ -223,5 +223,48 @@ class ConsultaViewModel  @Inject constructor(
            )
            repository.insertHrCadastrada(horaEntity)
        }
+    }
+    fun  updateHoraCadastrada(hr: HorariosCadastrados) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val horaEntity = HoraCadastradaEntity (
+                id = hr.id,
+                idDataCadastrada = hr.idDataCadastrada,
+                cinco = hr.cinco,
+                cincoQuinze = hr.cincoQuinze,
+                cincoTrinta = hr.cincoTrinta,
+                cincoQuarentaCinco = hr.cincoQuarentaCinco,
+
+                seis = hr.seis,
+                seisQuinze = hr.seisQuinze,
+                seisTrinta = hr.seisTrinta,
+                seisQuarentaCinco = hr.seisQuarentaCinco,
+
+                sete = hr.sete,
+                seteQuinze = hr.seteQuinze,
+                seteTrinta = hr.seteTrinta,
+                seteQuarentaCinco = hr.seteQuarentaCinco,
+
+                oito = hr.oito,
+                oitoQuinze = hr.oitoQuinze,
+                oitoTrinta = hr.oitoTrinta,
+                oitoQuarentaCinco = hr.oitoQuarentaCinco,
+
+                nove = hr.nove,
+                noveQuinze = hr.noveQuinze,
+                noveTrinta = hr.noveTrinta,
+                noveQuarentaCinco = hr.noveQuarentaCinco,
+
+                dez = hr.dez,
+                dezQuinze = hr.dezQuinze,
+                dezTrinta = hr.dezTrinta,
+                dezQuarentaCinco = hr.dezQuarentaCinco,
+
+                onze = hr.onze,
+                onzeQuinze = hr.onzeQuinze,
+                onzeTrinta = hr.onzeTrinta,
+                onzeQuarentaCinco = hr.onzeQuarentaCinco
+            )
+            repository.update(horaEntity)
+        }
     }
 }

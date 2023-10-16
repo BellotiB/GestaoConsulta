@@ -1,7 +1,7 @@
 package com.app.gestaoconsulta.Model
 
 class HorariosCadastrados {
-
+    var id = 0
     var idDataCadastrada = ""
 
     var cinco = false

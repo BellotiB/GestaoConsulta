@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
 import com.app.gestaoconsulta.Model.HorariosCadastrados
 import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
@@ -22,6 +23,8 @@ class SelecionarDiasFragment : Fragment() {
     private val binding get() = _binding!!
     private var consultaViewModel : ConsultaViewModel? = null
     private var idDataCadastrada = ""
+    private var idHoraCadastrada = 0
+    private var uptade = false
     private var horariosCadastrados = HorariosCadastrados()
 
     override fun onCreateView(
@@ -52,9 +55,11 @@ class SelecionarDiasFragment : Fragment() {
             consultaViewModel?.allHorasCadastradas?.collectLatest { it ->
                 it.forEach {
                     if (it.idDataCadastrada == idDataCadastrada) {
+                        idHoraCadastrada = it.id
+                        uptade = true
                         binding.tvCinco.isChecked = it.cinco
                         binding.tvCincoQuinze.isChecked = it.cincoQuinze
-                         binding.tvCincoTrinta.isChecked = it.cincoTrinta
+                        binding.tvCincoTrinta.isChecked = it.cincoTrinta
                         binding.tvCincoQuarentaCinco.isChecked = it.cincoQuarentaCinco
 
                         binding.tvSeis.isChecked = it.seis
@@ -93,6 +98,7 @@ class SelecionarDiasFragment : Fragment() {
     }
     private fun salvarHorariosSelecionados() {
            binding.salvar.setOnClickListener {
+               horariosCadastrados.id = idHoraCadastrada
                horariosCadastrados.idDataCadastrada = idDataCadastrada
                horariosCadastrados.cinco = binding.tvCinco.isChecked
                horariosCadastrados.cincoQuinze = binding.tvCincoQuinze.isChecked
@@ -132,9 +138,13 @@ class SelecionarDiasFragment : Fragment() {
                salvarHora()
            }
     }
-    private fun salvarHora(){
+    private fun salvarHora() {
+        if (uptade) {
+            consultaViewModel?.updateHoraCadastrada(horariosCadastrados)
+        } else {
             consultaViewModel?.insertHoraCadastrada(horariosCadastrados)
-            openCadastroMedico()
+        }
+        openCadastroMedico()
     }
     private fun openCadastroMedico(){
         findNavController().navigate(R.id.action_selecionarDiasFragment_to_cadastroMedicoFragment)

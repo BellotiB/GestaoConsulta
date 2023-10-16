@@ -39,6 +39,10 @@ class Repository @Inject constructor(
 
     }
 
+    fun update(horaEntity: HoraCadastradaEntity) {
+        horacadDao.update(horaEntity)
+    }
+
     val getAllHorasEntity: Flow<MutableList<HoraCadastradaEntity>> = horacadDao.getAllHorasCadastradas()
 
     val getAllCadastroEntity: Flow<MutableList<CadastroEntity>> = cadastroDao.getAllCadastros()
