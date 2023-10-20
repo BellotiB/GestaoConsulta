@@ -11,15 +11,20 @@ import com.app.gestaoconsulta.Data.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.Model.HorariosCadastrados
+import com.app.gestaoconsulta.Model.PedidoAgendamento
+import com.app.gestaoconsulta.SyncApi.GetPedidosAgendamentos
 import com.app.gestaoconsulta.SyncApi.SetCadastroMedicoToServer
 import com.app.gestaoconsulta.SyncApi.SetDatasCadastradasToServer
 import com.app.gestaoconsulta.SyncApi.SetHorasToServer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -51,6 +56,31 @@ class ConsultaViewModel  @Inject constructor(
     val allDatasCadastradas : Flow<MutableList<DataCadastradaEntity>> = repository.getAllDatasEntity
 
     val allHorasCadastradas : Flow<MutableList<HoraCadastradaEntity>> = repository.getAllHorasEntity
+
+    private var pedidosAgendamentoFlow = MutableStateFlow<MutableList<PedidoAgendamento>>(mutableListOf())
+    val pedidosAgendamento: StateFlow<MutableList<PedidoAgendamento>> = pedidosAgendamentoFlow
+
+
+    init {
+        streamPedidosAgendamento()
+    }
+
+    private fun streamPedidosAgendamento() {
+        viewModelScope.launch {
+            flow {
+                while (true) {
+                    val horasCadastradas = GetPedidosAgendamentos().fecthAgendamentos()
+                    emit(horasCadastradas)
+                    delay(3000)
+                }
+            }
+                .flowOn(Dispatchers.IO)
+                .collectLatest { pedAgendamento ->
+                    pedidosAgendamentoFlow.value =  pedAgendamento
+                }
+        }
+    }
+
 
     fun insertCadastro() {
         viewModelScope.launch {
