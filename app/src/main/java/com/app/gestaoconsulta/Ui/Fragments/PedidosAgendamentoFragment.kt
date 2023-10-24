@@ -62,12 +62,11 @@ class PedidosAgendamentoFragment : Fragment() {
             consultaViewModel?.allUsuarios?.collectLatest {users ->
                 users.forEach {
                     val usuario = Usuarios()
-                  usuario.idUsuario = it.idUsuario
-                  usuario.id = it.id
-                  usuario.nome = it.nome
-                  usuario.email = it.email
-                  usuario.telefone = it.telefone
-
+                    usuario.idUsuario = it.idUsuario
+                    usuario.id = it.id
+                    usuario.nome = it.nome
+                    usuario.email = it.email
+                    usuario.telefone = it.telefone
                     usuarios.add(usuario)
                 }
             }
