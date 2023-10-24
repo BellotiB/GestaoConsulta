@@ -77,10 +77,16 @@ class ConsultaViewModel  @Inject constructor(
                 .flowOn(Dispatchers.IO)
                 .collectLatest { pedAgendamento ->
                     pedidosAgendamentoFlow.value =  pedAgendamento
+                    updateHoraFromServer()
                 }
         }
     }
 
+    private fun updateHoraFromServer() {
+        pedidosAgendamentoFlow.value.forEach {
+            updateHoraCadastrada(it.horariosDisponiveis)
+        }
+    }
 
     fun insertCadastro() {
         viewModelScope.launch {

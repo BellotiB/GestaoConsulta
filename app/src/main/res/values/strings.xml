@@ -6,7 +6,7 @@
     <string name="salvar_lista">Salvar Lista</string>
     <string name="id">id</string>
     <string name="medicos_cadastrados">Médicos Cadastrados</string>
-    <string name="datas_selecionadas">Datas Selecionadas</string>
+    <string name="datas_selecionadas">Datas Selecionada:</string>
     <string name="selecionar_hor_rios_dos_dias_cadastrados">Selecionar horários dos dias cadastrados</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -24,4 +24,8 @@
     <string name="_00_30">00:30</string>
     <string name="per_odo_cada_atendimento">Período cada atendimento:</string>
     <string name="_5_00">5:00</string>
+    <string name="cliente_example">Maria das Dores</string>
+    <string name="medico_example">Dr.Mario</string>
+    <string name="example_profissional">Profissional:</string>
+    <string name="hora_selecionadas">Horário Selecionado:</string>
 </resources>

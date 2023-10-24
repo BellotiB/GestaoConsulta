@@ -21,7 +21,7 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cadastro de Profissionais"
+        android:text="Médicos"
         android:layout_gravity="center"
         android:gravity="center"
         />
@@ -60,7 +60,7 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cadastro de Usuários"
+        android:text="Usuários"
         android:layout_gravity="center"
         android:gravity="center"
         />

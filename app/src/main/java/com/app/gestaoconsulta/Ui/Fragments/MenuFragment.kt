@@ -28,23 +28,15 @@ class MenuFragment : Fragment() {
 
     }
     private fun openFragments() {
-        openCadastroMedicos()
-        openPedidosAgendamento()
-        openUsuarios()
-    }
+        binding.openCadastromedico.setOnClickListener {
+            findNavController().navigate(R.id.action_menuFragment_to_cadastradosFragment)
+        }
+        binding.openPedidoagendamento.setOnClickListener {
+            findNavController().navigate(R.id.action_menuFragment_to_pedidosAgendamentoFragment)
+        }
+        binding.openCadastrousuario.setOnClickListener {
+            findNavController().navigate(R.id.action_menuFragment_to_usuariosFragment)
 
-    private fun openUsuarios() {
-        findNavController().navigate(R.id.action_menuFragment_to_usuariosFragment)
-
-    }
-
-    private fun openPedidosAgendamento() {
-        findNavController().navigate(R.id.action_menuFragment_to_pedidosAgendamentoFragment)
-
-    }
-
-    private fun openCadastroMedicos() {
-        findNavController().navigate(R.id.action_menuFragment_to_cadastradosFragment)
-
+        }
     }
 }
