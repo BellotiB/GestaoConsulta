@@ -147,7 +147,7 @@ class SelecionarDiasFragment : Fragment() {
         openCadastroMedico()
     }
     private fun openCadastroMedico(){
-        findNavController().navigate(R.id.action_selecionarDiasFragment_to_cadastroMedicoFragment)
+        findNavController().navigate(R.id.action_selecionarDiasFragment_to_menuFragment)
         Toast.makeText(requireContext(),"Horários salvos",Toast.LENGTH_LONG).show()
     }
 }

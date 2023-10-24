@@ -24,8 +24,8 @@
         tools:layout="@layout/fragment_cadastro_datapor_medico">
 
         <action
-            android:id="@+id/action_cadastroDataPorMedicoFragment_to_cadastradosFragmentt"
-            app:destination="@id/cadastradosFragment"
+            android:id="@+id/action_cadastroDataPorMedicoFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -60,8 +60,8 @@
         tools:layout="@layout/fragment_selecionar_dias">
 
     <action
-        android:id="@+id/action_selecionarDiasFragment_to_cadastroMedicoFragment"
-        app:destination="@id/cadastroMedicoFragment"
+        android:id="@+id/action_selecionarDiasFragment_to_menuFragment"
+        app:destination="@id/menuFragment"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim"
         app:exitAnim="@anim/nav_default_exit_anim"

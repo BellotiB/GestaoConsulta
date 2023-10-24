@@ -90,7 +90,7 @@ class CadastroDataPorMedicoFragment : Fragment() {
 
     private fun saveDatasCadastradas() {
         binding.ivSave.setOnClickListener {
-            findNavController().navigate(R.id.action_cadastroDataPorMedicoFragment_to_cadastradosFragmentt)
+            findNavController().navigate(R.id.action_cadastroDataPorMedicoFragment_to_menuFragment)
         }
     }
 
