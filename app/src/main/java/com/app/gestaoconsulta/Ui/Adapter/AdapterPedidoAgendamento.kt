@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.PedidoAgendamento
-import com.app.gestaoconsulta.Ui.LoadFragment
+import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.ItemPeodidoAgendamentoBinding
 
 
-class AdapterPedidoAgendamento(private val pedidosList:MutableList<PedidoAgendamento>
+class AdapterPedidoAgendamento(
+    private val pedidosList: MutableList<PedidoAgendamento>, consultaViewModel: ConsultaViewModel?
 ):RecyclerView.Adapter<AdapterPedidoAgendamento.PedidoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PedidoViewHolder {

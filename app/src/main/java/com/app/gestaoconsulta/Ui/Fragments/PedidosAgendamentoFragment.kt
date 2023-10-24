@@ -8,13 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.gestaoconsulta.Model.PedidoAgendamento
-import com.app.gestaoconsulta.R
-import com.app.gestaoconsulta.Ui.Adapter.AdapterDatasCadastradas
 import com.app.gestaoconsulta.Ui.Adapter.AdapterPedidoAgendamento
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentPedidosAgendamentoBinding
-import com.app.gestaoconsulta.databinding.FragmentUsuariosBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -49,7 +45,7 @@ class PedidosAgendamentoFragment : Fragment() {
     }
     private fun setupRecyclerView() {
         binding.rvDatasList.layoutManager = LinearLayoutManager(requireContext())
-        adapter = AdapterPedidoAgendamento(mutableListOf())
+        adapter = AdapterPedidoAgendamento(mutableListOf(),consultaViewModel)
         binding.rvDatasList.adapter = adapter
     }
 }
