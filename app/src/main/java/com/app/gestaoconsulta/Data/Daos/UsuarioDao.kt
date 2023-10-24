@@ -16,7 +16,7 @@ interface UsuarioDao {
     suspend fun insertUsuario(usuarios: UsuarioEntity)
 
     @Query("SELECT * FROM Usuario")
-    fun getAllHUsuarios(): Flow<MutableList<UsuarioEntity>>
+    fun getAllUsuarios(): Flow<MutableList<UsuarioEntity>>
 
    @Delete
     fun delete(id: UsuarioEntity)

@@ -7,12 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.app.gestaoconsulta.Data.Entities.CadastroEntity
 import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
 import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
+import com.app.gestaoconsulta.Data.Entities.UsuarioEntity
 import com.app.gestaoconsulta.Data.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.Model.HorariosCadastrados
 import com.app.gestaoconsulta.Model.PedidoAgendamento
+import com.app.gestaoconsulta.Model.Usuarios
 import com.app.gestaoconsulta.SyncApi.GetPedidosAgendamentos
+import com.app.gestaoconsulta.SyncApi.GetUsuarios
 import com.app.gestaoconsulta.SyncApi.SetCadastroMedicoToServer
 import com.app.gestaoconsulta.SyncApi.SetDatasCadastradasToServer
 import com.app.gestaoconsulta.SyncApi.SetHorasToServer
@@ -25,6 +28,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -53,6 +57,8 @@ class ConsultaViewModel  @Inject constructor(
 
     val allCadastros : Flow<MutableList<CadastroEntity>> = repository.getAllCadastroEntity
 
+    val allUsuarios : Flow<MutableList<UsuarioEntity>> = repository.getAllUsersEntity
+
     val allDatasCadastradas : Flow<MutableList<DataCadastradaEntity>> = repository.getAllDatasEntity
 
     val allHorasCadastradas : Flow<MutableList<HoraCadastradaEntity>> = repository.getAllHorasEntity
@@ -60,9 +66,13 @@ class ConsultaViewModel  @Inject constructor(
     private var pedidosAgendamentoFlow = MutableStateFlow<MutableList<PedidoAgendamento>>(mutableListOf())
     val pedidosAgendamento: StateFlow<MutableList<PedidoAgendamento>> = pedidosAgendamentoFlow
 
+    private var usuariosFlow = MutableStateFlow<MutableList<Usuarios>>(mutableListOf())
+    val usuariosCadastrados: StateFlow<MutableList<Usuarios>> = usuariosFlow
+
 
     init {
         streamPedidosAgendamento()
+        streamUsuario()
     }
 
     private fun streamPedidosAgendamento() {
@@ -79,6 +89,65 @@ class ConsultaViewModel  @Inject constructor(
                     pedidosAgendamentoFlow.value =  pedAgendamento
                     updateHoraFromServer()
                 }
+        }
+    }
+    private fun streamUsuario() {
+        viewModelScope.launch {
+            flow {
+                while (true) {
+                    val usuariosCadastrados = GetUsuarios().fecthUsuarios()
+                    emit(usuariosCadastrados)
+                    delay(13000)
+                }
+            }
+                .flowOn(Dispatchers.IO)
+                .collectLatest { users ->
+                    usuariosFlow.value = users
+                    updateOrInsertUsuario()
+                }
+        }
+    }
+
+    private fun updateOrInsertUsuario() {
+        viewModelScope.launch(Dispatchers.IO) {
+           allUsuarios.collectLatest {
+               if(it.isNotEmpty()){
+                   it.forEach {
+                       usuariosCadastrados.value.forEach { user ->
+                           if(it.idUsuario == user.idUsuario){
+                               val usuario = UsuarioEntity(
+                                   nome = user.nome,
+                                   id = user.id,
+                                   idUsuario = user.idUsuario,
+                                   email = user.email,
+                                   telefone = user.telefone
+                               )
+                               repository.updateUsuario(usuario)
+                           }else{
+                               val usuario = UsuarioEntity(
+                                   nome = user.nome,
+                                   id = user.id,
+                                   idUsuario = user.idUsuario,
+                                   email = user.email,
+                                   telefone = user.telefone
+                               )
+                               repository.insertUsuario(usuario)
+                           }
+                       }
+                   }
+               }else{
+                   usuariosCadastrados.value.forEach {user ->
+                       val usuario = UsuarioEntity(
+                           nome = user.nome,
+                           id = user.id,
+                           idUsuario = user.idUsuario,
+                           email = user.email,
+                           telefone = user.telefone
+                       )
+                       repository.insertUsuario(usuario)
+                   }
+               }
+           }
         }
     }
 

@@ -3,9 +3,11 @@ package com.app.gestaoconsulta.Data
 import com.app.gestaoconsulta.Data.Daos.CadastroDao
 import com.app.gestaoconsulta.Data.Daos.DataCadastradaDao
 import com.app.gestaoconsulta.Data.Daos.HoraCadastradaDao
+import com.app.gestaoconsulta.Data.Daos.UsuarioDao
 import com.app.gestaoconsulta.Data.Entities.CadastroEntity
 import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
 import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
+import com.app.gestaoconsulta.Data.Entities.UsuarioEntity
 import com.app.gestaoconsulta.Model.HorariosCadastrados
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -13,7 +15,8 @@ import javax.inject.Inject
 class Repository @Inject constructor(
     private val cadastroDao: CadastroDao,
     private val datacadDao: DataCadastradaDao,
-    private val horacadDao: HoraCadastradaDao
+    private val horacadDao: HoraCadastradaDao,
+    private val usuarioDao: UsuarioDao
     ){
 
     suspend fun insertCadastro(cadastroEntity: CadastroEntity){
@@ -34,13 +37,18 @@ class Repository @Inject constructor(
     suspend fun insertHrCadastrada(hr: HoraCadastradaEntity){
         horacadDao.insertHora(hr)
     }
+    suspend fun insertUsuario(hr: UsuarioEntity){
+        usuarioDao.insertUsuario(hr)
+    }
      fun deleteHoraPorData(dataCad : HoraCadastradaEntity){
       horacadDao.delete(dataCad)
 
     }
-
     fun update(horaEntity: HoraCadastradaEntity) {
         horacadDao.update(horaEntity)
+    }
+    fun updateUsuario(usuarioEntity: UsuarioEntity) {
+        usuarioDao.update(usuarioEntity)
     }
 
     val getAllHorasEntity: Flow<MutableList<HoraCadastradaEntity>> = horacadDao.getAllHorasCadastradas()
@@ -48,4 +56,6 @@ class Repository @Inject constructor(
     val getAllCadastroEntity: Flow<MutableList<CadastroEntity>> = cadastroDao.getAllCadastros()
 
     val getAllDatasEntity: Flow<MutableList<DataCadastradaEntity>> = datacadDao.getAllDatasCadastradas()
+
+    val getAllUsersEntity: Flow<MutableList<UsuarioEntity>> = usuarioDao.getAllUsuarios()
 }

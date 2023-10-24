@@ -3,13 +3,16 @@ package com.app.gestaoconsulta.Ui.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.PedidoAgendamento
-import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
+import com.app.gestaoconsulta.Model.Usuarios
 import com.app.gestaoconsulta.databinding.ItemPeodidoAgendamentoBinding
 
 
 class AdapterPedidoAgendamento(
-    private val pedidosList: MutableList<PedidoAgendamento>, consultaViewModel: ConsultaViewModel?
+    private val pedidosList: MutableList<PedidoAgendamento>,
+    private val usuarios: MutableList<Usuarios>,
+    private val medicos: MutableList<CadastroMedico>,
 ):RecyclerView.Adapter<AdapterPedidoAgendamento.PedidoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PedidoViewHolder {
@@ -28,8 +31,6 @@ class AdapterPedidoAgendamento(
     override fun onBindViewHolder(holder: PedidoViewHolder, position:Int) {
         val pedido = pedidosList[position]
         holder.bind(pedido)
-
-
     }
 
     fun updatePedidoList(ped: MutableList<PedidoAgendamento>) {
@@ -40,8 +41,20 @@ class AdapterPedidoAgendamento(
 
     inner class PedidoViewHolder(private val binding: ItemPeodidoAgendamentoBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(ped: PedidoAgendamento) {
-            binding.tvNomecliente.text = ped.idUsuario
+            usuarios.forEach {
+                if (it.idUsuario == ped.idUsuario){
+                    binding.tvNomecliente.text = it.nome
+                }
+            }
+            medicos.forEach {
+                if (it.id == ped.dataSelecionada.idCadastro){
+                    binding.tvNomemedico.text = it.nome
+                    binding.tvEspecialidadeMedico.text = it.especialidade
+                }
+            }
+
             binding.tvNomemedico.text
             binding.tvStartDate.text = ped.dataSelecionada.dataAtendimento
             binding.tvHoraSelecionada.text = ped.horaSelecionada
