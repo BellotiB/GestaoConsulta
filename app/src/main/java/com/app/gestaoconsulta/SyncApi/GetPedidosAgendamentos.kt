@@ -4,6 +4,7 @@ import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.GenericTypeIndicator
 import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
@@ -22,12 +23,14 @@ class GetPedidosAgendamentos {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val pedidos = mutableListOf<PedidoAgendamento>()
                     for (childSnapshot in dataSnapshot.children) {
-                        val pedido = childSnapshot.getValue(PedidoAgendamento::class.java)
-                        if (pedido != null) {
-                            pedidos.add(pedido)
+                       //converter cada elemento da lista
+                        val pedidoList = childSnapshot.getValue(object : GenericTypeIndicator<ArrayList<PedidoAgendamento>>() {}
+                        )
+                        if (pedidoList != null) {
+                            pedidos.addAll(pedidoList)
                         }
                     }
-                    continuation.resume((pedidos))
+                    continuation.resume(pedidos)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {

@@ -88,6 +88,7 @@ class ConsultaViewModel  @Inject constructor(
                 .collectLatest { pedAgendamento ->
                     pedidosAgendamentoFlow.value =  pedAgendamento
                     updateHoraFromServer()
+                    updateHorasCadastradosServer()
                 }
         }
     }
