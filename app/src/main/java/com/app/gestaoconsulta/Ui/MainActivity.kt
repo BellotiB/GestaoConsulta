@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
+import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.ActivityMainBinding
@@ -29,12 +30,24 @@ class MainActivity : AppCompatActivity(),LoadFragment {
     private val CHANNEL_ID = "my_channel_id"
 
      private lateinit var consultaViewModel: ConsultaViewModel
+     private  var pedidoNotification = mutableListOf<PedidoAgendamento>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         consultaViewModel = ViewModelProvider(this)[ConsultaViewModel::class.java]
         createNotificationChannel()
+        loadPedidoAgendamento()
+    }
+    private fun loadPedidoAgendamento() {
+        lifecycleScope.launch {
+            consultaViewModel?.pedidosNotification?.collectLatest { pedAgend ->
+                if (pedAgend.size > 0 && pedAgend.size > pedidoNotification.size){
+                    pedidoNotification.addAll(pedAgend)
+                    showNotification("Pedido Agendamento", "Novo Pedido de agendamento realizados")
+                }
+            }
+        }
     }
 
     private fun createNotificationChannel() {

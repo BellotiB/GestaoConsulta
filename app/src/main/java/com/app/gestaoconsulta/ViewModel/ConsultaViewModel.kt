@@ -66,6 +66,9 @@ class ConsultaViewModel  @Inject constructor(
     private var pedidosAgendamentoFlow = MutableStateFlow<MutableList<PedidoAgendamento>>(mutableListOf())
     val pedidosAgendamento: StateFlow<MutableList<PedidoAgendamento>> = pedidosAgendamentoFlow
 
+    private var pedidosNotificationFlow = MutableStateFlow<MutableList<PedidoAgendamento>>(mutableListOf())
+    val pedidosNotification: StateFlow<MutableList<PedidoAgendamento>> = pedidosNotificationFlow
+
     private var usuariosFlow = MutableStateFlow<MutableList<Usuarios>>(mutableListOf())
     val usuariosCadastrados: StateFlow<MutableList<Usuarios>> = usuariosFlow
 
@@ -87,6 +90,7 @@ class ConsultaViewModel  @Inject constructor(
                 .flowOn(Dispatchers.IO)
                 .collectLatest { pedAgendamento ->
                     pedidosAgendamentoFlow.value =  pedAgendamento
+                    pedidosNotificationFlow.value = pedAgendamento
                     updateHoraFromServer()
                     updateHorasCadastradosServer()
                 }
