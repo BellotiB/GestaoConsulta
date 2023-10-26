@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25dp"
+    android:layout_width="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        app:cardElevation="5dp">
+
+    <TextView
+        android:id="@+id/tv_especialidade"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="15dp"
+        android:text="Especialidade:"/>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

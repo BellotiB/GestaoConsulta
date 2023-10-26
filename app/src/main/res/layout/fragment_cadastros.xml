@@ -7,13 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".Ui.Fragments.CadastrosFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_cadastrados"
-        android:layout_width="407dp"
-        android:layout_height="match_parent"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginTop="-30dp"
+        android:background="@drawable/rounded_toolbar_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+   <ImageButton
+       android:id="@+id/open_filter"
+       android:layout_width="50dp"
+       android:layout_height="50dp"
+       android:layout_marginTop="50dp"
+       android:src="@drawable/filter_list"
+       android:backgroundTint="#6B45AE"
+       />
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_cadastrados"
+        android:layout_width="400dp"
+        android:layout_height="558dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
         tools:listitem="@layout/item_cadastro" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,6 +46,25 @@
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_especialidades"
+        android:layout_width="150dp"
+        android:layout_height="429dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_cadastrados"
+        app:layout_constraintEnd_toEndOf="@+id/rv_cadastrados"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rv_cadastrados">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_especialidades"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_especialidades" />
+
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

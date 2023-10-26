@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.R
+import com.app.gestaoconsulta.Ui.Adapter.AdapterCadastro
+import com.app.gestaoconsulta.Ui.Adapter.AdapterEspecialidades
 import com.app.gestaoconsulta.Ui.Adapter.AdapterMedicosCadastrados
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCadastrosBinding
@@ -21,7 +23,9 @@ class CadastrosFragment : Fragment() {
     private var _binding: FragmentCadastrosBinding? = null
     private val binding get() = _binding!!
     private var adapter : AdapterMedicosCadastrados? = null
+    private var adapterEspecialidades : AdapterEspecialidades? = null
     private val cadastrosList = mutableListOf<CadastroMedico>()
+    private val listFiltrada = mutableListOf<CadastroMedico>()
     private var consultaViewModel : ConsultaViewModel? = null
 
     override fun onCreateView(
@@ -37,11 +41,30 @@ class CadastrosFragment : Fragment() {
         consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         setupList()
         openCadastroFragment()
+        openFilter()
         consultaViewModel?.updateCadastroServer()
         consultaViewModel?.updateDatasCadastradasServer()
         consultaViewModel?.updateHorasCadastradosServer()
     }
 
+    private fun openFilter() {
+     binding.openFilter.setOnClickListener {
+         binding.cardEspecialidades.visibility = View.VISIBLE
+     }
+    }
+
+    private fun setupListEspecialidades() {
+        cadastrosList.forEach { cad ->
+            val idAlreadyExists = listFiltrada.any { it.especialidade == cad.especialidade }
+            if (!idAlreadyExists) {
+                listFiltrada.add(cad)
+            }
+        }
+
+        binding.rvEspecialidades.layoutManager = LinearLayoutManager(requireContext())
+        adapterEspecialidades = AdapterEspecialidades(listFiltrada)
+        binding.rvEspecialidades.adapter = adapterEspecialidades
+    }
 
     private fun openCadastroFragment() {
         binding.btAdd.setOnClickListener {
@@ -64,6 +87,7 @@ class CadastrosFragment : Fragment() {
                 binding.rvCadastrados.layoutManager = LinearLayoutManager(requireContext())
                 adapter = AdapterMedicosCadastrados(cadastrosList)
                 binding.rvCadastrados.adapter = adapter
+                setupListEspecialidades()
             }
         }
     }

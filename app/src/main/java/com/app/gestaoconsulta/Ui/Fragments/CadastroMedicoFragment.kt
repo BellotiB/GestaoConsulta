@@ -48,7 +48,14 @@ class CadastroMedicoFragment : Fragment() {
         consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         setupSwipeListener()
         setupList()
+        setupEspecialidadesList()
         updateList()
+    }
+
+    private fun setupEspecialidadesList() {
+        binding.rvCadastros.layoutManager = LinearLayoutManager(requireContext())
+        adapter = AdapterCadastro(cadastrosList,callBack)
+        binding.rvCadastros.adapter = adapter
     }
 
     override fun onAttach(context: Context) {
