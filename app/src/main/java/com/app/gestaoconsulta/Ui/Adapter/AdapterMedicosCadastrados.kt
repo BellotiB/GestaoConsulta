@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.databinding.ItemCadastroBinding
 
-
 class AdapterMedicosCadastrados(private val cadastrosList:MutableList<CadastroMedico>)
     :RecyclerView.Adapter<AdapterMedicosCadastrados.CadastroViewHolder>() {
 
@@ -33,6 +32,17 @@ class AdapterMedicosCadastrados(private val cadastrosList:MutableList<CadastroMe
 
     fun updateCadastroList() {
         cadastrosList.clear()
+    }
+    fun filterList(cadastro: CadastroMedico) {
+        var cloneList = mutableListOf<CadastroMedico>()
+        cadastrosList.forEach {
+            if(it.especialidade == cadastro.especialidade){
+                cloneList.add(it)
+            }
+        }
+        cadastrosList.clear()
+        cadastrosList.addAll(cloneList)
+        notifyDataSetChanged()
     }
 
     inner class CadastroViewHolder(private val binding: ItemCadastroBinding) :

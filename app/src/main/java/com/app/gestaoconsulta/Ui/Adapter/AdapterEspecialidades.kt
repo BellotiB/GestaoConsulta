@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.databinding.ItemEspecialidadesBinding
 
-class AdapterEspecialidades(private val cadastrosList:MutableList<CadastroMedico>,
+class AdapterEspecialidades(
+    private val cadastrosList: MutableList<CadastroMedico>,
+    private val adapterMedicosCad: AdapterMedicosCadastrados?,
 ):RecyclerView.Adapter<AdapterEspecialidades.EspeocialidadeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EspeocialidadeViewHolder {
@@ -25,6 +27,9 @@ class AdapterEspecialidades(private val cadastrosList:MutableList<CadastroMedico
 
     override fun onBindViewHolder(holder: EspeocialidadeViewHolder, position:Int) {
         val cadastro = cadastrosList[position]
+        holder.cardView.setOnClickListener {
+            adapterMedicosCad?.filterList(cadastro)
+        }
         holder.bind(cadastro)
     }
 

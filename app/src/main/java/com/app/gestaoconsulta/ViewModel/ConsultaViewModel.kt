@@ -28,7 +28,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.forEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -53,7 +52,6 @@ class ConsultaViewModel  @Inject constructor(
 
     private var _datasCadastradas = MutableStateFlow<MutableList<DatasCadastradas>>(mutableListOf())
     var datasCadastradas : StateFlow<MutableList<DatasCadastradas>> = _datasCadastradas
-
 
     val allCadastros : Flow<MutableList<CadastroEntity>> = repository.getAllCadastroEntity
 

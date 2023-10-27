@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.R
-import com.app.gestaoconsulta.Ui.Adapter.AdapterCadastro
 import com.app.gestaoconsulta.Ui.Adapter.AdapterEspecialidades
 import com.app.gestaoconsulta.Ui.Adapter.AdapterMedicosCadastrados
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
@@ -42,6 +41,7 @@ class CadastrosFragment : Fragment() {
         setupList()
         openCadastroFragment()
         openFilter()
+        closeFiltro()
         consultaViewModel?.updateCadastroServer()
         consultaViewModel?.updateDatasCadastradasServer()
         consultaViewModel?.updateHorasCadastradosServer()
@@ -60,9 +60,8 @@ class CadastrosFragment : Fragment() {
                 listFiltrada.add(cad)
             }
         }
-
         binding.rvEspecialidades.layoutManager = LinearLayoutManager(requireContext())
-        adapterEspecialidades = AdapterEspecialidades(listFiltrada)
+        adapterEspecialidades = AdapterEspecialidades(listFiltrada,adapter)
         binding.rvEspecialidades.adapter = adapterEspecialidades
     }
 
@@ -89,6 +88,11 @@ class CadastrosFragment : Fragment() {
                 binding.rvCadastrados.adapter = adapter
                 setupListEspecialidades()
             }
+        }
+    }
+    private fun closeFiltro(){
+        binding.cardClose.setOnClickListener {
+            binding.cardEspecialidades.visibility = View.GONE
         }
     }
 }

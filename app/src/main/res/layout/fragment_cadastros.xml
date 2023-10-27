@@ -51,7 +51,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_especialidades"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="429dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/rv_cadastrados"
@@ -59,10 +59,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rv_cadastrados">
 
+        <ImageView
+            android:id="@+id/card_close"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_delete"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/filtrar_por_especialidades"
+            android:layout_gravity="center_horizontal"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_especialidades"
-            android:layout_width="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_especialidades" />
 
