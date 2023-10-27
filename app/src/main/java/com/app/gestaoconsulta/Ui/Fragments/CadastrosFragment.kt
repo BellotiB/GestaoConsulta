@@ -1,5 +1,6 @@
 package com.app.gestaoconsulta.Ui.Fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.Ui.Adapter.AdapterEspecialidades
 import com.app.gestaoconsulta.Ui.Adapter.AdapterMedicosCadastrados
+import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCadastrosBinding
 import kotlinx.coroutines.launch
@@ -26,6 +28,8 @@ class CadastrosFragment : Fragment() {
     private val cadastrosList = mutableListOf<CadastroMedico>()
     private val listFiltrada = mutableListOf<CadastroMedico>()
     private var consultaViewModel : ConsultaViewModel? = null
+    private lateinit var callBack : LoadFragment
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +49,10 @@ class CadastrosFragment : Fragment() {
         consultaViewModel?.updateCadastroServer()
         consultaViewModel?.updateDatasCadastradasServer()
         consultaViewModel?.updateHorasCadastradosServer()
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        callBack  = context as LoadFragment
     }
 
     private fun openFilter() {
@@ -84,7 +92,7 @@ class CadastrosFragment : Fragment() {
                     cadastrosList.add(cadastro)
                 }
                 binding.rvCadastrados.layoutManager = LinearLayoutManager(requireContext())
-                adapter = AdapterMedicosCadastrados(cadastrosList)
+                adapter = AdapterMedicosCadastrados(cadastrosList,callBack)
                 binding.rvCadastrados.adapter = adapter
                 setupListEspecialidades()
             }

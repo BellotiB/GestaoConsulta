@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
+import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
 import com.app.gestaoconsulta.Ui.Adapter.AdapterPedidoAgendamento
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
@@ -23,7 +24,9 @@ class PedidosAgendamentoFragment : Fragment() {
     private val binding get() = _binding!!
     private var consultaViewModel : ConsultaViewModel? = null
     private val usuarios = mutableListOf<Usuarios>()
-    private val medicos = mutableListOf<CadastroMedico>()
+    private val pedidoAgendamentosList = mutableListOf<PedidoAgendamento>()
+    private val agendPorMedicos = mutableListOf<PedidoAgendamento>()
+    private var cadastroSelected = CadastroMedico()
     private var adapter : AdapterPedidoAgendamento? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,23 +39,23 @@ class PedidosAgendamentoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
-        loadUsuarios()
-        loadMedicos()
-        setupRecyclerView()
+        loadCadastroSelected()
         loadPedidoAgendamento()
+        loadUsuarios()
+
     }
 
-    private fun loadMedicos() {
+    private fun loadCadastroSelected() {
         lifecycleScope.launch {
-            consultaViewModel?.allCadastros?.collectLatest {
-                it.forEach {
-                    val cadastro = CadastroMedico()
-                    cadastro.nome = it.nome
-                    cadastro.especialidade = it.especialidade
-                    cadastro.id = it.id
-
-                    medicos.add(cadastro)
-                }
+         consultaViewModel?.cadastroSelected?.collectLatest {
+             cadastroSelected = it
+         }
+        }
+    }
+    private fun loadPedidoAgendamento() {
+        lifecycleScope.launch {
+            consultaViewModel?.pedidosAgendamento?.collectLatest { pedAgend ->
+                pedidoAgendamentosList.addAll(pedAgend)
             }
         }
     }
@@ -69,20 +72,23 @@ class PedidosAgendamentoFragment : Fragment() {
                     usuario.telefone = it.telefone
                     usuarios.add(usuario)
                 }
-            }
-        }
-    }
-
-    private fun loadPedidoAgendamento() {
-        lifecycleScope.launch {
-            consultaViewModel?.pedidosAgendamento?.collectLatest { pedAgend ->
-                adapter?.updatePedidoList(pedAgend)
+                setupRecyclerView()
             }
         }
     }
     private fun setupRecyclerView() {
         binding.rvDatasList.layoutManager = LinearLayoutManager(requireContext())
-        adapter = AdapterPedidoAgendamento(mutableListOf(),usuarios,medicos)
+        adapter = AdapterPedidoAgendamento(mutableListOf(),usuarios)
         binding.rvDatasList.adapter = adapter
+        filtrarAgendamentoMedicosSelecionados()
+    }
+
+    private fun filtrarAgendamentoMedicosSelecionados(){
+        pedidoAgendamentosList.forEach {
+            if (it.dataSelecionada.idCadastro == cadastroSelected.id) {
+                agendPorMedicos.add(it)
+            }
+        }
+        adapter?.updatePedidoList(agendPorMedicos)
     }
 }

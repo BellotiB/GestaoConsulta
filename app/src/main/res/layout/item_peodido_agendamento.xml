@@ -9,7 +9,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_card"
         android:layout_width="250dp"
-        android:layout_height="220dp"
+        android:layout_height="150dp"
         android:layout_marginStart="20dp"
         app:cardElevation="5dp">
 
@@ -33,50 +33,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:layout_marginStart="10dp"
-        android:text="@string/example_profissional"/>
-
-        <TextView
-            android:id="@+id/tv_nomemedico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginStart="110dp"
-        android:hint="@string/medico_example"/>
-
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="10dp"
-        android:text="Especialidade"/>
-
-        <TextView
-            android:id="@+id/tv_especialidade_medico"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="110dp"
-        android:hint="Cardiologista"/>
-
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:layout_marginStart="10dp"
         android:text="@string/datas_selecionadas"/>
 
         <TextView
             android:id="@+id/tv_start_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="60dp"
         android:layout_marginStart="150dp"
         android:hint="@string/_25_12_2012"/>
 
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="100dp"
         android:layout_marginStart="10dp"
         android:text="@string/hora_selecionadas"/>
 
@@ -84,10 +54,8 @@
             android:id="@+id/tv_hora_selecionada"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="100dp"
         android:layout_marginStart="150dp"
         android:hint="@string/_8_30"/>
-
-
     </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

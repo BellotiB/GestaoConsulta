@@ -87,6 +87,11 @@ class MainActivity : AppCompatActivity(),LoadFragment {
         findNavController(R.id.nav_host).navigate(R.id.action_cadastroMedicoFragment_to_cadastroDataPorMedicoFragment)
     }
 
+    override fun openPedidosAgendamento(cadastro: CadastroMedico) {
+        findNavController(R.id.nav_host).navigate(R.id.action_cadastradosFragment_to_pedidosAgendamentoFragment)
+        consultaViewModel.setCadastroSelected(cadastro)
+    }
+
     override fun cadastroSelected(id: Int) {
       consultaViewModel.selectCadastroById(id)
     }

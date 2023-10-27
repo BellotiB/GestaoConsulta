@@ -41,6 +41,7 @@ class ConsultaViewModel  @Inject constructor(
    private var _cadastro = MutableStateFlow(CadastroMedico())
     var cadastro : StateFlow<CadastroMedico> = _cadastro
 
+
     private var _idDataCadastrada = MutableStateFlow("")
     var idDataCadastrada : StateFlow<String> = _idDataCadastrada
 
@@ -180,6 +181,9 @@ class ConsultaViewModel  @Inject constructor(
                 }
             }
         }
+    }
+    fun setCadastroSelected(cadastro: CadastroMedico) {
+        _cadastroSelected.value = cadastro
     }
     fun cleanCadastroList(){
         cadastroList.value.clear()

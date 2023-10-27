@@ -3,16 +3,13 @@ package com.app.gestaoconsulta.Ui.Adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
 import com.app.gestaoconsulta.databinding.ItemPeodidoAgendamentoBinding
 
-
 class AdapterPedidoAgendamento(
     private val pedidosList: MutableList<PedidoAgendamento>,
     private val usuarios: MutableList<Usuarios>,
-    private val medicos: MutableList<CadastroMedico>,
 ):RecyclerView.Adapter<AdapterPedidoAgendamento.PedidoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PedidoViewHolder {
@@ -48,14 +45,6 @@ class AdapterPedidoAgendamento(
                     binding.tvNomecliente.text = it.nome
                 }
             }
-            medicos.forEach {
-                if (it.id == ped.dataSelecionada.idCadastro){
-                    binding.tvNomemedico.text = it.nome
-                    binding.tvEspecialidadeMedico.text = it.especialidade
-                }
-            }
-
-            binding.tvNomemedico.text
             binding.tvStartDate.text = ped.dataSelecionada.dataAtendimento
             binding.tvHoraSelecionada.text = ped.horaSelecionada
         }

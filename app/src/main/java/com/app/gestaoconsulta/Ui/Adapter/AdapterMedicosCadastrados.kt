@@ -4,11 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.CadastroMedico
+import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.databinding.ItemCadastroBinding
 
-class AdapterMedicosCadastrados(private val cadastrosList:MutableList<CadastroMedico>)
+class AdapterMedicosCadastrados(
+    private val cadastrosList: MutableList<CadastroMedico>,
+    private val callBack: LoadFragment
+)
     :RecyclerView.Adapter<AdapterMedicosCadastrados.CadastroViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CadastroViewHolder {
@@ -28,6 +33,10 @@ class AdapterMedicosCadastrados(private val cadastrosList:MutableList<CadastroMe
         val cadastro = cadastrosList[position]
         holder.bind(cadastro)
         holder.menuCard.visibility = View.GONE
+
+        holder.cv_card.setOnClickListener {
+            callBack.openPedidosAgendamento(cadastro)
+        }
     }
 
     fun updateCadastroList() {
@@ -52,5 +61,6 @@ class AdapterMedicosCadastrados(private val cadastrosList:MutableList<CadastroMe
             binding.tvEspecialidade.text = cadastro.especialidade
         }
         val menuCard : ImageView = binding.menuCard
+        val cv_card : CardView = binding.cvCard
     }
 }
