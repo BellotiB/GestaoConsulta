@@ -5,18 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
+import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.Ui.Adapter.AdapterPedidoAgendamento
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentPedidosAgendamentoBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-
 
 class PedidosAgendamentoFragment : Fragment() {
 
@@ -42,7 +44,15 @@ class PedidosAgendamentoFragment : Fragment() {
         loadCadastroSelected()
         loadPedidoAgendamento()
         loadUsuarios()
+        salvarPedidos()
+        openHistorico()
 
+    }
+
+    private fun openHistorico() {
+        binding.icHistorico.setOnClickListener {
+            findNavController().navigate(R.id.action_pedidosAgendamentoFragment_to_pedidoHistoricoFragment)
+        }
     }
 
     private fun loadCadastroSelected() {
@@ -90,5 +100,11 @@ class PedidosAgendamentoFragment : Fragment() {
             }
         }
         adapter?.updatePedidoList(agendPorMedicos)
+    }
+    private fun salvarPedidos() {
+        binding.savePed.setOnClickListener {
+            consultaViewModel?.setToPedidoAgendamentoDataBase(agendPorMedicos)
+            Toast.makeText(requireContext(),"Pedidos de atendimento salvos com sucesso",Toast.LENGTH_SHORT).show()
+        }
     }
 }

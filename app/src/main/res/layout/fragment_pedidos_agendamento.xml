@@ -8,9 +8,31 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:layout_width="match_parent"
-        android:background="@drawable/rounded_toolbar_background"
+        android:layout_height="130dp"
         android:layout_marginTop="-30dp"
-        android:layout_height="110dp"/>
+        android:background="@drawable/rounded_toolbar_background">
+
+        <ImageView
+            android:id="@+id/ic_historico"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_history"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_ped"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="20dp"
+            android:backgroundTint="#7250AE"
+            android:elevation="15dp"
+            android:src="@drawable/ic_save"
+            android:text="salvar agendamentos no histórico"
+            android:textColor="#CCCCCC" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_datas_list"

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.app.gestaoconsulta.Data.Entities.CadastroEntity
 import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
 import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
+import com.app.gestaoconsulta.Data.Entities.PedidosAgendamentosEntity
 import com.app.gestaoconsulta.Data.Entities.UsuarioEntity
 import com.app.gestaoconsulta.Data.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
@@ -41,7 +42,6 @@ class ConsultaViewModel  @Inject constructor(
    private var _cadastro = MutableStateFlow(CadastroMedico())
     var cadastro : StateFlow<CadastroMedico> = _cadastro
 
-
     private var _idDataCadastrada = MutableStateFlow("")
     var idDataCadastrada : StateFlow<String> = _idDataCadastrada
 
@@ -54,14 +54,6 @@ class ConsultaViewModel  @Inject constructor(
     private var _datasCadastradas = MutableStateFlow<MutableList<DatasCadastradas>>(mutableListOf())
     var datasCadastradas : StateFlow<MutableList<DatasCadastradas>> = _datasCadastradas
 
-    val allCadastros : Flow<MutableList<CadastroEntity>> = repository.getAllCadastroEntity
-
-    val allUsuarios : Flow<MutableList<UsuarioEntity>> = repository.getAllUsersEntity
-
-    val allDatasCadastradas : Flow<MutableList<DataCadastradaEntity>> = repository.getAllDatasEntity
-
-    val allHorasCadastradas : Flow<MutableList<HoraCadastradaEntity>> = repository.getAllHorasEntity
-
     private var pedidosAgendamentoFlow = MutableStateFlow<MutableList<PedidoAgendamento>>(mutableListOf())
     val pedidosAgendamento: StateFlow<MutableList<PedidoAgendamento>> = pedidosAgendamentoFlow
 
@@ -71,6 +63,15 @@ class ConsultaViewModel  @Inject constructor(
     private var usuariosFlow = MutableStateFlow<MutableList<Usuarios>>(mutableListOf())
     val usuariosCadastrados: StateFlow<MutableList<Usuarios>> = usuariosFlow
 
+    val allCadastros : Flow<MutableList<CadastroEntity>> = repository.getAllCadastroEntity
+
+    val allUsuarios : Flow<MutableList<UsuarioEntity>> = repository.getAllUsersEntity
+
+    val allDatasCadastradas : Flow<MutableList<DataCadastradaEntity>> = repository.getAllDatasEntity
+
+    val allHorasCadastradas : Flow<MutableList<HoraCadastradaEntity>> = repository.getAllHorasEntity
+
+    val allPedidosAtendimento : Flow<MutableList<PedidosAgendamentosEntity>> = repository.getAllPedidosEntity
 
     init {
         streamPedidosAgendamento()
@@ -377,6 +378,20 @@ class ConsultaViewModel  @Inject constructor(
                 onzeQuarentaCinco = hr.onzeQuarentaCinco
             )
             repository.update(horaEntity)
+        }
+    }
+
+    fun setToPedidoAgendamentoDataBase(agendPorMedicos: MutableList<PedidoAgendamento>) {
+        viewModelScope.launch {
+            agendPorMedicos.forEach {
+                val ped = PedidosAgendamentosEntity(
+                    idUsuario = it.idUsuario,
+                    idMedico = it.dataSelecionada.idCadastro,
+                    dataCadastrada = it.dataSelecionada.dataAtendimento,
+                    horaCadastrada = it.horaSelecionada
+                )
+                repository.insertPedidoDao(ped)
+            }
         }
     }
 }

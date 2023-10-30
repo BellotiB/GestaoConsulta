@@ -36,15 +36,15 @@ class MainActivity : AppCompatActivity(),LoadFragment {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         consultaViewModel = ViewModelProvider(this)[ConsultaViewModel::class.java]
-        createNotificationChannel()
-        loadPedidoAgendamento()
+        //createNotificationChannel()
+       // loadPedidoAgendamento()
     }
     private fun loadPedidoAgendamento() {
         lifecycleScope.launch {
             consultaViewModel?.pedidosNotification?.collectLatest { pedAgend ->
                 if (pedAgend.size > 0 && pedAgend.size > pedidoNotification.size){
                     pedidoNotification.addAll(pedAgend)
-                    showNotification("Pedido Agendamento", "Novo Pedido de agendamento realizados")
+                    showNotification("Pedido Agendamento", "Novo Pedido de agendamento realizado")
                 }
             }
         }
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(),LoadFragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channelName = "My Channel"
             val description = "Channel Description"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val importance = NotificationManager.IMPORTANCE_HIGH
 
             val channel = NotificationChannel(CHANNEL_ID, channelName, importance).apply {
                 this.description = description
@@ -66,8 +66,8 @@ class MainActivity : AppCompatActivity(),LoadFragment {
     }
 
     private fun showNotification(title: String, message: String) {
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_save) // Substitua pelo seu ícone de notificação
+        val builder = NotificationCompat.Builder(applicationContext, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_imageview)
             .setContentTitle(title)
             .setContentText(message)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)

@@ -6,6 +6,7 @@ import com.app.gestaoconsulta.Data.Daos.CadastroDao
 import com.app.gestaoconsulta.Data.DataBaseCadastros
 import com.app.gestaoconsulta.Data.Daos.DataCadastradaDao
 import com.app.gestaoconsulta.Data.Daos.HoraCadastradaDao
+import com.app.gestaoconsulta.Data.Daos.PedidosAgendamentosDao
 import com.app.gestaoconsulta.Data.Daos.UsuarioDao
 import dagger.Module
 import dagger.Provides
@@ -33,6 +34,10 @@ class AppModule {
     @Provides
   fun provideUsuarioaDao (dataBaseCadastros : DataBaseCadastros ): UsuarioDao {
       return dataBaseCadastros.usuarioDao()
+  }
+    @Provides
+  fun providePedidosAgendamento (dataBaseCadastros : DataBaseCadastros ): PedidosAgendamentosDao {
+      return dataBaseCadastros.pediddosAgendamentosDao()
   }
 
     @Provides

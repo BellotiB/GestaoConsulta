@@ -86,6 +86,15 @@
         android:id="@+id/pedidosAgendamentoFragment"
         android:name="com.app.gestaoconsulta.Ui.Fragments.PedidosAgendamentoFragment"
         tools:layout="@layout/fragment_pedidos_agendamento">
+
+        <action
+            android:id="@+id/action_pedidosAgendamentoFragment_to_pedidoHistoricoFragment"
+            app:destination="@id/pedidoHistoricoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
+
     </fragment>
 
     <fragment
@@ -117,4 +126,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/pedidoHistoricoFragment"
+        android:name="com.app.gestaoconsulta.Ui.Fragments.PedidosAgendamentoHistoricoFragment"
+        tools:layout="@layout/fragment_pedidos_agendamento_historico"/>
 </navigation>
