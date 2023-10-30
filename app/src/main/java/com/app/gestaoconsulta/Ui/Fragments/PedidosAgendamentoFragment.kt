@@ -46,7 +46,11 @@ class PedidosAgendamentoFragment : Fragment() {
         loadUsuarios()
         salvarPedidos()
         openHistorico()
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun openHistorico() {
@@ -65,6 +69,7 @@ class PedidosAgendamentoFragment : Fragment() {
     private fun loadPedidoAgendamento() {
         lifecycleScope.launch {
             consultaViewModel?.pedidosAgendamento?.collectLatest { pedAgend ->
+                pedidoAgendamentosList.clear()
                 pedidoAgendamentosList.addAll(pedAgend)
             }
         }
@@ -100,6 +105,8 @@ class PedidosAgendamentoFragment : Fragment() {
             }
         }
         adapter?.updatePedidoList(agendPorMedicos)
+        agendPorMedicos.clear()
+        pedidoAgendamentosList.clear()
     }
     private fun salvarPedidos() {
         binding.savePed.setOnClickListener {
