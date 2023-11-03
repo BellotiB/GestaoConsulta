@@ -333,7 +333,47 @@ class ConsultaViewModel  @Inject constructor(
                onze = hr.onze,
                onzeQuinze = hr.onzeQuinze,
                onzeTrinta = hr.onzeTrinta,
-               onzeQuarentaCinco = hr.onzeQuarentaCinco
+               onzeQuarentaCinco = hr.onzeQuarentaCinco,
+
+               doze = hr.doze,
+               dozeQuinze = hr.dozeQuinze,
+               dozeTrinta = hr.dozeTrinta,
+               dozeQuarentaCinco = hr.dozeQuarentaCinco,
+
+               treze = hr.treze,
+               trezeQuinze = hr.trezeQuinze,
+               trezeTrinta = hr.trezeTrinta,
+               trezeQuarentaCinco = hr.trezeQuarentaCinco,
+
+               quatorze = hr.quatorze,
+               quatorzeQuinze = hr.quatorzeQuinze,
+               quatorzeTrinta = hr.quatorzeTrinta,
+               quatorzeQuarentaCinco = hr.quatorzeQuarentaCinco,
+
+               quinze = hr.quinze,
+               quinzeQuinze = hr.quinzeQuinze,
+               quinzeTrinta = hr.quinzeTrinta,
+               quinzeQuarentaCinco = hr.quinzeQuarentaCinco,
+
+               dezesseis = hr.dezesseis,
+               dezesseisQuinze = hr.dezesseisQuinze,
+               dezesseisTrinta = hr.dezesseisTrinta,
+               dezesseisQuarentaCinco = hr.dezesseisQuarentaCinco,
+
+               dezessete = hr.dezessete,
+               dezesseteQuinze = hr.dezesseteQuinze,
+               dezesseteTrinta = hr.dezesseteTrinta,
+               dezesseteQuarentaCinco = hr.dezesseteQuarentaCinco,
+
+               dezoito = hr.dezoito,
+               dezoitoQuinze = hr.dezoitoQuinze,
+               dezoitoTrinta = hr.dezoitoTrinta,
+               dezoitoQuarentaCinco = hr.dezoitoQuarentaCinco,
+
+               dezenove = hr.dezenove,
+               dezenoveQuinze = hr.dezenoveQuinze,
+               dezenoveTrinta = hr.dezenoveTrinta,
+               dezenoveQuarentaCinco = hr.dezenoveQuarentaCinco,
            )
            repository.insertHrCadastrada(horaEntity)
        }
@@ -376,7 +416,47 @@ class ConsultaViewModel  @Inject constructor(
                 onze = hr.onze,
                 onzeQuinze = hr.onzeQuinze,
                 onzeTrinta = hr.onzeTrinta,
-                onzeQuarentaCinco = hr.onzeQuarentaCinco
+                onzeQuarentaCinco = hr.onzeQuarentaCinco,
+
+                doze = hr.doze,
+                dozeQuinze = hr.dozeQuinze,
+                dozeTrinta = hr.dozeTrinta,
+                dozeQuarentaCinco = hr.dozeQuarentaCinco,
+
+                treze = hr.treze,
+                trezeQuinze = hr.trezeQuinze,
+                trezeTrinta = hr.trezeTrinta,
+                trezeQuarentaCinco = hr.trezeQuarentaCinco,
+
+                quatorze = hr.quatorze,
+                quatorzeQuinze = hr.quatorzeQuinze,
+                quatorzeTrinta = hr.quatorzeTrinta,
+                quatorzeQuarentaCinco = hr.quatorzeQuarentaCinco,
+
+                quinze = hr.quinze,
+                quinzeQuinze = hr.quinzeQuinze,
+                quinzeTrinta = hr.quinzeTrinta,
+                quinzeQuarentaCinco = hr.quinzeQuarentaCinco,
+
+                dezesseis = hr.dezesseis,
+                dezesseisQuinze = hr.dezesseisQuinze,
+                dezesseisTrinta = hr.dezesseisTrinta,
+                dezesseisQuarentaCinco = hr.dezesseisQuarentaCinco,
+
+                dezessete = hr.dezessete,
+                dezesseteQuinze = hr.dezesseteQuinze,
+                dezesseteTrinta = hr.dezesseteTrinta,
+                dezesseteQuarentaCinco = hr.dezesseteQuarentaCinco,
+
+                dezoito = hr.dezoito,
+                dezoitoQuinze = hr.dezoitoQuinze,
+                dezoitoTrinta = hr.dezoitoTrinta,
+                dezoitoQuarentaCinco = hr.dezoitoQuarentaCinco,
+
+                dezenove = hr.dezenove,
+                dezenoveQuinze = hr.dezenoveQuinze,
+                dezenoveTrinta = hr.dezenoveTrinta,
+                dezenoveQuarentaCinco = hr.dezenoveQuarentaCinco,
             )
             repository.update(horaEntity)
         }

@@ -39,9 +39,22 @@ class SelecionarDiasFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         consultaViewModel = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         loadIdDataCadastro()
+        openPeriodoTarde()
         loadDiasCadastrados()
         salvarHorariosSelecionados()
     }
+
+    private fun openPeriodoTarde() {
+        binding.openTard.setOnClickListener {
+            binding.cvManha.visibility = View.GONE
+            binding.cvTarde.visibility = View.VISIBLE
+        }
+        binding.back.setOnClickListener {
+            binding.cvManha.visibility = View.VISIBLE
+            binding.cvTarde.visibility = View.GONE
+        }
+    }
+
     private fun loadIdDataCadastro(){
         lifecycleScope.launch {
             consultaViewModel?.idDataCadastrada?.collectLatest {
@@ -91,6 +104,51 @@ class SelecionarDiasFragment : Fragment() {
                         binding.tvOnzeQuinze.isChecked = it.onzeQuinze
                         binding.tvOnzeTrinta.isChecked = it.onzeTrinta
                         binding.tvOnzeQuarentaCinco.isChecked = it.onzeQuarentaCinco
+
+                        binding.tvOnze.isChecked = it.onze
+                        binding.tvOnzeQuinze.isChecked = it.onzeQuinze
+                        binding.tvOnzeTrinta.isChecked = it.onzeTrinta
+                        binding.tvOnzeQuarentaCinco.isChecked = it.onzeQuarentaCinco
+
+                        binding.tvMeioDia.isChecked = it.doze
+                        binding.tvMeioDiaQuinze.isChecked = it.dozeQuinze
+                        binding.tvMeioDiaTrinta.isChecked = it.dozeTrinta
+                        binding.tvMeioDiaQuarentaCinco.isChecked = it.dozeQuarentaCinco
+
+                        binding.tvTreze.isChecked = it.treze
+                        binding.tvTrezeQuinze.isChecked = it.trezeQuinze
+                        binding.tvTrezeTrinta.isChecked = it.trezeTrinta
+                        binding.tvTrezeQuarentaCinco.isChecked = it.trezeQuarentaCinco
+
+                        binding.tvQuatorze.isChecked = it.quatorze
+                        binding.tvQuatorzeQuinze.isChecked = it.quatorzeQuinze
+                        binding.tvQuatorzeTrinta.isChecked = it.quatorzeTrinta
+                        binding.tvQuatorzeQuarentaCinco.isChecked = it.quatorzeQuarentaCinco
+
+                        binding.tvQuinze.isChecked = it.quinze
+                        binding.tvQuinzeQuinze.isChecked = it.quinzeQuinze
+                        binding.tvQuinzeTrinta.isChecked = it.quinzeTrinta
+                        binding.tvQuinzeQuarentaCinco.isChecked = it.quinzeQuarentaCinco
+
+                        binding.tvDezesseis.isChecked = it.dezesseis
+                        binding.tvDezesseisQuinze.isChecked = it.dezesseisQuinze
+                        binding.tvDezesseisTrinta.isChecked = it.dezesseisTrinta
+                        binding.tvDezesseisQuarentaCinco.isChecked = it.dezesseisQuarentaCinco
+
+                        binding.tvDezesete.isChecked = it.dezessete
+                        binding.tvDezesseteQuinze.isChecked = it.dezesseteQuinze
+                        binding.tvDezesseteTrinta.isChecked = it.dezesseteTrinta
+                        binding.tvDezesseteQuarentaCinco.isChecked = it.dezesseteQuarentaCinco
+
+                        binding.tvDezoito.isChecked = it.dezoito
+                        binding.tvDezoitoTrinta.isChecked = it.dezoitoTrinta
+                        binding.tvDezoitoQuinze.isChecked = it.dezoitoQuinze
+                        binding.tvDezoitoQuarentaCinco.isChecked = it.dezoitoQuarentaCinco
+
+                        binding.tvDezenove.isChecked = it.dezenove
+                        binding.tvDezenoveQuinze.isChecked = it.dezenoveQuinze
+                        binding.tvDezenoveTrinta.isChecked = it.dezenoveTrinta
+                        binding.tvDezenoveQuarentaCinco.isChecked = it.dezenoveQuarentaCinco
                     }
                 }
             }
@@ -134,6 +192,46 @@ class SelecionarDiasFragment : Fragment() {
                horariosCadastrados.onzeQuinze = binding.tvOnzeQuinze.isChecked
                horariosCadastrados.onzeTrinta = binding.tvOnzeTrinta.isChecked
                horariosCadastrados.onzeQuarentaCinco = binding.tvOnzeQuarentaCinco.isChecked
+
+               horariosCadastrados.doze = binding.tvMeioDia.isChecked
+               horariosCadastrados.dozeQuinze = binding.tvMeioDiaQuinze.isChecked
+               horariosCadastrados.dozeTrinta = binding.tvMeioDiaTrinta.isChecked
+               horariosCadastrados.dozeQuarentaCinco = binding.tvMeioDiaQuarentaCinco.isChecked
+
+               horariosCadastrados.treze = binding.tvTreze.isChecked
+               horariosCadastrados.trezeQuinze = binding.tvTrezeQuinze.isChecked
+               horariosCadastrados.trezeTrinta = binding.tvTrezeTrinta.isChecked
+               horariosCadastrados.trezeQuarentaCinco = binding.tvTrezeQuarentaCinco.isChecked
+
+               horariosCadastrados.quatorze = binding.tvQuatorze.isChecked
+               horariosCadastrados.quatorzeQuinze = binding.tvQuatorzeQuinze.isChecked
+               horariosCadastrados.quatorzeTrinta = binding.tvQuatorzeTrinta.isChecked
+               horariosCadastrados.quatorzeQuarentaCinco = binding.tvQuatorzeQuarentaCinco.isChecked
+
+               horariosCadastrados.quinze = binding.tvQuinze.isChecked
+               horariosCadastrados.quinzeQuinze = binding.tvQuinzeQuinze.isChecked
+               horariosCadastrados.quinzeTrinta = binding.tvQuinzeTrinta.isChecked
+               horariosCadastrados.quinzeQuarentaCinco = binding.tvQuinzeQuarentaCinco.isChecked
+
+               horariosCadastrados.dezesseis = binding.tvDezesseis.isChecked
+               horariosCadastrados.dezesseisQuinze = binding.tvDezesseisQuinze.isChecked
+               horariosCadastrados.dezesseisTrinta = binding.tvDezesseisTrinta.isChecked
+               horariosCadastrados.dezesseisQuarentaCinco = binding.tvDezesseisQuarentaCinco.isChecked
+
+               horariosCadastrados.dezessete = binding.tvDezesete.isChecked
+               horariosCadastrados.dezesseteQuinze = binding.tvDezesseteQuinze.isChecked
+               horariosCadastrados.dezesseteTrinta = binding.tvDezesseteTrinta.isChecked
+               horariosCadastrados.dezesseteQuarentaCinco = binding.tvDezesseteQuarentaCinco.isChecked
+
+               horariosCadastrados.dezoito = binding.tvDezoito.isChecked
+               horariosCadastrados.dezoitoQuinze = binding.tvDezoitoQuinze.isChecked
+               horariosCadastrados.dezoitoTrinta = binding.tvDezoitoTrinta.isChecked
+               horariosCadastrados.dezoitoQuarentaCinco = binding.tvDezoitoQuarentaCinco.isChecked
+
+               horariosCadastrados.dezenove = binding.tvDezenove.isChecked
+               horariosCadastrados.dezenoveQuinze = binding.tvDezenoveQuinze.isChecked
+               horariosCadastrados.dezenoveTrinta = binding.tvDezenoveTrinta.isChecked
+               horariosCadastrados.dezenoveQuarentaCinco = binding.tvDezenoveQuarentaCinco.isChecked
 
                salvarHora()
            }

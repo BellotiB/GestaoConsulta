@@ -38,4 +38,44 @@ class HorariosCadastrados {
     var onzeQuinze = false
     var onzeTrinta = false
     var onzeQuarentaCinco = false
+
+    var doze = false
+    var dozeQuinze = false
+    var dozeTrinta = false
+    var dozeQuarentaCinco = false
+
+    var treze = false
+    var trezeQuinze = false
+    var trezeTrinta = false
+    var trezeQuarentaCinco = false
+
+    var quatorze = false
+    var quatorzeQuinze = false
+    var quatorzeTrinta = false
+    var quatorzeQuarentaCinco = false
+
+    var quinze = false
+    var quinzeQuinze = false
+    var quinzeTrinta = false
+    var quinzeQuarentaCinco = false
+
+    var dezesseis = false
+    var dezesseisQuinze = false
+    var dezesseisTrinta = false
+    var dezesseisQuarentaCinco = false
+
+    var dezessete = false
+    var dezesseteQuinze = false
+    var dezesseteTrinta = false
+    var dezesseteQuarentaCinco = false
+
+    var dezoito = false
+    var dezoitoQuinze = false
+    var dezoitoTrinta = false
+    var dezoitoQuarentaCinco = false
+
+    var dezenove = false
+    var dezenoveQuinze = false
+    var dezenoveTrinta = false
+    var dezenoveQuarentaCinco = false
 }

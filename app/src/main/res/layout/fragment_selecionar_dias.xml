@@ -8,285 +8,488 @@
     tools:context=".Ui.Fragments.SelecionarDiasFragment">
 
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_cinco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/_5_00"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_manha"
+        android:layout_width="414dp"
+        android:layout_height="561dp"
+        app:layout_constraintBottom_toTopOf="@+id/salvar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_cinco_quinze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:text="5:15"
-        app:layout_constraintStart_toEndOf="@+id/tv_cinco"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/_5_00"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_cinco_trinta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="28dp"
-        android:text="5:30"
-        app:layout_constraintStart_toEndOf="@+id/tv_cinco_quinze"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_cinco_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="28dp"
+            android:text="5:15"
+          />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_cinco_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="28dp"
+            android:text="5:30" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_cinco_quarenta_cinco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
-        android:text="5:45"
-        app:layout_constraintStart_toEndOf="@+id/tv_cinco_trinta"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_cinco_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="28dp"
+            android:text="5:45" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_seis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="6:00"
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_seis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="80dp"
+            android:text="6:00" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tvSeisQuinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="80dp"
+            android:text="6:15" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_seis_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="80dp"
+            android:text="6:30" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_seis_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="80dp"
+            android:text="6:45"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_sete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="130dp"
+            android:text="7:00"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_sete_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="130dp"
+            android:text="7:15"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_sete_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="130dp"
+            android:text="7:30"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_sete_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="130dp"
+            android:text="7:45"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_oito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="180dp"
+            android:text="8:00"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_oito_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="180dp"
+            android:text="8:15"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_oito_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="180dp"
+            android:text="8:30"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_oito_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="180dp"
+            android:text="8:45"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_nove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="230dp"
+            android:text="9:00"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_nove_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="230dp"
+            android:text="9:15"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_nove_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="230dp"
+            android:text="9:30"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_nove_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="230dp"
+            android:text="9:45"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dez"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="280dp"
+            android:text="10:00"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dez_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="280dp"
+            android:text="10:15"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dez_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="280dp"
+            android:text="10:30"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dez_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="280dp"
+            android:text="10:45"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_onze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="330dp"
+            android:text="11:00"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_onze_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="330dp"
+            android:text="11:15"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_onze_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="330dp"
+            android:text="11:30"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_onze_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="330dp"
+            android:text="11:45"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_meio_dia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="380dp"
+            android:text="12:00"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_meio_dia_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="380dp"
+            android:text="12:15"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_meio_dia_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="380dp"
+            android:text="12:30"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_meio_dia_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="380dp"
+            android:text="12:45"/>
+
+        <Button
+            android:id="@+id/open_tard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Período tarde" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_tarde"
+        android:layout_width="409dp"
+        android:layout_height="587dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/salvar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cinco" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_seis_quinze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:text="6:15"
-        app:layout_constraintStart_toEndOf="@+id/tv_seis"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cinco_quinze" />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_treze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:text="13:00"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_treze_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="28dp"
+            android:text="13:15"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_treze_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="28dp"
+            android:text="13:30" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_seis_trinta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="6:30"
-        app:layout_constraintStart_toEndOf="@+id/tv_seis_quinze"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cinco_trinta" />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_treze_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="28dp"
+            android:text="13:45" />
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_seis_quarenta_cinco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:text="6:45"
-        app:layout_constraintStart_toEndOf="@+id/tv_seis_trinta"
-        app:layout_constraintTop_toBottomOf="@+id/tv_cinco_quarenta_cinco" />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_quatorze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="80dp"
+            android:text="14:00" />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_quatorze_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="80dp"
+            android:text="14:15" />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_quatorze_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="80dp"
+            android:text="14:30" />
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_quatorze_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="80dp"
+            android:text="14:45"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="130dp"
+            android:text="15:00"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_quinze_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="130dp"
+            android:text="15:15"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_quinze_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="130dp"
+            android:text="15:30"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_quinze_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="130dp"
+            android:text="15:45"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezesseis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="180dp"
+            android:text="16:00"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezesseis_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="180dp"
+            android:text="16:15"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezesseis_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="180dp"
+            android:text="16:30"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezesseis_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="180dp"
+            android:text="16:45"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezesete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="230dp"
+            android:text="17:00"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezessete_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="230dp"
+            android:text="17:15"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezessete_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="230dp"
+            android:text="17:30"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezessete_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="230dp"
+            android:text="17:45"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezoito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="280dp"
+            android:text="18:00"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezoito_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="280dp"
+            android:text="18:15"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezoito_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="280dp"
+            android:text="18:30"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezoito_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="280dp"
+            android:text="18:45"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezenove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="330dp"
+            android:text="19:00"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezenove_quinze"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="330dp"
+            android:text="19:15"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezenove_trinta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="330dp"
+            android:text="19:30"/>
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/tv_dezenove_quarenta_cinco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="330dp"
+            android:text="19:45"/>
 
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_sete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="7:00"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_seis"/>
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_sete_quinze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="7:15"
-        app:layout_constraintStart_toEndOf="@+id/tv_sete"
-        app:layout_constraintTop_toBottomOf="@+id/tv_seis_quinze" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_sete_trinta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
-        android:text="7:30"
-        app:layout_constraintStart_toEndOf="@+id/tv_sete_quinze"
-        app:layout_constraintTop_toBottomOf="@+id/tv_seis_trinta" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_sete_quarenta_cinco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:text="7:45"
-        app:layout_constraintStart_toEndOf="@+id/tv_sete_trinta"
-        app:layout_constraintTop_toBottomOf="@+id/tv_seis_quarenta_cinco" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_oito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="8:00"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sete" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_oito_quinze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="8:15"
-        app:layout_constraintStart_toEndOf="@+id/tv_oito"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sete_quinze" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_oito_trinta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
-        android:text="8:30"
-        app:layout_constraintStart_toEndOf="@+id/tv_oito_quinze"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sete_trinta" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_oito_quarenta_cinco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="8:45"
-        app:layout_constraintStart_toEndOf="@+id/tv_oito_trinta"
-        app:layout_constraintTop_toBottomOf="@+id/tv_sete_quarenta_cinco" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_nove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="9:00"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_oito" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_nove_quinze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="9:15"
-        app:layout_constraintStart_toEndOf="@+id/tv_nove"
-        app:layout_constraintTop_toBottomOf="@+id/tv_oito_quinze" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_nove_trinta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:text="9:30"
-        app:layout_constraintStart_toEndOf="@+id/tv_nove_quinze"
-        app:layout_constraintTop_toBottomOf="@+id/tv_oito_trinta" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_nove_quarenta_cinco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="9:45"
-        app:layout_constraintStart_toEndOf="@+id/tv_nove_trinta"
-        app:layout_constraintTop_toBottomOf="@+id/tv_oito_quarenta_cinco" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_dez"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="10:00"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nove" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_dez_quinze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:text="10:15"
-        app:layout_constraintStart_toEndOf="@+id/tv_dez"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nove_quinze" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_dez_trinta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:text="10:30"
-        app:layout_constraintStart_toEndOf="@+id/tv_dez_quinze"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nove_trinta" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_dez_quarenta_cinco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:text="10:45"
-        app:layout_constraintStart_toEndOf="@+id/tv_dez_trinta"
-        app:layout_constraintTop_toBottomOf="@+id/tv_nove_quarenta_cinco" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_onze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="11:00"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dez" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_onze_quinze"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="11:15"
-        app:layout_constraintStart_toEndOf="@+id/tv_onze"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dez_quinze" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_onze_trinta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="12dp"
-        android:text="11:30"
-        app:layout_constraintStart_toEndOf="@+id/tv_onze_quinze"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dez_trinta" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/tv_onze_quarenta_cinco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
-        android:text="11:45"
-        app:layout_constraintStart_toEndOf="@+id/tv_onze_trinta"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dez_quarenta_cinco" />
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="bottom"
+            android:src="@drawable/ic_back" />
+    </com.google.android.material.card.MaterialCardView>
 
     <Button
         android:id="@+id/salvar"
