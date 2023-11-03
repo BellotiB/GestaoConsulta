@@ -28,6 +28,7 @@ class PedidosAgendamentoFragment : Fragment() {
     private val usuarios = mutableListOf<Usuarios>()
     private val pedidoAgendamentosList = mutableListOf<PedidoAgendamento>()
     private val agendPorMedicos = mutableListOf<PedidoAgendamento>()
+    private val agendPorMedicosToSave = mutableListOf<PedidoAgendamento>()
     private var cadastroSelected = CadastroMedico()
     private var adapter : AdapterPedidoAgendamento? = null
     override fun onCreateView(
@@ -99,19 +100,19 @@ class PedidosAgendamentoFragment : Fragment() {
     }
 
     private fun filtrarAgendamentoMedicosSelecionados(){
+        agendPorMedicos.clear()
         pedidoAgendamentosList.forEach {
             if (it.dataSelecionada.idCadastro == cadastroSelected.id) {
                 agendPorMedicos.add(it)
             }
         }
         adapter?.updatePedidoList(agendPorMedicos)
-        agendPorMedicos.clear()
-        pedidoAgendamentosList.clear()
     }
     private fun salvarPedidos() {
         binding.savePed.setOnClickListener {
             consultaViewModel?.setToPedidoAgendamentoDataBase(agendPorMedicos)
             consultaViewModel?.setRemovePedidosAtendimento()
+            adapter?.clearList()
             Toast.makeText(requireContext(),"Pedidos de atendimento salvos com sucesso",Toast.LENGTH_SHORT).show()
         }
     }
