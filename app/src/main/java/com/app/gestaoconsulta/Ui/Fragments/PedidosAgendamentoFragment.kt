@@ -28,7 +28,6 @@ class PedidosAgendamentoFragment : Fragment() {
     private val usuarios = mutableListOf<Usuarios>()
     private val pedidoAgendamentosList = mutableListOf<PedidoAgendamento>()
     private val agendPorMedicos = mutableListOf<PedidoAgendamento>()
-    private val agendPorMedicosToSave = mutableListOf<PedidoAgendamento>()
     private var cadastroSelected = CadastroMedico()
     private var adapter : AdapterPedidoAgendamento? = null
     override fun onCreateView(
