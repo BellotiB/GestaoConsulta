@@ -111,6 +111,7 @@ class PedidosAgendamentoFragment : Fragment() {
     private fun salvarPedidos() {
         binding.savePed.setOnClickListener {
             consultaViewModel?.setToPedidoAgendamentoDataBase(agendPorMedicos)
+            consultaViewModel?.setRemovePedidosAtendimento()
             Toast.makeText(requireContext(),"Pedidos de atendimento salvos com sucesso",Toast.LENGTH_SHORT).show()
         }
     }

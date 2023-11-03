@@ -2,6 +2,7 @@ package com.app.gestaoconsulta.ViewModel
 
 
 
+import RemovePedidosAgendamentos
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.gestaoconsulta.Data.Entities.CadastroEntity
@@ -392,6 +393,12 @@ class ConsultaViewModel  @Inject constructor(
                 )
                 repository.insertPedidoDao(ped)
             }
+        }
+    }
+
+    fun setRemovePedidosAtendimento() {
+        viewModelScope.launch {
+            RemovePedidosAgendamentos().removeAgendamentos()
         }
     }
 }
