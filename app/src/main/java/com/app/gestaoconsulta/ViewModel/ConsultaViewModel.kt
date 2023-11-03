@@ -85,7 +85,7 @@ class ConsultaViewModel  @Inject constructor(
                 while (true) {
                     val horasCadastradas = GetPedidosAgendamentos().fecthAgendamentos()
                     emit(horasCadastradas)
-                    delay(3000)
+                    delay(1000)
                 }
             }
                 .flowOn(Dispatchers.IO)

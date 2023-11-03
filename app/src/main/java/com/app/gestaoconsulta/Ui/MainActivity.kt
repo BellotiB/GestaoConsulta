@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity(),LoadFragment {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         consultaViewModel = ViewModelProvider(this)[ConsultaViewModel::class.java]
-        //createNotificationChannel()
-       // loadPedidoAgendamento()
+        createNotificationChannel()
+        loadPedidoAgendamento()
     }
     private fun loadPedidoAgendamento() {
         lifecycleScope.launch {
