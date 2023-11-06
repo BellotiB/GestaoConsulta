@@ -10,6 +10,7 @@ import androidx.room.PrimaryKey
     @ColumnInfo(name = "nome") var nome: String,
     @ColumnInfo(name = "email") var email: String,
     @ColumnInfo(name = "idUsuario") var idUsuario: String,
-    @ColumnInfo(name = "telefone") var telefone: String
+    @ColumnInfo(name = "telefone") var telefone: String,
+    @ColumnInfo(name = "cpf") var cpf: String
  )
 

@@ -10,7 +10,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cv_card"
         android:layout_width="300dp"
-        android:layout_height="120dp"
+        android:layout_height="180dp"
         android:layout_marginStart="25dp"
         app:cardElevation="5dp">
 
@@ -40,7 +40,14 @@
         android:layout_marginBottom="5dp"
         android:text="telefone:"/>
 
-
+        <TextView
+        android:id="@+id/tv_cpf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:text="Cpf:"/>
 
     </com.google.android.material.card.MaterialCardView>
 

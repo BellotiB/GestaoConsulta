@@ -5,5 +5,6 @@ class Usuarios {
     var nome = ""
     var email = ""
     var idUsuario = ""
+    var cpf = ""
     var telefone = ""
 }

@@ -115,45 +115,19 @@ class ConsultaViewModel  @Inject constructor(
     }
 
     private fun updateOrInsertUsuario() {
+        var usuariosSalvos = mutableListOf<UsuarioEntity>()
+        var usuariosFromFirebase = mutableListOf<UsuarioEntity>()
         viewModelScope.launch(Dispatchers.IO) {
-           allUsuarios.collectLatest {
-               if(it.isNotEmpty()){
-                   it.forEach {
-                       usuariosCadastrados.value.forEach { user ->
-                           if(it.idUsuario == user.idUsuario){
-                               val usuario = UsuarioEntity(
-                                   nome = user.nome,
-                                   id = user.id,
-                                   idUsuario = user.idUsuario,
-                                   email = user.email,
-                                   telefone = user.telefone
-                               )
-                               repository.updateUsuario(usuario)
-                           }else{
-                               val usuario = UsuarioEntity(
-                                   nome = user.nome,
-                                   id = user.id,
-                                   idUsuario = user.idUsuario,
-                                   email = user.email,
-                                   telefone = user.telefone
-                               )
-                               repository.insertUsuario(usuario)
-                           }
-                       }
-                   }
-               }else{
-                   usuariosCadastrados.value.forEach {user ->
-                       val usuario = UsuarioEntity(
-                           nome = user.nome,
-                           id = user.id,
-                           idUsuario = user.idUsuario,
-                           email = user.email,
-                           telefone = user.telefone
-                       )
-                       repository.insertUsuario(usuario)
-                   }
-               }
-           }
+            usuariosCadastrados.value.forEach { user ->
+                val usuario = UsuarioEntity(
+                    nome = user.nome,
+                    id = user.id,
+                    idUsuario = user.idUsuario,
+                    email = user.email,
+                    telefone = user.telefone,
+                    cpf = user.cpf)
+                usuariosFromFirebase.add(usuario)
+            }
         }
     }
 
