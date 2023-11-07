@@ -74,6 +74,11 @@ class ConsultaViewModel  @Inject constructor(
 
     val allPedidosAtendimento : Flow<MutableList<PedidosAgendamentosEntity>> = repository.getAllPedidosEntity
 
+    var usuariosFromFirebase = mutableListOf<UsuarioEntity>()
+
+    var usuariosFromRoomDataBase = mutableListOf<UsuarioEntity>()
+
+
     init {
         streamPedidosAgendamento()
         streamUsuario()
@@ -115,18 +120,58 @@ class ConsultaViewModel  @Inject constructor(
     }
 
     private fun updateOrInsertUsuario() {
-        var usuariosSalvos = mutableListOf<UsuarioEntity>()
-        var usuariosFromFirebase = mutableListOf<UsuarioEntity>()
-        viewModelScope.launch(Dispatchers.IO) {
-            usuariosCadastrados.value.forEach { user ->
-                val usuario = UsuarioEntity(
-                    nome = user.nome,
-                    id = user.id,
-                    idUsuario = user.idUsuario,
-                    email = user.email,
-                    telefone = user.telefone,
-                    cpf = user.cpf)
-                usuariosFromFirebase.add(usuario)
+        viewModelScope.launch(Dispatchers.IO){
+            allUsuarios.collectLatest {
+                usuariosFromRoomDataBase.clear()
+                usuariosFromRoomDataBase.addAll(it)
+
+                if (usuariosFromRoomDataBase.isEmpty()) {
+                    usuariosFromFirebase.clear()
+                    usuariosCadastrados.value.forEach { user ->
+                        val usuario = UsuarioEntity(
+                            nome = user.nome,
+                            id = user.id,
+                            idUsuario = user.idUsuario,
+                            email = user.email,
+                            telefone = user.telefone,
+                            cpf = user.cpf
+                        )
+                        usuariosFromFirebase.add(usuario)
+                    }
+                    repository.insertUsuarioList(usuariosFromFirebase)
+                    usuariosCadastrados.value.clear()
+                    usuariosFlow.value.clear()
+                }else {
+                    val usuariosNovos = usuariosCadastrados.value.filter { usuarioFromFireBase ->
+                        usuariosFromRoomDataBase.none { usuarioDB -> usuarioDB.idUsuario == usuarioFromFireBase.idUsuario}
+                    }
+
+                    if (usuariosNovos.isNotEmpty()) {
+                        usuariosFromFirebase.clear()
+                        usuariosNovos.forEach { user ->
+                            val usuario = UsuarioEntity(
+                                nome = user.nome,
+                                id = user.id,
+                                idUsuario = user.idUsuario,
+                                email = user.email,
+                                telefone = user.telefone,
+                                cpf = user.cpf
+                            )
+                            usuariosFromFirebase.add(usuario)
+                        }
+                        insertNovosUsuarios(usuariosFromFirebase)
+                        usuariosNovos.toMutableList().clear()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun insertNovosUsuarios(usuariosNovos: MutableList<UsuarioEntity>) {
+        if (usuariosNovos.isNotEmpty()){
+            viewModelScope.launch(Dispatchers.IO){
+                repository.insertUsuarioList(usuariosNovos)
+                usuariosNovos.clear()
             }
         }
     }

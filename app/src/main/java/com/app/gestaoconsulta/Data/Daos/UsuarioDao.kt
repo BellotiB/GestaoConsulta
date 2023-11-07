@@ -5,15 +5,13 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
 import com.app.gestaoconsulta.Data.Entities.UsuarioEntity
-import com.app.gestaoconsulta.Model.HorariosCadastrados
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UsuarioDao {
     @Insert
-    suspend fun insertUsuario(usuarios: UsuarioEntity)
+    suspend fun insertUsuarioList(usuarios: MutableList<UsuarioEntity>)
 
     @Query("SELECT * FROM Usuario")
     fun getAllUsuarios(): Flow<MutableList<UsuarioEntity>>

@@ -10,7 +10,6 @@ import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
 import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
 import com.app.gestaoconsulta.Data.Entities.PedidosAgendamentosEntity
 import com.app.gestaoconsulta.Data.Entities.UsuarioEntity
-import com.app.gestaoconsulta.Model.HorariosCadastrados
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -40,8 +39,9 @@ class Repository @Inject constructor(
     suspend fun insertHrCadastrada(hr: HoraCadastradaEntity){
         horacadDao.insertHora(hr)
     }
-    suspend fun insertUsuario(hr: UsuarioEntity){
-        usuarioDao.insertUsuario(hr)
+
+    suspend fun insertUsuarioList(hr: MutableList<UsuarioEntity>){
+        usuarioDao.insertUsuarioList(hr)
     }
     suspend fun insertPedidoDao(ped: PedidosAgendamentosEntity){
         pedidosDao.insertPedido(ped)
@@ -53,8 +53,8 @@ class Repository @Inject constructor(
     fun update(horaEntity: HoraCadastradaEntity) {
         horacadDao.update(horaEntity)
     }
-    fun updateUsuario(usuarioEntity: UsuarioEntity) {
-        usuarioDao.update(usuarioEntity)
+    fun deleteUsuario(usuarioEntity: UsuarioEntity) {
+        usuarioDao.delete(usuarioEntity)
     }
 
     val getAllHorasEntity: Flow<MutableList<HoraCadastradaEntity>> = horacadDao.getAllHorasCadastradas()
