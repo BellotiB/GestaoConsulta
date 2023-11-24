@@ -42,6 +42,7 @@ class CriarAgendFragment : Fragment() {
         lifecycleScope.launch {
             consultaViewModel?.usuarioSelecionado?.collectLatest {
                 usuarioSelecioando = it
+                binding.nomeUser.text = it.nome
             }
         }
     }
