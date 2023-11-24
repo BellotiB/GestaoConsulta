@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.Usuarios
 import com.app.gestaoconsulta.Ui.CriarAgendamento
 import com.app.gestaoconsulta.databinding.ItemUsuariosBinding
+import com.google.android.material.card.MaterialCardView
 
 
 class AdapterUsuario(
@@ -29,6 +30,10 @@ class AdapterUsuario(
     override fun onBindViewHolder(holder: UsuarioViewHolder, position:Int) {
         val usuario = usuariosList[position]
         holder.bind(usuario)
+
+        holder.cardUsuario.setOnClickListener {
+            criarAgend.openCriarAgendamentoFrag(usuario.idUsuario)
+        }
     }
 
     fun updateUsuarioList(user: MutableList<Usuarios>) {
@@ -44,10 +49,7 @@ class AdapterUsuario(
             binding.tvEmail.text = cadastro.email
             binding.tvTelefone.text = cadastro.telefone
             binding.tvCpf.text = cadastro.cpf
-
-            binding.cvCard.setOnClickListener {
-                criarAgend.openCriarAgendamentoFrag()
-            }
         }
+        val cardUsuario : MaterialCardView = binding.cvCard
     }
 }

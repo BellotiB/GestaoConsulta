@@ -109,7 +109,8 @@ class MainActivity : AppCompatActivity(),LoadFragment,CriarAgendamento {
         consultaViewModel.setIdData(idDataCadastrada)
     }
 
-    override fun openCriarAgendamentoFrag() {
+    override fun openCriarAgendamentoFrag(idUsuario: String) {
+      consultaViewModel.setIdUsuario(idUsuario)
       findNavController(R.id.nav_host).navigate(R.id.action_usuariosFragment_to_criarAgendamento)
     }
 }

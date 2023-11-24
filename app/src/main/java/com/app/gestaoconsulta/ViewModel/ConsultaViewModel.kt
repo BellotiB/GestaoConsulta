@@ -64,6 +64,9 @@ class ConsultaViewModel  @Inject constructor(
     private var usuariosFlow = MutableStateFlow<MutableList<Usuarios>>(mutableListOf())
     val usuariosCadastrados: StateFlow<MutableList<Usuarios>> = usuariosFlow
 
+    private var _usuarioSelecionado = MutableStateFlow(Usuarios())
+    val usuarioSelecionado : StateFlow<Usuarios> = _usuarioSelecionado
+
     val allCadastros : Flow<MutableList<CadastroEntity>> = repository.getAllCadastroEntity
 
     val allUsuarios : Flow<MutableList<UsuarioEntity>> = repository.getAllUsersEntity
@@ -498,6 +501,28 @@ class ConsultaViewModel  @Inject constructor(
     fun setRemovePedidosAtendimento() {
         viewModelScope.launch {
             RemovePedidosAgendamentos().removeAgendamentos()
+        }
+    }
+    fun setIdUsuario(idUsuario: String) {
+        filtrarUsuarioPorId(idUsuario)
+    }
+    private fun filtrarUsuarioPorId(idUsuario: String) {
+        viewModelScope.launch {
+            allUsuarios.collectLatest {
+                it.forEach {
+                    if (it.idUsuario == idUsuario) {
+                        val usuario = Usuarios()
+                        usuario.idUsuario = it.idUsuario
+                        usuario.id = it.id
+                        usuario.nome = it.nome
+                        usuario.email = it.email
+                        usuario.telefone = it.telefone
+                        usuario.cpf = it.cpf
+
+                        _usuarioSelecionado.value = usuario
+                    }
+                }
+            }
         }
     }
 }
