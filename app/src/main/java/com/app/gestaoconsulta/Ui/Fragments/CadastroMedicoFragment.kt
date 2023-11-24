@@ -88,8 +88,8 @@ class CadastroMedicoFragment : Fragment() {
     }
     private fun setCadastroListener() {
         if(binding.nome.text.toString() != "" || binding.especialidade.text.toString() != ""){
-            consultaViewModel?.cadastro?.value?.nome = binding.nome.text.toString()
-            consultaViewModel?.cadastro?.value?.especialidade = binding.especialidade.text.toString()
+            consultaViewModel?.cadastro?.value?.nome = binding.nome.text.toString().trim()
+            consultaViewModel?.cadastro?.value?.especialidade = binding.especialidade.text.toString().trim()
             saveCadastro()
             cleanCadastro()
         }
