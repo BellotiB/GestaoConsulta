@@ -42,7 +42,9 @@ class SelecionarDiasFragment : Fragment() {
         openPeriodoTarde()
         loadDiasCadastrados()
         salvarHorariosSelecionados()
+        selecionarTodosHorarios()
     }
+
 
     private fun openPeriodoTarde() {
         binding.openTard.setOnClickListener {
@@ -247,5 +249,87 @@ class SelecionarDiasFragment : Fragment() {
     private fun openCadastroMedico(){
         findNavController().navigate(R.id.action_selecionarDiasFragment_to_menuFragment)
         Toast.makeText(requireContext(),"Horários salvos",Toast.LENGTH_LONG).show()
+    }
+    private fun selecionarTodosHorarios() {
+        binding.todosHorarios.setOnClickListener {
+            binding.tvCinco.isChecked = true
+            binding.tvCincoQuinze.isChecked = true
+            binding.tvCincoTrinta.isChecked = true
+            binding.tvCincoQuarentaCinco.isChecked = true
+
+            binding.tvSeis.isChecked = true
+            binding.tvSeisQuinze.isChecked = true
+            binding.tvSeisTrinta.isChecked = true
+            binding.tvSeisQuarentaCinco.isChecked = true
+
+            binding.tvSete.isChecked = true
+            binding.tvSeteQuinze.isChecked = true
+            binding.tvSeteTrinta.isChecked = true
+            binding.tvSeteQuarentaCinco.isChecked = true
+
+            binding.tvOito.isChecked = true
+            binding.tvOitoQuinze.isChecked = true
+            binding.tvOitoTrinta.isChecked = true
+            binding.tvOitoQuarentaCinco.isChecked = true
+
+            binding.tvNove.isChecked = true
+            binding.tvNoveQuinze.isChecked = true
+            binding.tvNoveTrinta.isChecked = true
+            binding.tvNoveQuarentaCinco.isChecked = true
+
+            binding.tvDez.isChecked = true
+            binding.tvDezQuinze.isChecked = true
+            binding.tvDezTrinta.isChecked = true
+            binding.tvDezQuarentaCinco.isChecked = true
+
+            binding.tvOnze.isChecked = true
+            binding.tvOnzeQuinze.isChecked = true
+            binding.tvOnzeTrinta.isChecked = true
+            binding.tvOnzeQuarentaCinco.isChecked = true
+
+            binding.tvOnze.isChecked = true
+            binding.tvOnzeQuinze.isChecked = true
+            binding.tvOnzeTrinta.isChecked = true
+            binding.tvOnzeQuarentaCinco.isChecked = true
+
+            binding.tvMeioDia.isChecked = true
+            binding.tvMeioDiaQuinze.isChecked = true
+            binding.tvMeioDiaTrinta.isChecked = true
+            binding.tvMeioDiaQuarentaCinco.isChecked = true
+
+            binding.tvTreze.isChecked = true
+            binding.tvTrezeQuinze.isChecked = true
+            binding.tvTrezeTrinta.isChecked = true
+            binding.tvTrezeQuarentaCinco.isChecked = true
+
+            binding.tvQuatorze.isChecked = true
+            binding.tvQuatorzeQuinze.isChecked = true
+            binding.tvQuatorzeTrinta.isChecked = true
+            binding.tvQuatorzeQuarentaCinco.isChecked = true
+
+            binding.tvQuinze.isChecked = true
+            binding.tvQuinzeQuinze.isChecked = true
+            binding.tvQuinzeTrinta.isChecked = true
+            binding.tvQuinzeQuarentaCinco.isChecked = true
+
+            binding.tvDezesseis.isChecked = true
+            binding.tvDezesseisQuinze.isChecked = true
+            binding.tvDezesseisTrinta.isChecked = true
+            binding.tvDezesseisQuarentaCinco.isChecked = true
+
+            binding.tvDezesete.isChecked = true
+            binding.tvDezesseteQuinze.isChecked = true
+            binding.tvDezesseteTrinta.isChecked = true
+            binding.tvDezesseteQuarentaCinco.isChecked = true
+
+            binding.tvDezoito.isChecked = true
+            binding.tvDezoitoTrinta.isChecked = true
+            binding.tvDezoitoQuinze.isChecked = true
+            binding.tvDezoitoQuarentaCinco.isChecked = true
+            binding.tvDezenove.isChecked = true
+            binding.tvDezenoveQuinze.isChecked = true
+            binding.tvDezenoveTrinta.isChecked = true
+            binding.tvDezenoveQuarentaCinco.isChecked = true
+        }
     }
 }
