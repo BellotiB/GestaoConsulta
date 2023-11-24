@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.Usuarios
+import com.app.gestaoconsulta.Ui.CriarAgendamento
 import com.app.gestaoconsulta.databinding.ItemUsuariosBinding
 
 
-class AdapterUsuario(private val usuariosList:MutableList<Usuarios>,
-
+class AdapterUsuario(
+    private val usuariosList: MutableList<Usuarios>,
+    private val criarAgend: CriarAgendamento
 ):RecyclerView.Adapter<AdapterUsuario.UsuarioViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsuarioViewHolder {
@@ -43,6 +45,9 @@ class AdapterUsuario(private val usuariosList:MutableList<Usuarios>,
             binding.tvTelefone.text = cadastro.telefone
             binding.tvCpf.text = cadastro.cpf
 
+            binding.cvCard.setOnClickListener {
+                criarAgend.openCriarAgendamentoFrag()
+            }
         }
     }
 }

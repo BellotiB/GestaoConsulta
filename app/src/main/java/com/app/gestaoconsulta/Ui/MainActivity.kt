@@ -24,7 +24,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(),LoadFragment {
+class MainActivity : AppCompatActivity(),LoadFragment,CriarAgendamento {
 
     private lateinit var binding: ActivityMainBinding
     private val CHANNEL_ID = "my_channel_id"
@@ -107,5 +107,9 @@ class MainActivity : AppCompatActivity(),LoadFragment {
     override fun openSelecionarDiasFragment(idDataCadastrada: String) {
         findNavController(R.id.nav_host).navigate(R.id.action_cadastroDataPorMedicoFragment_to_selecionarDiasFragment)
         consultaViewModel.setIdData(idDataCadastrada)
+    }
+
+    override fun openCriarAgendamentoFrag() {
+      findNavController(R.id.nav_host).navigate(R.id.action_usuariosFragment_to_criarAgendamento)
     }
 }
