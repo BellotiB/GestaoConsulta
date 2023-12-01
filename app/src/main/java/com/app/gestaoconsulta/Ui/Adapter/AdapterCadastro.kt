@@ -10,8 +10,9 @@ import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.databinding.ItemCadastroBinding
 
 
-class AdapterCadastro(private val cadastrosList:MutableList<CadastroMedico>,
-                      private val callBack : LoadFragment
+class AdapterCadastro(
+    private val cadastrosList: MutableList<CadastroMedico>,
+    private val callBack: LoadFragment,
 ):RecyclerView.Adapter<AdapterCadastro.CadastroViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CadastroViewHolder {
@@ -31,8 +32,8 @@ class AdapterCadastro(private val cadastrosList:MutableList<CadastroMedico>,
         val cadastro = cadastrosList[position]
         holder.bind(cadastro)
         holder.cardView.setOnClickListener{
-            callBack.openSecondFragment()
-            callBack.cadastroSelected(cadastro.id)
+                callBack.openSecondFragment()
+                callBack.cadastroSelected(cadastro.id)
         }
         holder.menuCard.setOnClickListener {
             callBack.excluirItem(cadastro)

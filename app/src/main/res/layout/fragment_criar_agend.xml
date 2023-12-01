@@ -26,17 +26,84 @@
         android:text="Adicionar Agendamento"/>
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/nome_user"
-        android:layout_width="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="358dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:hint="Antonio Silva"
-        android:textColor="@color/black"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar">
+        
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome Cliente:"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"/>
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="15dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data:"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="55dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="55dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horário:"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="95dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_horario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="95dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Médico:"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="135dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_medico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="135dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Especialidade:"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="175dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_especialidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="175dp"
+            android:layout_marginBottom="15dp"
+            />
+    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
