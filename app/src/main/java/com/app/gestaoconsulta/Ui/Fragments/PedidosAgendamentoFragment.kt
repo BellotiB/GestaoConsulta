@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
+import com.app.gestaoconsulta.Model.AgendamentoPorUsuario
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
@@ -28,6 +30,8 @@ class PedidosAgendamentoFragment : Fragment() {
     private val usuarios = mutableListOf<Usuarios>()
     private val pedidoAgendamentosList = mutableListOf<PedidoAgendamento>()
     private val agendPorMedicos = mutableListOf<PedidoAgendamento>()
+    private val agendPorUsuarios = mutableListOf<AgendamentoPorUsuario>()
+    private var nomeMedico = ""
     private var cadastroSelected = CadastroMedico()
     private var adapter : AdapterPedidoAgendamento? = null
     override fun onCreateView(
@@ -44,10 +48,26 @@ class PedidosAgendamentoFragment : Fragment() {
         loadCadastroSelected()
         loadPedidoAgendamento()
         loadUsuarios()
+        loadAgendamentosPorUsuarios()
         salvarPedidos()
         openHistorico()
     }
 
+
+    private fun loadAgendamentosPorUsuarios() {
+       lifecycleScope.launch {
+           consultaViewModel?.allAtendimentosPorUsuarios?.collectLatest {
+               it.forEach {
+                  val agend = AgendamentoPorUsuario()
+                 agend.horaSelecionada = it.horaSelecionada
+                 agend.dataSelecionada = it.dataSelecionada
+                 agend.idUsuario = it.idUsuario
+                 agend.nomeMedico = it.nomeMedico
+                 agendPorUsuarios.add(agend)
+               }
+           }
+       }
+    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

@@ -69,4 +69,6 @@ class Repository @Inject constructor(
     val getAllUsersEntity: Flow<MutableList<UsuarioEntity>> = usuarioDao.getAllUsuarios()
 
     val getAllPedidosEntity: Flow<MutableList<PedidosAgendamentosEntity>> = pedidosDao.getAllPedidos()
+
+    val getAllPedidoPorUsuario: Flow<MutableList<AgendamentoPorUsuarioEntity>> = agendPorUsuarioDao.getAllAgendamentos()
 }

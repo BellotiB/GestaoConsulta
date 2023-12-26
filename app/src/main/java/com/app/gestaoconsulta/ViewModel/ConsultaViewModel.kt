@@ -68,6 +68,7 @@ class ConsultaViewModel  @Inject constructor(
     private var _usuarioSelecionado = MutableStateFlow(Usuarios())
     val usuarioSelecionado : StateFlow<Usuarios> = _usuarioSelecionado
 
+    val allAtendimentosPorUsuarios : Flow<MutableList<AgendamentoPorUsuarioEntity>> = repository.getAllPedidoPorUsuario
     val allCadastros : Flow<MutableList<CadastroEntity>> = repository.getAllCadastroEntity
 
     val allUsuarios : Flow<MutableList<UsuarioEntity>> = repository.getAllUsersEntity
@@ -502,7 +503,6 @@ class ConsultaViewModel  @Inject constructor(
         repository.insertPedidoAgendamento(agend)
 
     }
-
     fun setRemovePedidosAtendimento() {
         viewModelScope.launch {
             RemovePedidosAgendamentos().removeAgendamentos()

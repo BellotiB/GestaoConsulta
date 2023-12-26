@@ -39,7 +39,6 @@ class CriarAgendFragment : Fragment() {
     private val cadastrosList = mutableListOf<CadastroMedico>()
     private var dataAtendimento = ""
     private var horaAtendimento = ""
-    private var medicoSelecionado = ""
     private lateinit var callBack : LoadFragment
 
 
@@ -149,6 +148,7 @@ class CriarAgendFragment : Fragment() {
     private fun salvarPedidoAgendamento() {
         binding.salvarAgendamento.setOnClickListener {
             val agend = AgendamentoPorUsuarioEntity(
+                idUsuario = usuarioSelecioando.idUsuario,
                 nomeMedico =  binding.dropdownMenu.editText?.text.toString(),
                 horaSelecionada = horaAtendimento,
                 dataSelecionada = dataAtendimento
