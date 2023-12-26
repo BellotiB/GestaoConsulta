@@ -6,7 +6,9 @@ import com.app.gestaoconsulta.Data.Daos.CadastroDao
 import com.app.gestaoconsulta.Data.Daos.DataCadastradaDao
 import com.app.gestaoconsulta.Data.Daos.HoraCadastradaDao
 import com.app.gestaoconsulta.Data.Daos.PedidosAgendamentosDao
+import com.app.gestaoconsulta.Data.Daos.PedidosPorUsuariosDao
 import com.app.gestaoconsulta.Data.Daos.UsuarioDao
+import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
 import com.app.gestaoconsulta.Data.Entities.CadastroEntity
 import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
 import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
@@ -17,7 +19,9 @@ import com.app.gestaoconsulta.Data.Entities.UsuarioEntity
     DataCadastradaEntity::class,
     UsuarioEntity::class,
     HoraCadastradaEntity::class,
-    PedidosAgendamentosEntity::class], version = 2)
+    PedidosAgendamentosEntity::class,
+    AgendamentoPorUsuarioEntity::class], version = 2
+)
 
 abstract class DataBaseCadastros : RoomDatabase() {
     abstract fun cadastroDao(): CadastroDao
@@ -25,6 +29,7 @@ abstract class DataBaseCadastros : RoomDatabase() {
     abstract fun horaCadastradaDao(): HoraCadastradaDao
     abstract fun usuarioDao(): UsuarioDao
     abstract fun pediddosAgendamentosDao(): PedidosAgendamentosDao
+    abstract fun pedidosPorUsuarios(): PedidosPorUsuariosDao
 
     companion object {
         val MIGRATION_1_2 = migration_1_2

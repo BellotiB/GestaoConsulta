@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.navigation.fragment.findNavController
+import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.Usuarios
-import com.app.gestaoconsulta.Ui.Adapter.AdapterMedicosCadastrados
+import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.Ui.LoadFragment
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCriarAgendBinding
@@ -19,6 +21,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -37,7 +40,6 @@ class CriarAgendFragment : Fragment() {
     private var dataAtendimento = ""
     private var horaAtendimento = ""
     private var medicoSelecionado = ""
-    private var adapter: AdapterMedicosCadastrados? = null
     private lateinit var callBack : LoadFragment
 
 
@@ -58,9 +60,8 @@ class CriarAgendFragment : Fragment() {
         configureDate()
         configureHour()
         loadMedico()
+        salvarPedidoAgendamento()
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -109,7 +110,6 @@ class CriarAgendFragment : Fragment() {
     private fun configureDropDown() {
         val nomesMedicos = cadastrosList.map { it.nome }
         (binding.dropdownMenu.editText as? MaterialAutoCompleteTextView)?.setSimpleItems(nomesMedicos.toTypedArray())
-        medicoSelecionado = binding.dropdownMenu.editText?.text.toString()
     }
 
     private fun setupDataPicker() {
@@ -145,5 +145,19 @@ class CriarAgendFragment : Fragment() {
             binding.tvHorario.text = horaAtendimento
         }
         picker.show(childFragmentManager,"HORA_PICKER")
+    }
+    private fun salvarPedidoAgendamento() {
+        binding.salvarAgendamento.setOnClickListener {
+            val agend = AgendamentoPorUsuarioEntity(
+                nomeMedico =  binding.dropdownMenu.editText?.text.toString(),
+                horaSelecionada = horaAtendimento,
+                dataSelecionada = dataAtendimento
+            )
+            lifecycleScope.launch(Dispatchers.IO) {
+                consultaViewModel?.setPedidoAgendamentoPorUsuario(agend)
+            }
+            Toast.makeText(requireContext(),"Agendamento Por usuário salvo com sucesso",Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.criarAgendamento_to_menuFragment)
+        }
     }
 }

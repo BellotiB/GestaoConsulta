@@ -4,7 +4,9 @@ import com.app.gestaoconsulta.Data.Daos.CadastroDao
 import com.app.gestaoconsulta.Data.Daos.DataCadastradaDao
 import com.app.gestaoconsulta.Data.Daos.HoraCadastradaDao
 import com.app.gestaoconsulta.Data.Daos.PedidosAgendamentosDao
+import com.app.gestaoconsulta.Data.Daos.PedidosPorUsuariosDao
 import com.app.gestaoconsulta.Data.Daos.UsuarioDao
+import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
 import com.app.gestaoconsulta.Data.Entities.CadastroEntity
 import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
 import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
@@ -18,11 +20,12 @@ class Repository @Inject constructor(
     private val datacadDao: DataCadastradaDao,
     private val horacadDao: HoraCadastradaDao,
     private val usuarioDao: UsuarioDao,
-    private val pedidosDao: PedidosAgendamentosDao
+    private val pedidosDao: PedidosAgendamentosDao,
+    private val agendPorUsuarioDao: PedidosPorUsuariosDao
     ){
 
-    suspend fun insertCadastro(cadastroEntity: CadastroEntity){
-        cadastroDao.insertCadastro(cadastroEntity)
+    fun deleteHoraPorData(dataCad : HoraCadastradaEntity){
+        horacadDao.delete(dataCad)
     }
      fun deleteCadastroFromDataBase(cad: CadastroEntity){
         cadastroDao.delete(cad)
@@ -33,6 +36,9 @@ class Repository @Inject constructor(
     fun deleteAllDatasPorCadastro(datas: MutableList<DataCadastradaEntity>){
         datacadDao.deleteAllDatas(datas)
     }
+    suspend fun insertCadastro(cadastroEntity: CadastroEntity){
+        cadastroDao.insertCadastro(cadastroEntity)
+    }
    suspend fun insertDataCadastrada(data: MutableList<DataCadastradaEntity>){
         datacadDao.insertData(data)
     }
@@ -40,16 +46,16 @@ class Repository @Inject constructor(
         horacadDao.insertHora(hr)
     }
 
+    suspend fun insertPedidoAgendamento(agend : AgendamentoPorUsuarioEntity){
+        agendPorUsuarioDao.insertAgendUsuario(agend)
+    }
     suspend fun insertUsuarioList(hr: MutableList<UsuarioEntity>){
         usuarioDao.insertUsuarioList(hr)
     }
     suspend fun insertPedidoDao(ped: PedidosAgendamentosEntity){
         pedidosDao.insertPedido(ped)
     }
-     fun deleteHoraPorData(dataCad : HoraCadastradaEntity){
-      horacadDao.delete(dataCad)
 
-    }
     fun update(horaEntity: HoraCadastradaEntity) {
         horacadDao.update(horaEntity)
     }

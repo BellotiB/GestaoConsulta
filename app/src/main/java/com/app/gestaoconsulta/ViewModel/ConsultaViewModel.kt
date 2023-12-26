@@ -5,6 +5,7 @@ package com.app.gestaoconsulta.ViewModel
 import RemovePedidosAgendamentos
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
 import com.app.gestaoconsulta.Data.Entities.CadastroEntity
 import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
 import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
@@ -496,6 +497,10 @@ class ConsultaViewModel  @Inject constructor(
                 repository.insertPedidoDao(ped)
             }
         }
+    }
+    suspend fun setPedidoAgendamentoPorUsuario(agend: AgendamentoPorUsuarioEntity) {
+        repository.insertPedidoAgendamento(agend)
+
     }
 
     fun setRemovePedidosAtendimento() {
