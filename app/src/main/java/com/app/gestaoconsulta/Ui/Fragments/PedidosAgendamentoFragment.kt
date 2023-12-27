@@ -19,6 +19,7 @@ import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.Ui.Adapter.AdapterPedidoAgendamento
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentPedidosAgendamentoBinding
+import com.google.android.material.navigation.NavigationBarView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -27,11 +28,9 @@ class PedidosAgendamentoFragment : Fragment() {
     private var _binding: FragmentPedidosAgendamentoBinding? = null
     private val binding get() = _binding!!
     private var consultaViewModel : ConsultaViewModel? = null
-    private val usuarios = mutableListOf<Usuarios>()
+    private var usuarios = mutableListOf<Usuarios>()
     private val pedidoAgendamentosList = mutableListOf<PedidoAgendamento>()
     private val agendPorMedicos = mutableListOf<PedidoAgendamento>()
-    private val agendPorUsuarios = mutableListOf<AgendamentoPorUsuario>()
-    private var nomeMedico = ""
     private var cadastroSelected = CadastroMedico()
     private var adapter : AdapterPedidoAgendamento? = null
     override fun onCreateView(
@@ -47,36 +46,17 @@ class PedidosAgendamentoFragment : Fragment() {
         consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         loadCadastroSelected()
         loadPedidoAgendamento()
-        loadUsuarios()
-        loadAgendamentosPorUsuarios()
-        salvarPedidos()
-        openHistorico()
+        getAllUsuarios()
+        configMenuBottomBar()
     }
 
-
-    private fun loadAgendamentosPorUsuarios() {
-       lifecycleScope.launch {
-           consultaViewModel?.allAtendimentosPorUsuarios?.collectLatest {
-               it.forEach {
-                  val agend = AgendamentoPorUsuario()
-                 agend.horaSelecionada = it.horaSelecionada
-                 agend.dataSelecionada = it.dataSelecionada
-                 agend.idUsuario = it.idUsuario
-                 agend.nomeMedico = it.nomeMedico
-                 agendPorUsuarios.add(agend)
-               }
-           }
-       }
-    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
     private fun openHistorico() {
-        binding.icHistorico.setOnClickListener {
-            findNavController().navigate(R.id.action_pedidosAgendamentoFragment_to_pedidoHistoricoFragment)
-        }
+        findNavController().navigate(R.id.action_pedidosAgendamentoFragment_to_pedidoHistoricoFragment)
     }
 
     private fun loadCadastroSelected() {
@@ -95,7 +75,7 @@ class PedidosAgendamentoFragment : Fragment() {
         }
     }
 
-    private fun loadUsuarios() {
+    private fun getAllUsuarios() {
         lifecycleScope.launch {
             consultaViewModel?.allUsuarios?.collectLatest {users ->
                 users.forEach {
@@ -128,11 +108,33 @@ class PedidosAgendamentoFragment : Fragment() {
         adapter?.updatePedidoList(agendPorMedicos)
     }
     private fun salvarPedidos() {
-        binding.savePed.setOnClickListener {
             consultaViewModel?.setToPedidoAgendamentoDataBase(agendPorMedicos)
             consultaViewModel?.setRemovePedidosAtendimento()
             adapter?.clearList()
             Toast.makeText(requireContext(),"Pedidos de atendimento salvos com sucesso",Toast.LENGTH_SHORT).show()
-        }
+    }
+    private fun configMenuBottomBar(){
+       binding.menuNavigation.setOnItemSelectedListener {menuItem ->
+           when(menuItem.itemId){
+               R.id.ic_historico ->{
+                   openHistorico()
+                   true
+               }
+               R.id.ic_save ->{
+                   salvarPedidos()
+                findNavController().navigate(R.id.menuFragment)
+                   true
+               }
+               R.id.ic_list ->{
+                   findNavController().navigate(R.id.action_pedidosAgendamentoFragment_to_reagendamentoFragment)
+                   true
+               }
+               R.id.ic_agendamentos ->{
+                findNavController().navigate(R.id.pedidosAgendamentoFragment)
+                   true
+               }
+               else -> false
+           }
+       }
     }
 }

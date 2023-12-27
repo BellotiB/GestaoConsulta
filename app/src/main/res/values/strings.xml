@@ -29,4 +29,8 @@
     <string name="example_profissional">Profissional:</string>
     <string name="hora_selecionadas">Horário Selecionado:</string>
     <string name="filtrar_por_especialidades">Filtrar por especialidades</string>
+    <string name="reagendamentos">ReAgendamentos</string>
+    <string name="salvar">salvar</string>
+    <string name="hist_rico">Histórico</string>
+    <string name="agendamentos">Agendamentos</string>
 </resources>

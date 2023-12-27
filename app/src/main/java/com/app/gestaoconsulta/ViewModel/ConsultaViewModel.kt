@@ -4,6 +4,7 @@ package com.app.gestaoconsulta.ViewModel
 
 import RemovePedidosAgendamentos
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
 import com.app.gestaoconsulta.Data.Entities.CadastroEntity
