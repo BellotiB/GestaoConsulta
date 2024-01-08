@@ -9,11 +9,13 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.AgendamentoPorUsuario
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.Usuarios
+import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentReagendamentoBinding
 import com.app.gestaoconsulta.databinding.ItemPeodidoAgendamentoBinding
