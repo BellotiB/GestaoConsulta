@@ -7,29 +7,52 @@
     android:layout_height="match_parent"
     tools:context=".Ui.Fragments.PedidosAgendamentoFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_datas_list"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
+        android:layout_marginTop="-30dp"
+        android:background="@drawable/rounded_toolbar_background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_peodido_agendamento" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rv_datas_list"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        <ImageButton
+            android:id="@+id/open_reagendamento"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="end"
+            android:backgroundTint="#6B45AE"
+            android:src="@drawable/ic_forward" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/menu_navigation"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:menu="@menu/menu_pedidos_usuario" />
-    </com.google.android.material.card.MaterialCardView>
+            android:text="@string/pedidos_de_agendamentos"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@+id/materialToolbar" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_datas_list"
+        android:layout_width="280dp"
+        android:layout_height="560dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+        tools:listitem="@layout/item_peodido_agendamento" />
+
+    <ImageView
+        android:id="@+id/iv_voltar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_back_frag"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -33,4 +33,7 @@
     <string name="salvar">salvar</string>
     <string name="hist_rico">Histórico</string>
     <string name="agendamentos">Agendamentos</string>
+    <string name="title_activity_pedidos_agend">PedidosAgendActivity</string>
+    <string name="pedidos_de_reagendamentos">Pedidos de Reagendamentos</string>
+    <string name="pedidos_de_agendamentos">Pedidos de Agendamentos</string>
 </resources>

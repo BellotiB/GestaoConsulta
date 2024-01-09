@@ -1,5 +1,6 @@
 package com.app.gestaoconsulta.Ui.Fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,11 +18,15 @@ import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
 import com.app.gestaoconsulta.R
 import com.app.gestaoconsulta.Ui.Adapter.AdapterPedidoAgendamento
+import com.app.gestaoconsulta.Ui.MainActivity
+import com.app.gestaoconsulta.Util.DateFormat
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentPedidosAgendamentoBinding
 import com.google.android.material.navigation.NavigationBarView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class PedidosAgendamentoFragment : Fragment() {
 
@@ -29,7 +34,7 @@ class PedidosAgendamentoFragment : Fragment() {
     private val binding get() = _binding!!
     private var consultaViewModel : ConsultaViewModel? = null
     private var usuarios = mutableListOf<Usuarios>()
-    private val pedidoAgendamentosList = mutableListOf<PedidoAgendamento>()
+    private var pedidoAgendamentosList = mutableListOf<PedidoAgendamento>()
     private val agendPorMedicos = mutableListOf<PedidoAgendamento>()
     private var cadastroSelected = CadastroMedico()
     private var adapter : AdapterPedidoAgendamento? = null
@@ -47,16 +52,19 @@ class PedidosAgendamentoFragment : Fragment() {
         loadCadastroSelected()
         loadPedidoAgendamento()
         getAllUsuarios()
-        configMenuBottomBar()
+        openReAgendamento()
+        voltarCadastroFragment()
+    }
+
+    private fun openReAgendamento() {
+        binding.openReagendamento.setOnClickListener {
+            findNavController().navigate(R.id.action_pedidosAgendamentoFragment_to_reagendamentoFragment)
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    private fun openHistorico() {
-        findNavController().navigate(R.id.action_pedidosAgendamentoFragment_to_pedidoHistoricoFragment)
     }
 
     private fun loadCadastroSelected() {
@@ -69,8 +77,9 @@ class PedidosAgendamentoFragment : Fragment() {
     private fun loadPedidoAgendamento() {
         lifecycleScope.launch {
             consultaViewModel?.pedidosAgendamento?.collectLatest { pedAgend ->
-                pedidoAgendamentosList.clear()
-                pedidoAgendamentosList.addAll(pedAgend)
+                val data = DateFormat().formatCurrentMonthToString()
+                pedidoAgendamentosList = pedAgend.filter {it.dataSelecionada.dataAtendimento.substring(3) < data.substring(3)}
+                    .toMutableList()
             }
         }
     }
@@ -107,34 +116,9 @@ class PedidosAgendamentoFragment : Fragment() {
         }
         adapter?.updatePedidoList(agendPorMedicos)
     }
-    private fun salvarPedidos() {
-            consultaViewModel?.setToPedidoAgendamentoDataBase(agendPorMedicos)
-            consultaViewModel?.setRemovePedidosAtendimento()
-            adapter?.clearList()
-            Toast.makeText(requireContext(),"Pedidos de atendimento salvos com sucesso",Toast.LENGTH_SHORT).show()
-    }
-    private fun configMenuBottomBar(){
-       binding.menuNavigation.setOnItemSelectedListener {menuItem ->
-           when(menuItem.itemId){
-               R.id.ic_historico ->{
-                   openHistorico()
-                   true
-               }
-               R.id.ic_save ->{
-                   salvarPedidos()
-                findNavController().navigate(R.id.menuFragment)
-                   true
-               }
-               R.id.ic_list ->{
-                   findNavController().navigate(R.id.action_pedidosAgendamentoFragment_to_reagendamentoFragment)
-                   true
-               }
-               R.id.ic_agendamentos ->{
-                findNavController().navigate(R.id.pedidosAgendamentoFragment)
-                   true
-               }
-               else -> false
-           }
-       }
+    private fun voltarCadastroFragment(){
+        binding.ivVoltar.setOnClickListener {
+            findNavController().navigate(R.id.action_pedidosAgendamentoFragment_to_cadastradosFragment)
+        }
     }
 }

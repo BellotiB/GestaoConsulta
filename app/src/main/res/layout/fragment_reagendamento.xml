@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Ui.Fragments.ReagendamentoFragment">
 
+ <com.google.android.material.appbar.MaterialToolbar
+     android:id="@+id/materialToolbar"
+     android:layout_width="match_parent"
+     android:layout_height="110dp"
+     android:layout_marginTop="-30dp"
+     android:background="@drawable/rounded_toolbar_background"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent">
+
+  <ImageButton
+      android:id="@+id/open_agendamentoped"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="50dp"
+      android:layout_marginEnd="10dp"
+      android:layout_gravity="start"
+      android:backgroundTint="#6B45AE"
+      android:src="@drawable/ic_back" />
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/pedidos_de_reagendamentos"
+      android:layout_gravity="center_horizontal"
+      android:textColor="@color/white"
+      android:textSize="15sp"
+      app:layout_constraintEnd_toEndOf="@+id/materialToolbar"/>
+
+
+ </com.google.android.material.appbar.MaterialToolbar>
+
  <androidx.recyclerview.widget.RecyclerView
      android:id="@+id/rv_reagendamento_list"
      android:layout_width="match_parent"
-     android:layout_height="match_parent"/>
+     android:layout_height="560dp"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/materialToolbar"
+     tools:listitem="@layout/item_peodido_agendamento" />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -90,31 +90,6 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
     </fragment>
 
-    <fragment
-        android:id="@+id/pedidosAgendamentoFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.PedidosAgendamentoFragment"
-        tools:layout="@layout/fragment_pedidos_agendamento">
-
-
-        <action
-            android:id="@+id/action_pedidosAgendamentoFragment_to_pedidoHistoricoFragment"
-            app:destination="@id/pedidoHistoricoFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
-        <action
-            android:id="@+id/action_pedidosAgendamentoFragment_to_reagendamentoFragment"
-            app:destination="@id/reagendamentoFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
-    </fragment>
-    <fragment
-        android:id="@+id/reagendamentoFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.ReagendamentoFragment"
-        tools:layout="@layout/fragment_reagendamento"/>
 
     <fragment
         android:id="@+id/menuFragment"
@@ -130,13 +105,6 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
 
         <action
-            android:id="@+id/action_menuFragment_to_pedidosAgendamentoFragment"
-            app:destination="@id/pedidosAgendamentoFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
-        <action
             android:id="@+id/action_menuFragment_to_cadastradosFragment"
             app:destination="@id/cadastradosFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
@@ -145,11 +113,6 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
 
     </fragment>
-
-    <fragment
-        android:id="@+id/pedidoHistoricoFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.PedidosAgendamentoHistoricoFragment"
-        tools:layout="@layout/fragment_pedidos_agendamento_historico"/>
 
     <fragment
         android:id="@+id/criarAgendamento"
@@ -164,4 +127,40 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
     </fragment>
+
+    <fragment
+        android:id="@+id/pedidosAgendamentoFragment"
+        android:name="com.app.gestaoconsulta.Ui.Fragments.PedidosAgendamentoFragment"
+        tools:layout="@layout/fragment_pedidos_agendamento">
+
+        <action
+            android:id="@+id/action_pedidosAgendamentoFragment_to_reagendamentoFragment"
+            app:destination="@id/reagendamentoFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
+        <action
+            android:id="@+id/action_pedidosAgendamentoFragment_to_cadastradosFragment"
+            app:destination="@id/cadastradosFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reagendamentoFragment"
+        android:name="com.app.gestaoconsulta.Ui.Fragments.ReagendamentoFragment"
+        tools:layout="@layout/fragment_reagendamento">
+
+    <action
+        android:id="@+id/action_reagendamentoFragment_to_pedidosAgendamentoFragment"
+        app:destination="@id/pedidosAgendamentoFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim" />
+    </fragment>
+
 </navigation>

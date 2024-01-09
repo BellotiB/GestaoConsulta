@@ -44,8 +44,19 @@ class ReagendamentoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         consultaViewModel  = ViewModelProvider(requireActivity())[ConsultaViewModel::class.java]
         loadAgendamentosPorUsuarios()
-
+        openPedAgendamento()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+    private fun openPedAgendamento() {
+        binding.openAgendamentoped.setOnClickListener {
+            findNavController().navigate(R.id.action_reagendamentoFragment_to_pedidosAgendamentoFragment)
+        }
+    }
+
     private fun loadAgendamentosPorUsuarios() {
         lifecycleScope.launch {
             consultaViewModel?.allAtendimentosPorUsuarios?.collectLatest {
@@ -98,6 +109,7 @@ class ReagendamentoFragment : Fragment() {
     private fun filtrarListaPorMedicos(){
         pedidoAgendamentosList.forEach {
             if(it.nomeMedico == cadastroSelected.nome){
+                reAgendamentosList.clear()
                 reAgendamentosList.add(it)
             }
         }
