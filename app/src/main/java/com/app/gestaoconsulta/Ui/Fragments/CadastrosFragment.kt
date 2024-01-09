@@ -46,10 +46,18 @@ class CadastrosFragment : Fragment() {
         openCadastroFragment()
         openFilter()
         closeFiltro()
+        backMenu()
         consultaViewModel?.updateCadastroServer()
         consultaViewModel?.updateDatasCadastradasServer()
         consultaViewModel?.updateHorasCadastradosServer()
     }
+
+    private fun backMenu() {
+        binding.icVoltar.setOnClickListener {
+            findNavController().navigate(R.id.action_cadastradosFragment_to_menuFragment)
+        }
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         callBack  = context as LoadFragment

@@ -22,9 +22,20 @@
        android:layout_width="50dp"
        android:layout_height="50dp"
        android:layout_marginTop="50dp"
+       android:layout_gravity="end"
+       android:layout_marginEnd="10dp"
        android:src="@drawable/filter_list"
        android:backgroundTint="#6B45AE"
        />
+        <ImageButton
+            android:id="@+id/ic_voltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+
+            android:backgroundTint="#6B45AE"
+            android:src="@drawable/ic_back_frag"
+            />
     </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.recyclerview.widget.RecyclerView
