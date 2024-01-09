@@ -61,7 +61,6 @@ class CadastroDataPorMedicoFragment : Fragment() {
         getCadastroSelected()
         getAllDatasCadastradas()
         setupViewCadastroSelected()
-        saveDatasCadastradas()
 
         binding.ivPeriodoAtendimento.setOnClickListener {
             setupDataPicker()
@@ -85,12 +84,6 @@ class CadastroDataPorMedicoFragment : Fragment() {
                 adapter?.updateDatasList(datasCadastradas)
                 datasCadastradas.clear()
             }
-        }
-    }
-
-    private fun saveDatasCadastradas() {
-        binding.ivSave.setOnClickListener {
-            findNavController().navigate(R.id.action_cadastroDataPorMedicoFragment_to_menuFragment)
         }
     }
 
@@ -119,7 +112,6 @@ class CadastroDataPorMedicoFragment : Fragment() {
             dataAtendimento = dateFormat.format(startDateCalendar.time)
 
             setupDatasCadastradas()
-
         }
 
         dateRangePicker.show(childFragmentManager,"DATA_PICKER")
