@@ -47,9 +47,6 @@ class CadastrosFragment : Fragment() {
         openFilter()
         closeFiltro()
         backMenu()
-        consultaViewModel?.updateCadastroServer()
-        consultaViewModel?.updateDatasCadastradasServer()
-        consultaViewModel?.updateHorasCadastradosServer()
     }
 
     private fun backMenu() {

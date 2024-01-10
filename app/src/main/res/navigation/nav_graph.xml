@@ -75,8 +75,8 @@
         tools:layout="@layout/fragment_selecionar_dias">
 
     <action
-        android:id="@+id/action_selecionarDiasFragment_to_menuFragment"
-        app:destination="@id/menuFragment"
+        android:id="@+id/action_selecionarDiasFragment_to_cadastroDataPorMedicoFragment"
+        app:destination="@id/cadastroDataPorMedicoFragment"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim"
         app:exitAnim="@anim/nav_default_exit_anim"

@@ -61,9 +61,16 @@ class CadastroDataPorMedicoFragment : Fragment() {
         getCadastroSelected()
         getAllDatasCadastradas()
         setupViewCadastroSelected()
+        closeFragment()
 
         binding.ivPeriodoAtendimento.setOnClickListener {
             setupDataPicker()
+        }
+    }
+
+    private fun closeFragment() {
+        binding.ivFecharDatas.setOnClickListener {
+            findNavController().navigate(R.id.action_cadastroDataPorMedicoFragment_to_menuFragment)
         }
     }
 
@@ -123,7 +130,6 @@ class CadastroDataPorMedicoFragment : Fragment() {
             dateCadastrada.idDataCadastrada = UUID.randomUUID().toString()
             dateCadastrada.idCadastro = cadastroSelected.id
             dateCadastrada.dataAtendimento = dataAtendimento
-
 
             datasCadastradas.add(dateCadastrada)
             consultaViewModel?.datasCadastradas?.value?.add(dateCadastrada)

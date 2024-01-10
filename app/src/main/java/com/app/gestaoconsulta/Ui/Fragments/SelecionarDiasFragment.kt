@@ -43,6 +43,9 @@ class SelecionarDiasFragment : Fragment() {
         loadDiasCadastrados()
         salvarHorariosSelecionados()
         selecionarTodosHorarios()
+        consultaViewModel?.updateCadastroServer()
+        consultaViewModel?.updateDatasCadastradasServer()
+        consultaViewModel?.updateHorasCadastradosServer()
     }
 
 
@@ -247,7 +250,7 @@ class SelecionarDiasFragment : Fragment() {
         openCadastroMedico()
     }
     private fun openCadastroMedico(){
-        findNavController().navigate(R.id.action_selecionarDiasFragment_to_menuFragment)
+        findNavController().navigate(R.id.action_selecionarDiasFragment_to_cadastroDataPorMedicoFragment)
         Toast.makeText(requireContext(),"Horários salvos",Toast.LENGTH_LONG).show()
     }
     private fun selecionarTodosHorarios() {
