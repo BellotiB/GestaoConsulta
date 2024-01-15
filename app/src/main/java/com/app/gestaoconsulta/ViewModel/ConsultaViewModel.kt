@@ -69,6 +69,8 @@ class ConsultaViewModel  @Inject constructor(
     private var _usuarioSelecionado = MutableStateFlow(Usuarios())
     val usuarioSelecionado : StateFlow<Usuarios> = _usuarioSelecionado
 
+    private var usuariosFromRoomDataBase = mutableListOf<UsuarioEntity>()
+
     val allAtendimentosPorUsuarios : Flow<MutableList<AgendamentoPorUsuarioEntity>> = repository.getAllPedidoPorUsuario
     val allCadastros : Flow<MutableList<CadastroEntity>> = repository.getAllCadastroEntity
 
@@ -82,9 +84,6 @@ class ConsultaViewModel  @Inject constructor(
 
     var usuariosFromFirebase = mutableListOf<UsuarioEntity>()
 
-    var usuariosFromRoomDataBase = mutableListOf<UsuarioEntity>()
-
-
     init {
         streamPedidosAgendamento()
         streamUsuario()
@@ -94,8 +93,7 @@ class ConsultaViewModel  @Inject constructor(
         viewModelScope.launch {
             flow {
                 while (true) {
-                    val horasCadastradas = GetPedidosAgendamentos().fecthAgendamentos()
-                    emit(horasCadastradas)
+                    emit(repository.getAgendamentos())
                     delay(1000)
                 }
             }
@@ -109,12 +107,11 @@ class ConsultaViewModel  @Inject constructor(
         }
     }
     private fun streamUsuario() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             flow {
                 while (true) {
-                    val usuariosCadastrados = GetUsuarios().fecthUsuarios()
-                    emit(usuariosCadastrados)
-                    delay(13000)
+                    emit(repository.getUsersApi())
+                    delay(5000)
                 }
             }
                 .flowOn(Dispatchers.IO)

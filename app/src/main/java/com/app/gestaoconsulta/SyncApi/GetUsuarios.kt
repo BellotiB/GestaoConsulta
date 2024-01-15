@@ -1,41 +1,26 @@
 package com.app.gestaoconsulta.SyncApi
 
-import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-
-class GetUsuarios {
-
-    private lateinit var database: FirebaseDatabase
-
-    suspend fun fecthUsuarios(): MutableList<Usuarios> {
-        return suspendCancellableCoroutine { continuation ->
-            database = FirebaseDatabase.getInstance()
-            val referencia = database.getReference("usuario")
-
-            referencia.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val usuarios = mutableListOf<Usuarios>()
-                    for (childSnapshot in dataSnapshot.children) {
-                        val usuario = childSnapshot.getValue(Usuarios::class.java)
-                        if (usuario != null) {
-                            usuarios.add(usuario)
-                        }
-                    }
-                    continuation.resume((usuarios))
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    val errorMessage = "Erro ao verificar horas cadastradas: ${databaseError.message}"
-                    continuation.resumeWithException(Exception(errorMessage))
-                }
-            })
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
+import javax.inject.Singleton
+@Singleton
+class GetUsuarios @Inject constructor(
+    private val apiService: ApiService
+) {
+     fun fetchUsuarios(): MutableList<Usuarios> {
+        return try {
+            val response = apiService.getUsuarios().execute()
+            if (response.isSuccessful) {
+                response.body()?.values?.let { usuarios ->
+                return  usuarios.toMutableList()
+                } ?: mutableListOf()
+            } else {
+                throw Exception("Erro ao obter usuários: ${response.message()}")
+            }
+        } catch (e: Exception) {
+            throw Exception("Erro ao obter usuários: ${e.message}")
         }
     }
 }
