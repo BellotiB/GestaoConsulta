@@ -2,9 +2,7 @@ package com.app.gestaoconsulta.ViewModel
 
 
 
-import RemovePedidosAgendamentos
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
 import com.app.gestaoconsulta.Data.Entities.CadastroEntity
@@ -18,8 +16,6 @@ import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.Model.HorariosCadastrados
 import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
-import com.app.gestaoconsulta.SyncApi.GetPedidosAgendamentos
-import com.app.gestaoconsulta.SyncApi.GetUsuarios
 import com.app.gestaoconsulta.SyncApi.SetCadastroMedicoToServer
 import com.app.gestaoconsulta.SyncApi.SetDatasCadastradasToServer
 import com.app.gestaoconsulta.SyncApi.SetHorasToServer
@@ -501,11 +497,7 @@ class ConsultaViewModel  @Inject constructor(
         repository.insertPedidoAgendamento(agend)
 
     }
-    fun setRemovePedidosAtendimento() {
-        viewModelScope.launch {
-            RemovePedidosAgendamentos().removeAgendamentos()
-        }
-    }
+
     fun setIdUsuario(idUsuario: String) {
         filtrarUsuarioPorId(idUsuario)
     }
