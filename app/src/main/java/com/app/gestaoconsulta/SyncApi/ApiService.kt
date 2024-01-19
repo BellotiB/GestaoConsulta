@@ -15,7 +15,7 @@ interface ApiService {
     fun getUsuarios(): Call<Map<String, Usuarios>>
 
     @GET("pedido_agendamento.json")
-    fun getPedidoAgendamento(): Call<Map<String, PedidoAgendamento>>
+    fun getPedidoAgendamento(): Call<MutableList<PedidoAgendamento>>
 
     @PUT("cadastro-medicos.json")
     fun setCadastroMedico( @Body cadastroEntity: MutableList<CadastroEntity>): Call<MutableList<CadastroEntity>>
