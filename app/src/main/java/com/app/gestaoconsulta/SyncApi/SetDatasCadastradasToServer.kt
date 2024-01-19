@@ -6,41 +6,21 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class SetDatasCadastradasToServer {
-    private lateinit var database: FirebaseDatabase
-
+@Singleton
+class SetDatasCadastradasToServer @Inject constructor(
+    private val apiService: ApiService
+) {
     fun fecthDataCadastrada(list: MutableList<DataCadastradaEntity>){
-        database = FirebaseDatabase.getInstance()
-        val referencia = database.getReference("datas-cadastradas")
+        val result = runCatching {apiService.setDataCadastrada(list).execute() }
 
-        referencia.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    referencia.removeValue { databaseError, _ ->
-                        if (databaseError == null) {
-                            adicionarNovaLista(referencia, list)
-                        } else {
-                            println("Erro ao atualizar dados existentes: ${databaseError.message}")
-                        }
-                    }
-                } else {
-                    adicionarNovaLista(referencia, list)
-                }
-            }
-            override fun onCancelled(databaseError: DatabaseError) {
-                println("Erro ao verificar o cadastro de médicos: ${databaseError.message}")
-            }
-        })
-
-    }
-    private fun adicionarNovaLista(referencia: DatabaseReference, list: MutableList<DataCadastradaEntity>) {
-        referencia.setValue(list) { databaseError, _ ->
-            if (databaseError == null) {
-                println("Dados adicionados com sucesso.")
-            } else {
-                println("Erro ao adicionar nova lista: ${databaseError.message}")
-            }
+        result.onSuccess { response ->
+            response.isSuccessful
+        }
+        result.onFailure { respnose ->
+            respnose.printStackTrace()
         }
     }
 }

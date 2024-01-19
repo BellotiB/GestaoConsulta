@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Ui.Adapter
+package com.app.gestaoconsulta.View.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

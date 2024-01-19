@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Ui.Fragments
+package com.app.gestaoconsulta.View.Fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,8 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
-import com.app.gestaoconsulta.Ui.Adapter.AdapterCadastro
-import com.app.gestaoconsulta.Ui.LoadFragment
+import com.app.gestaoconsulta.View.Adapter.AdapterCadastro
+import com.app.gestaoconsulta.View.LoadFragment
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCadastromedicoBinding
 import dagger.hilt.android.AndroidEntryPoint

@@ -9,18 +9,14 @@ import javax.inject.Singleton
 class GetUsuarios @Inject constructor(
     private val apiService: ApiService
 ) {
-     fun fetchUsuarios(): MutableList<Usuarios> {
-        return try {
+    fun fetchUsuarios(): MutableList<Usuarios> {
+        return runCatching {
             val response = apiService.getUsuarios().execute()
-            if (response.isSuccessful) {
-                response.body()?.values?.let { usuarios ->
-                return  usuarios.toMutableList()
-                } ?: mutableListOf()
-            } else {
-                throw Exception("Erro ao obter usuários: ${response.message()}")
-            }
-        } catch (e: Exception) {
-            throw Exception("Erro ao obter usuários: ${e.message}")
+            check(response.isSuccessful) { "Erro ao obter usuários: ${response.message()}"}
+
+            response.body()?.values?.toMutableList() ?: mutableListOf()
+        }.getOrElse {
+            mutableListOf()
         }
     }
 }

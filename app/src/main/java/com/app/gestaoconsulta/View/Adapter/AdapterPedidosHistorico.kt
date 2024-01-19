@@ -1,15 +1,9 @@
-package com.app.gestaoconsulta.Ui.Adapter
+package com.app.gestaoconsulta.View.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.app.gestaoconsulta.Model.CadastroMedico
-import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.PedidosAgendamentoHistorico
-import com.app.gestaoconsulta.Ui.LoadFragment
-import com.app.gestaoconsulta.databinding.ItemCadastroBinding
 import com.app.gestaoconsulta.databinding.ItemPedidosHistoricoBinding
 
 

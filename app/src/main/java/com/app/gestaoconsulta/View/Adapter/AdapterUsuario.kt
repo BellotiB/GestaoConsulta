@@ -1,10 +1,10 @@
-package com.app.gestaoconsulta.Ui.Adapter
+package com.app.gestaoconsulta.View.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gestaoconsulta.Model.Usuarios
-import com.app.gestaoconsulta.Ui.CriarAgendamento
+import com.app.gestaoconsulta.View.CriarAgendamento
 import com.app.gestaoconsulta.databinding.ItemUsuariosBinding
 import com.google.android.material.card.MaterialCardView
 

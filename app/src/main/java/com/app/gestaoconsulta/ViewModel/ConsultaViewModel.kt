@@ -16,7 +16,6 @@ import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.Model.HorariosCadastrados
 import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
-import com.app.gestaoconsulta.SyncApi.SetCadastroMedicoToServer
 import com.app.gestaoconsulta.SyncApi.SetDatasCadastradasToServer
 import com.app.gestaoconsulta.SyncApi.SetHorasToServer
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -87,34 +86,44 @@ class ConsultaViewModel  @Inject constructor(
 
     private fun streamPedidosAgendamento() {
         viewModelScope.launch {
-            flow {
-                while (true) {
-                    emit(repository.getAgendamentos())
-                    delay(1000)
+           runCatching {
+                flow {
+                    while (true) {
+                        emit(repository.getAgendamentos())
+                        delay(1000)
+                    }
                 }
+                    .flowOn(Dispatchers.IO)
+                    .collectLatest { pedAgendamento ->
+                        pedidosAgendamentoFlow.value =  pedAgendamento
+                        pedidosNotificationFlow.value = pedAgendamento
+                        updateHoraFromServer()
+                        updateHorasCadastradosServer()
+                    }
+            }.onFailure { throwable ->
+                println("Erro durante a execução: $throwable")
             }
-                .flowOn(Dispatchers.IO)
-                .collectLatest { pedAgendamento ->
-                    pedidosAgendamentoFlow.value =  pedAgendamento
-                    pedidosNotificationFlow.value = pedAgendamento
-                    updateHoraFromServer()
-                    updateHorasCadastradosServer()
-                }
         }
     }
+
     private fun streamUsuario() {
         viewModelScope.launch(Dispatchers.IO) {
-            flow {
-                while (true) {
-                    emit(repository.getUsersApi())
-                    delay(5000)
+            runCatching {
+                flow {
+                    while (true) {
+                        emit(repository.getUsersApi())
+                        delay(5000)
+                    }
                 }
+                    .flowOn(Dispatchers.IO)
+                    .collectLatest { users ->
+                        usuariosFlow.value = users
+                        updateOrInsertUsuario()
+                    }
+            }.onFailure{ trowable->
+                println("Erro durante a execução: $trowable")
+
             }
-                .flowOn(Dispatchers.IO)
-                .collectLatest { users ->
-                    usuariosFlow.value = users
-                    updateOrInsertUsuario()
-                }
         }
     }
 
@@ -265,23 +274,23 @@ class ConsultaViewModel  @Inject constructor(
         }
     }
     fun updateCadastroServer(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             allCadastros.collect{ list ->
-                 SetCadastroMedicoToServer().fecthCadastroMedico(list)
+                repository.setMedicos(list)
             }
         }
     }
     fun updateDatasCadastradasServer(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             allDatasCadastradas.collect{ datasList->
-                SetDatasCadastradasToServer().fecthDataCadastrada(datasList)
+             repository.setDatas(datasList)
             }
         }
     }
     fun updateHorasCadastradosServer(){
-        viewModelScope.launch {
+        viewModelScope.launch (Dispatchers.IO){
             allHorasCadastradas.collect{ horasList->
-                SetHorasToServer().fecthHoraCadastrada(horasList)
+                repository.setHoras(horasList)
             }
         }
     }
@@ -477,20 +486,6 @@ class ConsultaViewModel  @Inject constructor(
                 dezenoveQuarentaCinco = hr.dezenoveQuarentaCinco,
             )
             repository.update(horaEntity)
-        }
-    }
-
-    fun setToPedidoAgendamentoDataBase(agendPorMedicos: MutableList<PedidoAgendamento>) {
-        viewModelScope.launch {
-            agendPorMedicos.forEach {
-                val ped = PedidosAgendamentosEntity(
-                    idUsuario = it.idUsuario,
-                    idMedico = it.dataSelecionada.idCadastro,
-                    dataCadastrada = it.dataSelecionada.dataAtendimento,
-                    horaCadastrada = it.horaSelecionada
-                )
-                repository.insertPedidoDao(ped)
-            }
         }
     }
     suspend fun setPedidoAgendamentoPorUsuario(agend: AgendamentoPorUsuarioEntity) {

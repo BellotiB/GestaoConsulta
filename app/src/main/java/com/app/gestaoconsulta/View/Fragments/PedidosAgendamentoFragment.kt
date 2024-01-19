@@ -1,32 +1,24 @@
-package com.app.gestaoconsulta.Ui.Fragments
+package com.app.gestaoconsulta.View.Fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
-import com.app.gestaoconsulta.Model.AgendamentoPorUsuario
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
 import com.app.gestaoconsulta.R
-import com.app.gestaoconsulta.Ui.Adapter.AdapterPedidoAgendamento
-import com.app.gestaoconsulta.Ui.MainActivity
+import com.app.gestaoconsulta.View.Adapter.AdapterPedidoAgendamento
 import com.app.gestaoconsulta.Util.DateFormat
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentPedidosAgendamentoBinding
-import com.google.android.material.navigation.NavigationBarView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
 
 class PedidosAgendamentoFragment : Fragment() {
 

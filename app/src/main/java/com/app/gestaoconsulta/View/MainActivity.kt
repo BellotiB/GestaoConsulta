@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Ui
+package com.app.gestaoconsulta.View
 
 import android.Manifest
 import android.app.NotificationChannel

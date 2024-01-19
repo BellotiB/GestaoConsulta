@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/cadastroMedicoFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.CadastroMedicoFragment"
+        android:name="com.app.gestaoconsulta.View.Fragments.CadastroMedicoFragment"
         tools:layout="@layout/fragment_cadastromedico">
 
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/cadastroDataPorMedicoFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.CadastroDataPorMedicoFragment"
+        android:name="com.app.gestaoconsulta.View.Fragments.CadastroDataPorMedicoFragment"
         tools:layout="@layout/fragment_cadastro_datapor_medico">
 
         <action
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/cadastradosFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.CadastrosFragment"
+        android:name="com.app.gestaoconsulta.View.Fragments.CadastrosFragment"
         tools:layout="@layout/fragment_cadastros">
 
         <action
@@ -71,7 +71,7 @@
 
     <fragment
         android:id="@+id/selecionarDiasFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.SelecionarDiasFragment"
+        android:name="com.app.gestaoconsulta.View.Fragments.SelecionarDiasFragment"
         tools:layout="@layout/fragment_selecionar_dias">
 
     <action
@@ -85,7 +85,7 @@
     </fragment>
     <fragment
         android:id="@+id/usuariosFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.UsuariosFragment"
+        android:name="com.app.gestaoconsulta.View.Fragments.UsuariosFragment"
         tools:layout="@layout/fragment_usuarios">
 
         <action
@@ -100,7 +100,7 @@
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.MenuFragment"
+        android:name="com.app.gestaoconsulta.View.Fragments.MenuFragment"
         tools:layout="@layout/fragment_menu">
 
         <action
@@ -123,7 +123,7 @@
 
     <fragment
         android:id="@+id/criarAgendamento"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.CriarAgendFragment"
+        android:name="com.app.gestaoconsulta.View.Fragments.CriarAgendFragment"
         tools:layout="@layout/fragment_criar_agend">
 
         <action
@@ -137,7 +137,7 @@
 
     <fragment
         android:id="@+id/pedidosAgendamentoFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.PedidosAgendamentoFragment"
+        android:name="com.app.gestaoconsulta.View.Fragments.PedidosAgendamentoFragment"
         tools:layout="@layout/fragment_pedidos_agendamento">
 
         <action
@@ -158,7 +158,7 @@
 
     <fragment
         android:id="@+id/reagendamentoFragment"
-        android:name="com.app.gestaoconsulta.Ui.Fragments.ReagendamentoFragment"
+        android:name="com.app.gestaoconsulta.View.Fragments.ReagendamentoFragment"
         tools:layout="@layout/fragment_reagendamento">
 
     <action

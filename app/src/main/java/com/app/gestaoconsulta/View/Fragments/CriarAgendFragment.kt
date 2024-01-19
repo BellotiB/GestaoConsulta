@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Ui.Fragments
+package com.app.gestaoconsulta.View.Fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -14,7 +14,7 @@ import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.Usuarios
 import com.app.gestaoconsulta.R
-import com.app.gestaoconsulta.Ui.LoadFragment
+import com.app.gestaoconsulta.View.LoadFragment
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCriarAgendBinding
 import com.google.android.material.datepicker.MaterialDatePicker

@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Ui
+package com.app.gestaoconsulta.View
 
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas

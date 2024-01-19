@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Ui.Fragments
+package com.app.gestaoconsulta.View.Fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.Usuarios
-import com.app.gestaoconsulta.Ui.Adapter.AdapterUsuario
-import com.app.gestaoconsulta.Ui.CriarAgendamento
+import com.app.gestaoconsulta.View.Adapter.AdapterUsuario
+import com.app.gestaoconsulta.View.CriarAgendamento
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentUsuariosBinding
 import kotlinx.coroutines.flow.collectLatest

@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Ui.Fragments
+package com.app.gestaoconsulta.View.Fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -13,13 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.R
-import com.app.gestaoconsulta.Ui.Adapter.AdapterDatasCadastradas
-import com.app.gestaoconsulta.Ui.LoadFragment
+import com.app.gestaoconsulta.View.Adapter.AdapterDatasCadastradas
+import com.app.gestaoconsulta.View.LoadFragment
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentCadastroDataporMedicoBinding
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

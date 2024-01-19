@@ -1,5 +1,6 @@
 package com.app.gestaoconsulta.Data
 
+import SetCadastroMedicoToServer
 import com.app.gestaoconsulta.Data.Daos.CadastroDao
 import com.app.gestaoconsulta.Data.Daos.DataCadastradaDao
 import com.app.gestaoconsulta.Data.Daos.HoraCadastradaDao
@@ -17,7 +18,12 @@ import com.app.gestaoconsulta.Model.Usuarios
 import com.app.gestaoconsulta.SyncApi.ApiService
 import com.app.gestaoconsulta.SyncApi.GetPedidosAgendamentos
 import com.app.gestaoconsulta.SyncApi.GetUsuarios
+import com.app.gestaoconsulta.SyncApi.SetDatasCadastradasToServer
+import com.app.gestaoconsulta.SyncApi.SetHorasToServer
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class Repository @Inject constructor(
@@ -57,18 +63,30 @@ class Repository @Inject constructor(
     suspend fun insertUsuarioList(hr: MutableList<UsuarioEntity>){
         usuarioDao.insertUsuarioList(hr)
     }
-    suspend fun insertPedidoDao(ped: PedidosAgendamentosEntity){
-        pedidosDao.insertPedido(ped)
-    }
 
     fun update(horaEntity: HoraCadastradaEntity) {
         horacadDao.update(horaEntity)
     }
     fun getUsersApi(): MutableList<Usuarios> {
-        return  apiService.let { GetUsuarios(it).fetchUsuarios()}
+        return  apiService.let {GetUsuarios(it).fetchUsuarios()}
     }
     fun getAgendamentos(): MutableList<PedidoAgendamento> {
-        return  apiService.let { GetPedidosAgendamentos(it).fetchPedidoAgendamento()}
+        return  apiService.let {GetPedidosAgendamentos(it).fetchPedidoAgendamento()}
+    }
+    suspend fun setMedicos(list: MutableList<CadastroEntity>) {
+        withContext(Dispatchers.IO){
+            apiService.let {SetCadastroMedicoToServer(it).fetchCadastroMedico(list)}
+        }
+    }
+    suspend fun setDatas(list: MutableList<DataCadastradaEntity>) {
+        withContext(Dispatchers.IO){
+            apiService.let {SetDatasCadastradasToServer(it).fecthDataCadastrada(list)}
+        }
+    }
+    suspend fun setHoras(list: MutableList<HoraCadastradaEntity>) {
+        withContext(Dispatchers.IO){
+            apiService.let {SetHorasToServer(it).fecthHoraCadastrada(list)}
+        }
     }
     val getAllHorasEntity: Flow<MutableList<HoraCadastradaEntity>> = horacadDao.getAllHorasCadastradas()
 

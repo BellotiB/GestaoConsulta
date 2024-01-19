@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Ui.Fragments
+package com.app.gestaoconsulta.View.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,7 +12,7 @@ import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.PedidosAgendamentoHistorico
 import com.app.gestaoconsulta.Model.Usuarios
-import com.app.gestaoconsulta.Ui.Adapter.AdapterPedidosHistorico
+import com.app.gestaoconsulta.View.Adapter.AdapterPedidosHistorico
 import com.app.gestaoconsulta.ViewModel.ConsultaViewModel
 import com.app.gestaoconsulta.databinding.FragmentPedidosAgendamentoHistoricoBinding
 import kotlinx.coroutines.flow.collectLatest
