@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Data
+package com.app.gestaoconsulta.DataBase
 
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase

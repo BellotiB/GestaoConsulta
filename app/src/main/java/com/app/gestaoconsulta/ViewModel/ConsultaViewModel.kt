@@ -4,20 +4,18 @@ package com.app.gestaoconsulta.ViewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
-import com.app.gestaoconsulta.Data.Entities.CadastroEntity
-import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
-import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
-import com.app.gestaoconsulta.Data.Entities.PedidosAgendamentosEntity
-import com.app.gestaoconsulta.Data.Entities.UsuarioEntity
-import com.app.gestaoconsulta.Data.Repository
+import com.app.gestaoconsulta.DataBase.Entities.AgendamentoPorUsuarioEntity
+import com.app.gestaoconsulta.DataBase.Entities.CadastroEntity
+import com.app.gestaoconsulta.DataBase.Entities.DataCadastradaEntity
+import com.app.gestaoconsulta.DataBase.Entities.HoraCadastradaEntity
+import com.app.gestaoconsulta.DataBase.Entities.PedidosAgendamentosEntity
+import com.app.gestaoconsulta.DataBase.Entities.UsuarioEntity
+import com.app.gestaoconsulta.Repository.Repository
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.DatasCadastradas
 import com.app.gestaoconsulta.Model.HorariosCadastrados
 import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
-import com.app.gestaoconsulta.SyncApi.SetDatasCadastradasToServer
-import com.app.gestaoconsulta.SyncApi.SetHorasToServer
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

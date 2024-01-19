@@ -1,11 +1,6 @@
 package com.app.gestaoconsulta.SyncApi
 
-import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.app.gestaoconsulta.DataBase.Entities.DataCadastradaEntity
 import javax.inject.Inject
 import javax.inject.Singleton
 

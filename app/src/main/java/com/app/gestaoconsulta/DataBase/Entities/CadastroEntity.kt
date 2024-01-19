@@ -1,4 +1,4 @@
-package com.app.gestaoconsulta.Data.Entities
+package com.app.gestaoconsulta.DataBase.Entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

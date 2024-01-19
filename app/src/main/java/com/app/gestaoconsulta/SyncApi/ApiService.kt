@@ -1,8 +1,8 @@
 package com.app.gestaoconsulta.SyncApi
 
-import com.app.gestaoconsulta.Data.Entities.CadastroEntity
-import com.app.gestaoconsulta.Data.Entities.DataCadastradaEntity
-import com.app.gestaoconsulta.Data.Entities.HoraCadastradaEntity
+import com.app.gestaoconsulta.DataBase.Entities.CadastroEntity
+import com.app.gestaoconsulta.DataBase.Entities.DataCadastradaEntity
+import com.app.gestaoconsulta.DataBase.Entities.HoraCadastradaEntity
 import com.app.gestaoconsulta.Model.PedidoAgendamento
 import com.app.gestaoconsulta.Model.Usuarios
 import retrofit2.Call

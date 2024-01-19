@@ -2,13 +2,13 @@ package com.app.gestaoconsulta.Di
 
 import android.content.Context
 import androidx.room.Room
-import com.app.gestaoconsulta.Data.Daos.CadastroDao
-import com.app.gestaoconsulta.Data.DataBaseCadastros
-import com.app.gestaoconsulta.Data.Daos.DataCadastradaDao
-import com.app.gestaoconsulta.Data.Daos.HoraCadastradaDao
-import com.app.gestaoconsulta.Data.Daos.PedidosAgendamentosDao
-import com.app.gestaoconsulta.Data.Daos.PedidosPorUsuariosDao
-import com.app.gestaoconsulta.Data.Daos.UsuarioDao
+import com.app.gestaoconsulta.DataBase.Daos.CadastroDao
+import com.app.gestaoconsulta.DataBase.DataBaseCadastros
+import com.app.gestaoconsulta.DataBase.Daos.DataCadastradaDao
+import com.app.gestaoconsulta.DataBase.Daos.HoraCadastradaDao
+import com.app.gestaoconsulta.DataBase.Daos.PedidosAgendamentosDao
+import com.app.gestaoconsulta.DataBase.Daos.PedidosPorUsuariosDao
+import com.app.gestaoconsulta.DataBase.Daos.UsuarioDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

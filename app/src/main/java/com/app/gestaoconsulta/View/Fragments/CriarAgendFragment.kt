@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.app.gestaoconsulta.Data.Entities.AgendamentoPorUsuarioEntity
+import com.app.gestaoconsulta.DataBase.Entities.AgendamentoPorUsuarioEntity
 import com.app.gestaoconsulta.Model.CadastroMedico
 import com.app.gestaoconsulta.Model.Usuarios
 import com.app.gestaoconsulta.R

@@ -1,9 +1,9 @@
-package com.app.gestaoconsulta.Data.Daos
+package com.app.gestaoconsulta.DataBase.Daos
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.app.gestaoconsulta.Data.Entities.PedidosAgendamentosEntity
+import com.app.gestaoconsulta.DataBase.Entities.PedidosAgendamentosEntity
 import kotlinx.coroutines.flow.Flow
 @Dao
 interface PedidosAgendamentosDao {

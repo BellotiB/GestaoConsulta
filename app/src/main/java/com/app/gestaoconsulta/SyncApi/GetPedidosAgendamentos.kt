@@ -20,8 +20,6 @@ class GetPedidosAgendamentos @Inject constructor(
             mutableListOf()
         }
     }
-
-
 }
 
 
