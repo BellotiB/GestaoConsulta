@@ -15,9 +15,9 @@ class GetPedidosAgendamentos @Inject constructor(
             val response = apiService.getPedidoAgendamento().execute()
             check(response.isSuccessful){"Erro ao obter pedido Agendamento: ${response.message()}"}
 
-            response.body()?: mutableListOf()
-        }.getOrElse {
-            print(it.message)
+            response.body()?.values?.flatten()?.toMutableList() ?: mutableListOf()
+        }.getOrElse  {
+            println("Ocorreu uma exceção: ${it.message}")
             mutableListOf()
         }
     }
