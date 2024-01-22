@@ -35,10 +35,6 @@ class AdapterPedidoAgendamento(
         pedidosList.addAll(ped)
         notifyDataSetChanged()
     }
-    fun clearList(){
-        pedidosList.clear()
-        notifyDataSetChanged()
-    }
 
     inner class PedidoViewHolder(private val binding: ItemPeodidoAgendamentoBinding) :
         RecyclerView.ViewHolder(binding.root) {

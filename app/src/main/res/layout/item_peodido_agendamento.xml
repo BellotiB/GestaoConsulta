@@ -22,11 +22,11 @@
 
         <TextView
             android:id="@+id/tv_nomecliente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="110dp"
-        android:hint="@string/cliente_example"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="110dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/cliente_example" />
 
         <TextView
         android:layout_width="wrap_content"

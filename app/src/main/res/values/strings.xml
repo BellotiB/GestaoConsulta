@@ -24,8 +24,8 @@
     <string name="_00_30">00:30</string>
     <string name="per_odo_cada_atendimento">Período cada atendimento:</string>
     <string name="_5_00">5:00</string>
-    <string name="cliente_example">Maria das Dores</string>
-    <string name="medico_example">Dr.Mario</string>
+    <string name="cliente_example">Sem Nome</string>
+    <string name="medico_example">Sem Nome</string>
     <string name="example_profissional">Profissional:</string>
     <string name="hora_selecionadas">Horário Selecionado:</string>
     <string name="filtrar_por_especialidades">Filtrar por especialidades</string>
